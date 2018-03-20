@@ -40,7 +40,7 @@ void Game::Update()
 		}
 	}
 	else {
-		if (Pad(0).IsPressAnyKey()) {
+		if (Pad(0).IsPress(enButtonA)) {
 			m_isWaitFadeout = true;
 			m_fade->StartFadeOut();
 		}

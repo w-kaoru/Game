@@ -10,7 +10,10 @@ public:
 	void OnDestroy() override;
 	void PostRender(CRenderContext& rc) override;
 private:
+	//フェイドアウト　ゲーム
 	bool m_isWaitFadeout = false;
+	//フェイドアウト　テスト
+	bool m_isWaitFadeout2 = false;
 	CShaderResourceView m_texture;
 	CSprite m_sprite;
 	Fade* m_fade = nullptr;
