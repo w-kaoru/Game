@@ -27,6 +27,7 @@ void Fade::Update()
 		}
 		break;
 	case enState_FadeOut:
+
 		m_currentAlpha += 2.0f * GameTime().GetFrameDeltaTime();
 		if (m_currentAlpha >= 1.0f) {
 			m_currentAlpha = 1.0f;
