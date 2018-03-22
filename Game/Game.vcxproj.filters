@@ -37,6 +37,7 @@
     <ClCompile Include="Fade.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Test.cpp" />
+    <ClCompile Include="NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -47,6 +48,7 @@
     <ClInclude Include="Fade.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Test.h" />
+    <ClInclude Include="NPC.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
