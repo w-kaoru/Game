@@ -36,6 +36,7 @@ void Game::Update()
 	if (m_isWaitFadeout) {
 		if (!m_fade->IsFade()) {
 				NewGO<Title>(0, "Title");
+				DeleteGO(m_skinModelRender);
 				DeleteGO(this);
 		}
 	}
