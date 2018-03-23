@@ -3,6 +3,7 @@
 #include "tkEngine/graphics/effect/tkEffect.h"
 
 class Fade;
+class Background;
 class Game : public IGameObject
 {
 public:
@@ -10,6 +11,7 @@ public:
 	~Game();
 	bool Start();
 	void Update();
+	void OnDestroy();
 	void Render(CRenderContext& rc);
 private:
 	enum EnState {
@@ -23,5 +25,6 @@ private:
 	CVector3 m_pos = CVector3::Zero;
 	EnState m_state = enState_FadeIn;
 	Fade* m_fade = nullptr;
+	Background* m_background = nullptr;
 };
 

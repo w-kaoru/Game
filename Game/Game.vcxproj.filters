@@ -38,6 +38,7 @@
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="Background.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -49,6 +50,7 @@
     <ClInclude Include="Title.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="Background.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -57,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\zimen.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
   </ItemGroup>
