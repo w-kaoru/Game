@@ -5,6 +5,8 @@
 #include "Fade.h"
 #include "Background.h"
 #include "Title.h"
+#include "Player.h"
+#include "GameCamera.h"
 
 
 Game::Game()
@@ -24,19 +26,19 @@ bool Game::Start()
 	MainCamera().SetPosition({ 30.0f, 10.0f, 0.0f });
 	MainCamera().Update();
 
-	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/unityChan.cmo");
-	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f } );
 	m_fade = FindGO<Fade>("Fade");
 	m_fade->StartFadeIn();
 	m_state = enState_FadeIn;
+	m_player = NewGO<Player>(0,"Player");
 	m_background = NewGO<Background>(0);
+	m_gameCamera = NewGO<GameCamera>(0);
 	return true;
 }
 void Game::OnDestroy()
 {
+	DeleteGO(m_player);
 	DeleteGO(m_background);
-	DeleteGO(m_skinModelRender);
+	DeleteGO(m_gameCamera);
 }
 void Game::Update()
 {

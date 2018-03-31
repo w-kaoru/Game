@@ -4,6 +4,8 @@
 
 class Fade;
 class Background;
+class Player;
+class GameCamera;
 class Game : public IGameObject
 {
 public:
@@ -19,12 +21,11 @@ private:
 		enState_InGame,	//!<インゲーム中。
 	};
 	bool m_isWaitFadeout = false;
-	prefab::CSkinModelRender* m_skinModelRender = nullptr;	//スキンモデルレンダラー。
-	CAnimationClip m_animClip[1];							//アニメーションクリップ。
-	CAnimation m_animation;
 	CVector3 m_pos = CVector3::Zero;
 	EnState m_state = enState_FadeIn;
 	Fade* m_fade = nullptr;
+	Player*m_player = nullptr;
 	Background* m_background = nullptr;
+	GameCamera*m_gameCamera = nullptr;
 };
 

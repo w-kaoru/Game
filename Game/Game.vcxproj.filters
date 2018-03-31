@@ -39,6 +39,8 @@
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="GameCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -51,6 +53,8 @@
     <ClInclude Include="Test.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="GameCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
