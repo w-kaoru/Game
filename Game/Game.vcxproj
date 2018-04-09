@@ -658,6 +658,7 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\zimen.FBX" />
+    <MeshContentTask Include="Assets\modelData\zimen2.FBX" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\modelData\unityChan.tks">
