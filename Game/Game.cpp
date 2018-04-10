@@ -7,6 +7,7 @@
 #include "Title.h"
 #include "Player.h"
 #include "GameCamera.h"
+#include "Level.h"
 
 
 Game::Game()
@@ -32,6 +33,8 @@ bool Game::Start()
 	m_player = NewGO<Player>(0,"Player");
 	m_background = NewGO<Background>(0);
 	m_gameCamera = NewGO<GameCamera>(0);
+	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
+	m_level.Build(L"level/map.tks");
 	return true;
 }
 void Game::OnDestroy()

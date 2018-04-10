@@ -1,6 +1,8 @@
 #pragma once
 
 #include "tkEngine/graphics/effect/tkEffect.h"
+#include "Level.h"
+
 
 class Fade;
 class Background;
@@ -27,5 +29,6 @@ private:
 	Player*m_player = nullptr;
 	Background* m_background = nullptr;
 	GameCamera*m_gameCamera = nullptr;
+	Level m_level;							//ƒŒƒxƒ‹B
 };
 
