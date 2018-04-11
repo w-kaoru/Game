@@ -33,4 +33,3 @@ private:
 	GameCamera*m_gameCamera = nullptr;
 	NPC*m_npc = nullptr;
 };
-
