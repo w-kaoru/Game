@@ -23,4 +23,3 @@ void MapChip::Init(
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 }
-

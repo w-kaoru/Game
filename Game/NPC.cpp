@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "NPC.h"
+#include "Level.h"
+#include "MapChip.h"
+#include "Game.h"
 
 
 NPC::NPC()
@@ -18,6 +21,11 @@ void NPC::OnDestroy()
 
 bool NPC::Start()
 {
+	Game *m_game = FindGO<Game>("Game");
+	
+	MapChip* a = *m_game->m_level.itr;
+	m_position=a->m_position;
+	m_position.y += 30.0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });

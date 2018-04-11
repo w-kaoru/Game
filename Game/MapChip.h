@@ -22,6 +22,3 @@ public:
 	CVector3 m_position;				//!<À•WB
 	CQuaternion m_rotation;				//!<‰ñ“]B
 };
-
-
-

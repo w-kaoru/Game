@@ -17,5 +17,6 @@ public:
 	// ここからメンバ変数。
 	///////////////////////////////////////////////
 	std::list<MapChip*> m_mapChipList;		//マップチップのリスト。
-};
 
+	std::list<MapChip*>::iterator itr;
+};
