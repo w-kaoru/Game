@@ -13,7 +13,7 @@ GameCamera::~GameCamera()
 bool GameCamera::Start()
 {
 	//注視点から視点までのベクトルを設定。
-	m_toCameraPos.Set(0.0f, 25.0f, 50.0f);
+	m_toCameraPos.Set(0.0f, 15.0f, 30.0f);
 	//プレイヤーのインスタンスを探す。
 	m_player = FindGO<Player>("Player");
 
@@ -25,7 +25,7 @@ bool GameCamera::Start()
 	m_springCamera.Init(
 		MainCamera(),		//ばねカメラの処理を行うカメラを指定する。
 		1000.0f,			//カメラの移動速度の最大値。
-		true,				//カメラと地形とのあたり判定を取るかどうかのフラグ。trueだとあたり判定を行う。
+		false,					//カメラと地形とのあたり判定を取るかどうかのフラグ。trueだとあたり判定を行う。
 		5.0f				//カメラに設定される球体コリジョンの半径。第３引数がtrueの時に有効になる。
 	);
 	return true;
@@ -36,7 +36,7 @@ void GameCamera::Update()
 	//注視点を計算する。
 	CVector3 target = m_player->m_position;
 	//プレイヤの足元からちょっと上を注視点とする。
-	target.y += 25.0f;
+	target.y += 15.0f;
 
 	CVector3 toCameraPosOld = m_toCameraPos;
 	//パッドの入力を使ってカメラを回す。

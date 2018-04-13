@@ -24,8 +24,8 @@ bool Player::Start()
 	m_position.y = 100;
 	//キャラクターコントローラーを初期化。
 	m_charaCon.Init(
-		20.0,			//半径。 
-		50.0f,			//高さ。
+		4.0,			//半径。 
+		6.0f,			//高さ。
 		m_position 	//初期位置。
 	);
 	
@@ -77,14 +77,11 @@ void Player::Update()
 	Move();
 	//旋回処理。
 	Turn();
-	
-	//ワールド行列を更新。
+
 	//ワールド行列を更新。
 	CQuaternion qRot;
 	qRot.SetRotationDeg(CVector3::AxisX, 0.0f);	//3dsMaxで設定されているアニメーションでキャラが回転しているので、補正を入れる。
 	qRot.Multiply(m_rotation, qRot);
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(qRot);
-	//座標を設定。
-	m_skinModelRender->SetPosition(m_position);
 }
