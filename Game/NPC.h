@@ -1,5 +1,9 @@
 #pragma once
+//キャラクターコントローラーを使用する場合は、下記のヘッダーファイルのインクルードが必要。
+#include "tkEngine/character/tkCharacterController.h"
+
 class Game;
+class Player;
 class NPC : public IGameObject
 {
 public:
@@ -21,10 +25,12 @@ public:
 	//CAnimationClip m_animationClip[enAnimationClip_num];	//アニメーションクリップ。
 	prefab::CSkinModelRender* m_skinModelRender[30];	//スキンモデルレンダラー。
 	CVector3 m_position[30];	//座標。
-	CQuaternion m_rotation = CQuaternion::Identity;	//回転。
-	//CCharacterController m_charaCon;		//キャラクターコントローラー。
-	CVector3 m_moveSpeed = CVector3::Zero;	//移動速度。
+	CQuaternion m_rotation[30];	//回転。
+	CCharacterController m_charaCon[30];		//キャラクターコントローラー。
+	CVector3 m_moveSpeed[30];	//移動速度。
 	Game *m_game = nullptr;
+	Player *m_player = nullptr;
 	int i = 0;
+	float angle[30];
 };
 
