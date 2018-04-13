@@ -1,11 +1,14 @@
 #pragma once
 
 #include "tkEngine/graphics/effect/tkEffect.h"
+#include "Level.h"
+
 
 class Fade;
 class Background;
 class Player;
 class GameCamera;
+class NPC;
 class Game : public IGameObject
 {
 public:
@@ -15,6 +18,7 @@ public:
 	void Update();
 	void OnDestroy();
 	void Render(CRenderContext& rc);
+	Level m_level;							//レベル。
 private:
 	enum EnState {
 		enState_FadeIn,	//!<フェードイン中。
@@ -27,5 +31,5 @@ private:
 	Player*m_player = nullptr;
 	Background* m_background = nullptr;
 	GameCamera*m_gameCamera = nullptr;
+	NPC*m_npc = nullptr;
 };
-

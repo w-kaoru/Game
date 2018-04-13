@@ -41,6 +41,8 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="MapChip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -55,6 +57,8 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="MapChip.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -66,6 +70,12 @@
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\zimen2.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\yagura.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\yatai.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
   </ItemGroup>
@@ -178,6 +188,7 @@
     <CustomBuild Include="Assets\effect\Texture\wind02.png">
       <Filter>Assets\effect\Texture</Filter>
     </CustomBuild>
+    <CustomBuild Include="Assets\level\map.tks" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">

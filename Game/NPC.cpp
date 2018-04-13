@@ -1,5 +1,9 @@
 #include "stdafx.h"
 #include "NPC.h"
+#include "Level.h"
+#include "MapChip.h"
+#include "Game.h"
+#include "Test.h"
 
 
 NPC::NPC()
@@ -13,34 +17,38 @@ NPC::~NPC()
 
 void NPC::OnDestroy()
 {
-	DeleteGO(m_skinModelRender);
+	for (i = 0; i < m_game->m_level.m_mapChipList.size(); i++) {
+		DeleteGO(m_skinModelRender[i]);
+	}
 }
 
 bool NPC::Start()
 {
-	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/unityChan.cmo");
-	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
+	//NPC配置のコード
+	m_game = FindGO<Game>("Game");
+	std::list<MapChip*>::iterator a= m_game->m_level.itr;
+	int h = 1;
+	for (i = 0; i < m_game->m_level.m_mapChipList.size(); i++) {
+		MapChip* f = *a;
+		m_position[i] = f->m_position;
+		m_position[i].y += 30.0;
+		m_position[i].x += h;
+		m_skinModelRender[i] = NewGO<prefab::CSkinModelRender>(0);
+		m_skinModelRender[i]->Init(L"modelData/unityChan.cmo");
+		m_skinModelRender[i]->SetPosition(m_position[i]);
+		m_skinModelRender[i]->SetScale({ 0.1f, 0.1f, 0.1f });
+		h += 1;
+		a++;
+	}
 	return true;
 }
 
 void NPC::Update()
 {
-	//上下左右のキー入力による移動処理。
-	if (Pad(0).IsPress(enButtonRight)) {
-		m_position.x -= 5.0f;
+	for (i = 0; i < m_game->m_level.m_mapChipList.size(); i++) {
+		//座標を設定。
+		m_skinModelRender[i]->SetPosition(m_position[i]);
 	}
-	else if (Pad(0).IsPress(enButtonLeft)) {
-		m_position.x += 5.0f;
-	}
-	else if (Pad(0).IsPress(enButtonUp)) {
-		m_position.y += 5.0f;
-	}
-	else if (Pad(0).IsPress(enButtonDown)) {
-		m_position.y -= 5.0f;
-	}
-	//座標を設定。
-	m_skinModelRender->SetPosition(m_position);
 }
 
 void NPC::Render(CRenderContext& rc)
