@@ -53,8 +53,8 @@ bool NPC::Start()
 
 void NPC::Update()
 {
-	CVector3 plp[30];
-	CQuaternion qRot[30];
+	CVector3 plp[20];
+	CQuaternion qRot[20];
 	for (i = 0; i < m_game->m_level.m_mapChipList.size(); i++) {
 		m_moveSpeed[i].y -= 980.0f * GameTime().GetFrameDeltaTime();
 		plp[i] = m_player->m_position - m_position[i];

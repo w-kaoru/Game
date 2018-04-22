@@ -23,13 +23,14 @@ public:
 	//	enAnimationClip_num,	//アニメーションクリップの総数。
 	//};
 	//CAnimationClip m_animationClip[enAnimationClip_num];	//アニメーションクリップ。
-	prefab::CSkinModelRender* m_skinModelRender[30];	//スキンモデルレンダラー。
-	CVector3 m_position[30];	//座標。
-	CQuaternion m_rotation[30];	//回転。
-	CCharacterController m_charaCon[30];		//キャラクターコントローラー。
-	CVector3 m_moveSpeed[30];	//移動速度。
+	prefab::CSkinModelRender* m_skinModelRender[20];	//スキンモデルレンダラー。
+	CVector3 m_position[20];	//座標。
+	CQuaternion m_rotation[20];	//回転。
+	CCharacterController m_charaCon[20];		//キャラクターコントローラー。
+	CVector3 m_moveSpeed[20];	//移動速度。
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
+	
 	int i = 0;
 	float angle[30];
 };
