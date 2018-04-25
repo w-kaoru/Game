@@ -26,8 +26,9 @@ namespace tkEngine{
 		 *@param[in]	radius		カプセルコライダーの半径。
 		 *@param[in]	height		カプセルコライダーの高さ。
 		 *@param[in]	position	初期位置。
+		 *@param[in]	flag		プレイヤーかNPCか。
 		 */
-		void Init(float radius, float height, const CVector3& position);
+		void Init(float radius, float height, const CVector3& position/*, int Characterflag*/);
 		/*!
 		 * @brief	実行。
 		 *@param[in]	deltaTime		経過時間。単位は秒。
@@ -90,6 +91,7 @@ namespace tkEngine{
 		* @brief	剛体を物理エンジンから削除。。
 		*/
 		void RemoveRigidBoby();
+		
 	private:
 		CVector3 			m_position = CVector3::Zero;	//座標。
 		bool 				m_isJump = false;				//ジャンプ中？
@@ -98,5 +100,6 @@ namespace tkEngine{
 		float				m_radius = 0.0f;
 		float				m_height = 0.0f;		
 		CRigidBody			m_rigidBody;					//剛体。
+		//int					m_Characterflag = 0;				//プレイヤー用。
 	};
 }
