@@ -66,7 +66,7 @@ namespace tkEngine {
 			virtual	btScalar	addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
 			{
 				if (convexResult.m_hitCollisionObject == me
-					//|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character	//もしくはコリジョン属性がキャラクタなので壁とみなす。
+					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character	//もしくはコリジョン属性がキャラクタなので壁とみなす。
 					) {
 					//自分に衝突した。or 地面に衝突した。
 					return 0.0f;
@@ -100,9 +100,10 @@ namespace tkEngine {
 	}
 
 
-	void CCharacterController::Init(float radius, float height, const CVector3& position/*,int Characterflag*/)
+	void CCharacterController::Init(float radius, float height, const CVector3& position,int Characterflag)
 	{
-		//this->Characterflag = Characterflag;
+		//キャラクターのフラグ
+		m_Characterflag = Characterflag;
 		m_position = position;
 		//コリジョン作成。
 		m_radius = radius;

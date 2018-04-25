@@ -41,7 +41,8 @@ bool NPC::Start()
 		m_charaCon[i].Init(
 			4.0,			//半径。 
 			6.0f,			//高さ。
-			m_position[i] 	//初期位置。
+			m_position[i], 	//初期位置。
+			1				//１がNPCのフラグ。
 		);
 		m_skinModelRender[i]->SetPosition(m_position[i]);
 		m_skinModelRender[i]->SetScale({ 0.1f, 0.1f, 0.1f });
@@ -58,7 +59,7 @@ void NPC::Update()
 	for (i = 0; i < m_game->m_level.m_mapChipList.size(); i++) {
 		m_moveSpeed[i].y -= 980.0f * GameTime().GetFrameDeltaTime();
 		plp[i] = m_player->m_position - m_position[i];
-		if (plp[i].Length() < 100.0f) {
+		if (plp[i].Length() < 100.0f&& plp[i].Length() > 10.0f) {
 			plp[i].Normalize();
 			m_moveSpeed[i].x = plp[i].x * 50;
 			m_moveSpeed[i].z = plp[i].z * 50;
@@ -70,6 +71,11 @@ void NPC::Update()
 			//atanが返してくる角度はラジアン単位なので
 			//SetRotationDegではなくSetRotationを使用する。
 			m_rotation[i].SetRotation(CVector3::AxisY, angle[i]);
+		}
+		else if (plp[i].Length() > 100.0f || plp[i].Length() < 10.0f) {
+			plp[i].Normalize();
+			m_moveSpeed[i].x = plp[i].x * 0;
+			m_moveSpeed[i].z = plp[i].z * 0;
 		}
 		m_position[i] = m_charaCon[i].Execute(
 			GameTime().GetFrameDeltaTime(),
