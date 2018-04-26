@@ -188,6 +188,7 @@
       <Filter>Assets\effect\Texture</Filter>
     </CustomBuild>
     <CustomBuild Include="Assets\level\map.tks" />
+    <CustomBuild Include="Assets\effect\hanabi.efk" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">
