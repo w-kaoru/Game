@@ -4,7 +4,7 @@
 #include "tkEngine/light/tkDirectionLight.h"
 #include "Fade.h"
 #include "Title.h"
-#include "NPC.h"
+#include "GameClear.h"
 
 
 Test::Test()
@@ -24,7 +24,7 @@ bool Test::Start()
 	MainCamera().SetPosition({ 30.0f, 10.0f, 0.0f });
 	MainCamera().Update();
 
-	m_npc = NewGO<NPC>(0,"NPC");
+	m_gameClear = NewGO<GameClear>(0,"GameClear");
 	m_fade = FindGO<Fade>("Fade");
 	m_fade->StartFadeIn();
 	m_state = enState_FadeIn;
@@ -35,7 +35,7 @@ void Test::Update()
 	if (m_isWaitFadeout) {
 		if (!m_fade->IsFade()) {
 			NewGO<Title>(0, "Title");
-			DeleteGO(FindGO<NPC>("NPC"));
+			DeleteGO(m_gameClear);
 			DeleteGO(this);
 		}
 	}
