@@ -56,6 +56,7 @@ namespace tkEngine {
 		//衝突したときに呼ばれる関数オブジェクト(壁用)
 		struct SweepResultWall : public btCollisionWorld::ConvexResultCallback
 		{
+			bool isCharacter = false;
 			bool isHit = false;						//衝突フラグ。
 			CVector3 hitPos = CVector3::Zero;		//衝突点。
 			CVector3 startPos = CVector3::Zero;		//レイの始点。
@@ -67,6 +68,7 @@ namespace tkEngine {
 			{
 				if (convexResult.m_hitCollisionObject == me
 					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character	//もしくはコリジョン属性がキャラクタなので壁とみなす。
+					&& isCharacter == 0
 					) {
 					//自分に衝突した。or 地面に衝突した。
 					return 0.0f;
@@ -165,6 +167,7 @@ namespace tkEngine {
 				SweepResultWall callback;
 				callback.me = m_rigidBody.GetBody();
 				callback.startPos = posTmp;
+				callback.isCharacter = m_Characterflag;
 				//衝突検出。
 				PhysicsWorld().ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
 
