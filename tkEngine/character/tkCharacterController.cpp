@@ -56,6 +56,7 @@ namespace tkEngine {
 		//衝突したときに呼ばれる関数オブジェクト(壁用)
 		struct SweepResultWall : public btCollisionWorld::ConvexResultCallback
 		{
+			bool isCharacter = false;
 			bool isHit = false;						//衝突フラグ。
 			CVector3 hitPos = CVector3::Zero;		//衝突点。
 			CVector3 startPos = CVector3::Zero;		//レイの始点。
@@ -66,7 +67,8 @@ namespace tkEngine {
 			virtual	btScalar	addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
 			{
 				if (convexResult.m_hitCollisionObject == me
-					//|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character	//もしくはコリジョン属性がキャラクタなので壁とみなす。
+					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character	//もしくはコリジョン属性がキャラクタなので壁とみなす。
+					&& isCharacter == 0
 					) {
 					//自分に衝突した。or 地面に衝突した。
 					return 0.0f;
@@ -100,9 +102,10 @@ namespace tkEngine {
 	}
 
 
-	void CCharacterController::Init(float radius, float height, const CVector3& position/*,int Characterflag*/)
+	void CCharacterController::Init(float radius, float height, const CVector3& position,int Characterflag)
 	{
-		//this->Characterflag = Characterflag;
+		//キャラクターのフラグ
+		m_Characterflag = Characterflag;
 		m_position = position;
 		//コリジョン作成。
 		m_radius = radius;
@@ -164,6 +167,7 @@ namespace tkEngine {
 				SweepResultWall callback;
 				callback.me = m_rigidBody.GetBody();
 				callback.startPos = posTmp;
+				callback.isCharacter = m_Characterflag;
 				//衝突検出。
 				PhysicsWorld().ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
 

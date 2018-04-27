@@ -3,7 +3,7 @@
 #include "tkEngine/graphics/effect/tkEffect.h"
 
 class Fade;
-class NPC;
+class GameClear;
 class Test : public IGameObject
 {
 public:
@@ -23,7 +23,7 @@ private:
 	CVector3 m_pos = CVector3::Zero;
 	EnState m_state = enState_FadeIn;
 	Fade* m_fade = nullptr;
-	NPC * m_npc = nullptr;
+	GameClear* m_gameClear = nullptr;
 };
 
 

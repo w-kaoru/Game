@@ -26,7 +26,8 @@ bool Player::Start()
 	m_charaCon.Init(
 		4.0,			//半径。 
 		6.0f,			//高さ。
-		m_position 	//初期位置。
+		m_position, 	//初期位置。
+		0				//0がプレイヤーのフラグ。
 	);
 	
 	return true;

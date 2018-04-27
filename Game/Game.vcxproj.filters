@@ -43,6 +43,7 @@
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="MapChip.cpp" />
+    <ClCompile Include="GameClear.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -59,6 +60,7 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MapChip.h" />
+    <ClInclude Include="GameClear.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -186,6 +188,7 @@
       <Filter>Assets\effect\Texture</Filter>
     </CustomBuild>
     <CustomBuild Include="Assets\level\map.tks" />
+    <CustomBuild Include="Assets\effect\hanabi.efk" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">
