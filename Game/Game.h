@@ -32,4 +32,5 @@ private:
 	Background* m_background = nullptr;
 	GameCamera*m_gameCamera = nullptr;
 	NPC*m_npc = nullptr;
+	
 };

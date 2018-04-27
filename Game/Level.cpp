@@ -39,5 +39,4 @@ void Level::Build(const wchar_t* levelDataFilePath)
 		mapChip->Init(modelDataFilePath, position, CVector3::One, rotation);
 		m_mapChipList.push_back(mapChip);
 	}
-	itr = m_mapChipList.begin();
 }
