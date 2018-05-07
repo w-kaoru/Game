@@ -35,7 +35,7 @@ bool Game::Start()
 	m_background = NewGO<Background>(0);
 	m_gameCamera = NewGO<GameCamera>(0);
 	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
-	m_level.Build(L"level/map.tks");
+	m_level.Build(L"level/map2.tks");
 	for (int i = 0; i < m_level.m_mapChipList.size(); i++) {
 		NPC* npc = NewGO<NPC>(0);
 		npc->m_position= m_level.m_mapChipList[i]->m_position;
