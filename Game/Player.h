@@ -23,4 +23,5 @@ public:
 	CQuaternion m_rotation = CQuaternion::Identity;	//回転。
 	CCharacterController m_charaCon;		//キャラクターコントローラー。
 	CVector3 m_moveSpeed = CVector3::Zero;	//移動速度。
+	int followerNum = 0;					//付いて来ている人間の数。
 };

@@ -17,5 +17,7 @@ public:
 	Player* m_player;	//プレイヤー。
 	CVector3 m_toCameraPos;	//
 	CSpringCamera m_springCamera; //ばねカメラ。
+
+	int Pullcamera = 0;
 };
 

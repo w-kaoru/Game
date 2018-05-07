@@ -2,6 +2,19 @@
 #include "GameCamera.h"
 
 
+//カメラデータ。
+struct SCameraData {
+	float targetToPosition;		//注視点から視点までの距離。
+	int humanLimit;				//このカメラデータを使用できる人間の数の上限。
+};
+//カメラデータのテーブル。
+SCameraData cameraDataTbl[] = {
+	{ 15.0f, 5 },			//人間の数が５人以下の時のカメラデータ。
+	{ 20.0f, 10 },			//人間の数が10人以下の時のカメラデータ。
+	{ 30.0f, 20 },			//人間の数が20人以下の時のカメラデータ。
+	{ 40.0f, 10000},		//人間の数が10000人以下の時のカメラデータ。
+};
+
 GameCamera::GameCamera()
 {
 }
@@ -67,7 +80,22 @@ void GameCamera::Update()
 		m_toCameraPos = toCameraPosOld;
 	}
 
-	//視点を計算する。
+	//プレイヤーのインスタンスを検索。
+	Player* player = FindGO<Player>("Player");
+	//ついて来ている人間の数で、使用するカメラデータを決める。
+	SCameraData* cameraData = nullptr;
+	int arraySize = ARRAYSIZE(cameraDataTbl);
+	for (int i = 0; i < arraySize; i++) {
+		if (player->followerNum < cameraDataTbl[i].humanLimit) {
+			//使用するカメラデータが見つかった。
+			cameraData = &cameraDataTbl[i];
+			break;
+		}
+	}
+	//注視点から視点へのベクトルを正規化して、大きさ１にする。
+	m_toCameraPos.Normalize();
+	m_toCameraPos *= cameraData->targetToPosition;
+	////新しい注視点から視点までのベクトルが求まったので、新しい視点を計算する。
 	CVector3 pos = target + m_toCameraPos;
 	//バネカメラに注視点と視点を設定する。
 	m_springCamera.SetTarget(target);
