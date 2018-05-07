@@ -29,6 +29,9 @@
     <Filter Include="Assets\effect\Texture">
       <UniqueIdentifier>{8b31e80d-a444-4ef6-a616-be60a9d00e35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\level">
+      <UniqueIdentifier>{e1fe0a69-38ee-47b0-b7f9-6252eccd4904}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -43,6 +46,7 @@
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="MapChip.cpp" />
+    <ClCompile Include="GameClear.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -59,6 +63,7 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MapChip.h" />
+    <ClInclude Include="GameClear.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -185,7 +190,10 @@
     <CustomBuild Include="Assets\effect\Texture\wind02.png">
       <Filter>Assets\effect\Texture</Filter>
     </CustomBuild>
-    <CustomBuild Include="Assets\level\map.tks" />
+    <CustomBuild Include="Assets\effect\hanabi.efk" />
+    <CustomBuild Include="Assets\level\map.tks">
+      <Filter>Assets\level</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">
