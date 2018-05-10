@@ -17,6 +17,7 @@ NPC::~NPC()
 
 void NPC::OnDestroy()
 {
+	DeleteGO(m_skinModelRender);
 }
 
 bool NPC::Start()

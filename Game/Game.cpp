@@ -39,8 +39,8 @@ bool Game::Start()
 	CLocData locData;
 	locData.Load(L"modelData/NPCloc.tks");
 	for (int i = 0; i < locData.GetNumObject(); i++) {
-		NPC* npc = NewGO<NPC>(0);
-		npc->m_position = locData.GetObjectPosition(i);//->m_position;
+		m_npc = NewGO<NPC>(0);
+		m_npc->m_position = locData.GetObjectPosition(i);//->m_position;
 
 	}
 	return true;
