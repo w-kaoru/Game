@@ -35,10 +35,13 @@ bool Game::Start()
 	m_gameCamera = NewGO<GameCamera>(0);
 	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
 	m_level.Build(L"level/map2.tks");
-	for (int i = 0; i < m_level.m_mapChipList.size(); i++) {
+
+	CLocData locData;
+	locData.Load(L"modelData/NPCloc.tks");
+	for (int i = 0; i < locData.GetNumObject(); i++) {
 		NPC* npc = NewGO<NPC>(0);
-		npc->m_position= m_level.m_mapChipList[i]->m_position;
-		
+		npc->m_position = locData.GetObjectPosition(i);//->m_position;
+
 	}
 	return true;
 }

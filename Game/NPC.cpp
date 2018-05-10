@@ -25,9 +25,8 @@ bool NPC::Start()
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
 
-	//Level *NpcBasyo;
-	//NpcBasyo->m_mapChipList[0]->m_position;
-	m_position.y += 25.0;
+	
+	m_position.y=0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_charaCon.Init(

@@ -197,6 +197,9 @@
     <CustomBuild Include="Assets\level\map2.tks">
       <Filter>Assets\level</Filter>
     </CustomBuild>
+    <CustomBuild Include="Assets\modelData\NPCLoc.tks">
+      <Filter>Assets\modelData</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">

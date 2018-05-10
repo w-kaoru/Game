@@ -18,7 +18,8 @@ public:
 	void Update();
 	void OnDestroy();
 	void Render(CRenderContext& rc);
-	Level m_level;							//レベル。
+	Level m_level;		//レベル。
+	//modelData m_modelData;
 private:
 	enum EnState {
 		enState_FadeIn,	//!<フェードイン中。
