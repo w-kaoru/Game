@@ -64,13 +64,19 @@ void NPC::Update()
 		}
 		else if (plpo.Length() < 50.0f) {
 			npckanjou = delighted;
+			m_player->followerNum++;
 		}
+
 		break;
 	case delighted:
 		if (plpo.Length() < 50.0f) {
 			plpo.Normalize();
 			m_moveSpeed.x = plpo.x * 50;
 			m_moveSpeed.z = plpo.z * 50;
+		}
+		if (plpo.Length() > 50.0f) {
+			npckanjou = flat;
+			m_player->followerNum--;
 		}
 		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
 		m_position = m_charaCon.Execute(
@@ -79,6 +85,7 @@ void NPC::Update()
 		);
 		break;
 	}
+		
 	//座標を設定。
 	//ワールド行列を更新。
 	nprt.SetRotationDeg(CVector3::AxisX, 0.0f);//3dsMaxで設定されているアニメーションでキャラが回転しているので、補正を入れる。
