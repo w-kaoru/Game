@@ -77,6 +77,8 @@ void NPC::Update()
 			GameTime().GetFrameDeltaTime(),
 			m_moveSpeed
 		);
+		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+		m_rotation.SetRotation(CVector3::AxisY, angle);
 		break;
 	}
 	//À•W‚ğİ’èB
