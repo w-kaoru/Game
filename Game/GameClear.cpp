@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameClear.h"
-#include "Test.h"
-
+#include "Game.h"
+#include "Player.h"
 GameClear::GameClear()
 {
 }
@@ -16,39 +16,31 @@ void GameClear::OnDestroy()
 }
 bool GameClear::Start()
 {
-	//カメラを設定。
-	MainCamera().SetTarget({ 0.0f, 10.0f, 0.0f });
-	MainCamera().SetNear(0.1f);
-	MainCamera().SetFar(100.0f);
-	MainCamera().SetPosition({ 30.0f, 10.0f, 0.0f });
-	MainCamera().Update();
-
-	//スキンモデルレンダラーを作成。
-	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/unityChan.cmo");
-
-	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
-
+	pl = FindGO<Player>("Player");
 	return true;
 }
 void GameClear::Update()
 {
+	Gtime += 1;
 	CQuaternion qRot;
-	qRot.SetRotationDeg(CVector3::AxisY, 90.0f);
-	if (Pad(0).IsTrigger(enButtonX)) {
-		//エフェクトを作成。
-		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
+	qRot = pl->m_rotation;
+	m_pos = pl->m_position;
+	//エフェクトを作成。
+	prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
+	if (pl->ef_flag == 0) {
+		pl->ef_flag = 1;
+		
 		//エフェクトを再生。
 		effect->Play(L"effect/hanabi.efk");
 		CVector3 emitPos = m_pos;
 		emitPos.y += 10.0f;
 		effect->SetPosition(emitPos);
 		effect->SetRotation(qRot);
+		
 	}
-	m_pos.z += Pad(0).GetLStickXF();
-	m_pos.y += Pad(0).GetLStickYF();
-	
-	m_skinModelRender->SetPosition(m_pos);
-	m_skinModelRender->SetRotation(qRot);
-	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
+	else if (pl->ef_flag == 1&&Gtime==90) {
+		pl->ef_flag = 2;
+		DeleteGO(this);
+	}
+
 }

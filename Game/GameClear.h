@@ -1,6 +1,7 @@
 #pragma once
 #include "tkEngine/graphics/effect/tkEffect.h"
-class Test;
+class Game;
+class Player;
 class GameClear : public IGameObject
 {
 public:
@@ -12,6 +13,7 @@ public:
 	void OnDestroy() override;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;	//スキンモデルレンダラー。
 	CAnimationClip m_animClip[1];					//アニメーションクリップ。
-
+	Player* pl = nullptr;
 	CVector3 m_pos = CVector3::Zero;
+	int Gtime = 0;
 };

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
-
+#include "GameClear.h"
 
 Player::Player()
 {
@@ -78,7 +78,9 @@ void Player::Update()
 	Move();
 	//旋回処理。
 	Turn();
-
+	if(followerNum>2&&ef_flag==0){
+		m_gc = NewGO<GameClear>(0);
+	}
 	//ワールド行列を更新。
 	CQuaternion qRot;
 	qRot.SetRotationDeg(CVector3::AxisX, 0.0f);	//3dsMaxで設定されているアニメーションでキャラが回転しているので、補正を入れる。

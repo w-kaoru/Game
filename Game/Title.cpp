@@ -39,19 +39,6 @@ void Title::Update()
 			m_fade->StartFadeOut();
 		}
 	}
-	//Test�Ɉڍs
-	if (m_isWaitFadeout2) {
-		if (!m_fade->IsFade()) {
-			NewGO<Test>(0, "Test");
-			DeleteGO(this);
-		}
-	}
-	else {
-		if (Pad(0).IsPress(enButtonB)) {
-			m_isWaitFadeout2 = true;
-			m_fade->StartFadeOut();
-		}
-	}
 }
 void Title::PostRender(CRenderContext& rc)
 {

@@ -61,7 +61,7 @@ void Game::Update()
 		}
 	}
 	else {
-		if (Pad(0).IsPress(enButtonA)) {
+		if (m_player->ef_flag==2) {
 			m_isWaitFadeout = true;
 			m_fade->StartFadeOut();
 		}
