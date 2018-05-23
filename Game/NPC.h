@@ -20,6 +20,9 @@ public:
 	CCharacterController m_charaCon; 
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
+	NPC*pNpc;
+
+	virtual void haikai() = 0;
 	float angle=0.0f;
 	int flag = 0;
 	enum kanjou {
@@ -28,8 +31,18 @@ public:
 		angry,            //ì{ÇË
 		sad,              //à£ÇµÇ¢
 		pleasant,         //äyÇµÇ¢
+		haikai,           //úpúj(ÇÕÇ¢Ç©Ç¢)
 		kanjouNum,        //ä¥èÓÇÃêî
 	};
 	enum kanjou npckanjou =flat;
+};
+class NpcLR : public NPC
+{
+public:
+	NpcLR();
+	~NpcLR();
+
+private:
+
 };
 

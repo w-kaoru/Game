@@ -66,7 +66,6 @@ void NPC::Update()
 			npckanjou = delighted;
 			m_player->followerNum++;
 		}
-
 		break;
 	case delighted:
 		if (plpo.Length() < 50.0f) {
@@ -85,6 +84,9 @@ void NPC::Update()
 		);
 		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
 		m_rotation.SetRotation(CVector3::AxisY, angle);
+		break;
+	case haikai:
+
 		break;
 	}
 		
