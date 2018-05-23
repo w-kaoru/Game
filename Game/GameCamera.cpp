@@ -86,7 +86,7 @@ void GameCamera::Update()
 	SCameraData* cameraData = nullptr;
 	int arraySize = ARRAYSIZE(cameraDataTbl);
 	for (int i = 0; i < arraySize; i++) {
-		if (player->followerNum < cameraDataTbl[i].humanLimit) {
+		if (player->GetfollowerNum() < cameraDataTbl[i].humanLimit) {
 			//使用するカメラデータが見つかった。
 			cameraData = &cameraDataTbl[i];
 			break;

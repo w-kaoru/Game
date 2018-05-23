@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Title.h"
 #include "Fade.h"
+#include "StageSeni.h"
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
@@ -40,6 +41,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		//NewGO<Game>(0, nullptr);
 		NewGO<Fade>(1, "Fade");
 		NewGO<Title>(0, nullptr);
+		NewGO<StageSeni>(0,"ss");
 		//ゲームループを実行。
 		Engine().RunGameLoop();
 	}
