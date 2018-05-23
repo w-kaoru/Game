@@ -9,7 +9,7 @@
 #include "GameCamera.h"
 #include "Level.h"
 #include "NPC.h"
-
+#include "StageSeni.h"
 
 Game::Game()
 {
@@ -26,22 +26,23 @@ bool Game::Start()
 	MainCamera().SetFar(100.0f);
 	MainCamera().SetPosition({ 30.0f, 10.0f, 0.0f });
 	MainCamera().Update();
-
+	
 	m_fade = FindGO<Fade>("Fade");
 	m_fade->StartFadeIn();
 	m_state = enState_FadeIn;
 	m_player = NewGO<Player>(0,"Player");
 	m_background = NewGO<Background>(0);
 	m_gameCamera = NewGO<GameCamera>(0);
+	m_ss = FindGO<StageSeni>("ss");
 	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
 	m_level.Build(L"level/map2.tks");
 
 	CLocData locData;
 	locData.Load(L"modelData/NPCloc.tks");
 	for (int i = 0; i < locData.GetNumObject(); i++) {
-		m_npc = NewGO<NPC>(0);
-		m_npc->m_position = locData.GetObjectPosition(i);//->m_position;
-
+		NPC* npc = NewGO<NPC>(0);
+		npc->m_position = locData.GetObjectPosition(i);//->m_position;
+		m_npcList.push_back(npc);
 	}
 	return true;
 }
@@ -50,7 +51,9 @@ void Game::OnDestroy()
 	DeleteGO(m_player);
 	DeleteGO(m_background);
 	DeleteGO(m_gameCamera);
-	DeleteGO(m_npc);
+	for (auto& npc : m_npcList) {
+		DeleteGO(npc);
+	}
 }
 void Game::Update()
 {
@@ -61,7 +64,7 @@ void Game::Update()
 		}
 	}
 	else {
-		if (m_player->ef_flag==2) {
+		if (m_player->Getef_flag() == 2) {
 			m_isWaitFadeout = true;
 			m_fade->StartFadeOut();
 		}

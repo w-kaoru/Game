@@ -64,7 +64,7 @@ void NPC::Update()
 		}
 		else if (plpo.Length() < 50.0f) {
 			npckanjou = delighted;
-			m_player->followerNum++;
+			m_player->SetfollowerNump();
 		}
 		break;
 	case delighted:
@@ -75,7 +75,7 @@ void NPC::Update()
 		}
 		if (plpo.Length() > 50.0f) {
 			npckanjou = flat;
-			m_player->followerNum--;
+			m_player->SetfollowerNumm();
 		}
 		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
 		m_position = m_charaCon.Execute(

@@ -2,6 +2,8 @@
 #include "tkEngine/graphics/effect/tkEffect.h"
 class Game;
 class Player;
+class StageSeni;
+
 class GameClear : public IGameObject
 {
 public:
@@ -11,9 +13,8 @@ public:
 	bool Start() override;
 	void Update() override;
 	void OnDestroy() override;
-	prefab::CSkinModelRender* m_skinModelRender = nullptr;	//スキンモデルレンダラー。
-	CAnimationClip m_animClip[1];					//アニメーションクリップ。
 	Player* pl = nullptr;
 	CVector3 m_pos = CVector3::Zero;
+	StageSeni* m_ss = nullptr;
 	int Gtime = 0;
 };
