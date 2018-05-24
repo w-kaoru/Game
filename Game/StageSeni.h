@@ -17,7 +17,12 @@ public:
 	}
 	void SetSNo()
 	{
-		StageNo += 1;
+		if (StageNo <= 1) {
+			StageNo += 1;
+		}
+		else {
+			StageNo = 0;
+		}
 	}
 private:
 	Title * m_tl = nullptr;

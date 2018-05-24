@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Test.h"
 #include "Fade.h"
+#include "StageSeni.h"
 Title::Title()
 {
 }
@@ -16,8 +17,15 @@ void Title::OnDestroy()
 }
 bool Title::Start()
 {
-	m_texture.CreateFromDDSTextureFromFile(L"sprite/title.dds");
-	m_sprite.Init(m_texture, 1280,720/*GraphicsEngine().Get2DSpaceScreenWidth(), GraphicsEngine().Get2DSpaceScreenHeight()*/);
+	m_ss = FindGO<StageSeni>("ss");
+	if (m_ss->GetSNo() == 0) {
+		m_texture.CreateFromDDSTextureFromFile(L"sprite/title.dds");
+		m_sprite.Init(m_texture, 1280, 720);
+	}
+	if (m_ss->GetSNo() > 0) {
+		m_texture.CreateFromDDSTextureFromFile(L"sprite/HumanGroup.dds");
+		m_sprite.Init(m_texture, 1280, 720);
+	}
 	m_fade = FindGO<Fade>("Fade");
 
 	m_font.SetShadowParam(true, 1.0f, { 26.0f / 255.0f, 49 / 255.0f, 103 / 255.0f, 1.0f });

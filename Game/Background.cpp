@@ -20,7 +20,7 @@ bool Background::Start()
 		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 		m_skinModelRender->Init(L"modelData/karisute2.cmo");
 	}
-	if (m_ss->GetSNo() > 1) {
+	if (m_ss->GetSNo() >= 2) {
 		//モデルをロード。
 		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 		m_skinModelRender->Init(L"modelData/karisute3.cmo");
