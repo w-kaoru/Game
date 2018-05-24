@@ -5,10 +5,12 @@
 
 
 class Fade;
+class StageSeni;
 class Background;
 class Player;
 class GameCamera;
 class NPC;
+
 class Game : public IGameObject
 {
 public:
@@ -32,6 +34,6 @@ private:
 	Player*m_player = nullptr;
 	Background* m_background = nullptr;
 	GameCamera*m_gameCamera = nullptr;
-	NPC*m_npc = nullptr;
-	
+	std::vector<NPC*>	m_npcList;	//NPC‚Ì‰Â•Ï’·”z—ñB
+	StageSeni* m_ss = nullptr;
 };

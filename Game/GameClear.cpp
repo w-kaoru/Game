@@ -2,6 +2,7 @@
 #include "GameClear.h"
 #include "Game.h"
 #include "Player.h"
+#include "StageSeni.h"
 GameClear::GameClear()
 {
 }
@@ -12,23 +13,23 @@ GameClear::~GameClear()
 }
 void GameClear::OnDestroy()
 {
-	DeleteGO(m_skinModelRender);
 }
 bool GameClear::Start()
 {
 	pl = FindGO<Player>("Player");
+	m_ss = FindGO<StageSeni>("ss");
 	return true;
 }
 void GameClear::Update()
 {
-	Gtime += 1;
+	Gtime ++;
 	CQuaternion qRot;
 	qRot = pl->m_rotation;
 	m_pos = pl->m_position;
 	//エフェクトを作成。
 	prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
-	if (pl->ef_flag == 0) {
-		pl->ef_flag = 1;
+	if (pl->Getef_flag() == 0) {
+		pl->Setef_flag();
 		
 		//エフェクトを再生。
 		effect->Play(L"effect/hanabi.efk");
@@ -38,8 +39,9 @@ void GameClear::Update()
 		effect->SetRotation(qRot);
 		
 	}
-	else if (pl->ef_flag == 1&&Gtime==90) {
-		pl->ef_flag = 2;
+	else if (pl->Getef_flag() == 1 && Gtime == 90) {
+		m_ss->SetSNo();
+		pl->Setef_flag();
 		DeleteGO(this);
 	}
 

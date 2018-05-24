@@ -1,5 +1,6 @@
 #pragma once
 class Fade;
+class StageSeni;
 class Title : public IGameObject
 {
 public:
@@ -17,6 +18,7 @@ private:
 	CShaderResourceView m_texture;
 	CSprite m_sprite;
 	Fade* m_fade = nullptr;
+	StageSeni* m_ss = nullptr;
 	CFont m_font;
 	float m_intiBgmVolume = 0.0f;
 };
