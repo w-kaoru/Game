@@ -4,7 +4,7 @@
 #include "MapChip.h"
 #include "Game.h"
 #include "Player.h"
-
+#include "NpcMove.h"
 
 NPC::NPC()
 {
@@ -22,10 +22,12 @@ void NPC::OnDestroy()
 
 bool NPC::Start()
 {
+	
+	//m_npcMove.SetmoveSpeed(m_moveSpeed);
 	int npcCflag = 1;
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
-
+	
 	
 	m_position.y=0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
@@ -36,7 +38,7 @@ bool NPC::Start()
 		m_position, 	//初期位置。
 		1
 	);
-	
+	m_npcMove.SetPosition(m_position);
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
 
@@ -54,9 +56,11 @@ void NPC::Update()
 	switch (npckanjou)
 	{
 	case flat:
+		
 		if (plpo.Length() > 50.0f&&flag == 0) {
-			m_moveSpeed.x = 0;
-			m_moveSpeed.z = 0;
+			m_moveSpeed.x = m_npcMove.MoveRoundTrip();
+			/*m_moveSpeed.x = 0;
+			m_moveSpeed.z = 0;*/
 		}
 		else if (plpo.Length() > 50.0f&&flag == 1) {
 
@@ -66,13 +70,17 @@ void NPC::Update()
 			npckanjou = delighted;
 			m_player->SetfollowerNump();
 		}
-
+		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
+		m_position = m_charaCon.Execute(
+			GameTime().GetFrameDeltaTime(),
+			m_moveSpeed
+		);
 		break;
 	case delighted:
 		if (plpo.Length() < 50.0f) {
 			plpo.Normalize();
-			m_moveSpeed.x = plpo.x * 50;
-			m_moveSpeed.z = plpo.z * 50;
+			m_moveSpeed = plpo * 50;
+			//m_moveSpeed.z = plpo.z * 50;
 		}
 		if (plpo.Length() > 50.0f) {
 			npckanjou = flat;
@@ -87,6 +95,7 @@ void NPC::Update()
 		m_rotation.SetRotation(CVector3::AxisY, angle);
 		break;
 	}
+	
 		
 	//座標を設定。
 	//ワールド行列を更新。

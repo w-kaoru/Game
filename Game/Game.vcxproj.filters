@@ -48,6 +48,7 @@
     <ClCompile Include="MapChip.cpp" />
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="StageSeni.cpp" />
+    <ClCompile Include="NpcMove.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -66,6 +67,7 @@
     <ClInclude Include="MapChip.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="StageSeni.h" />
+    <ClInclude Include="NpcMove.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">

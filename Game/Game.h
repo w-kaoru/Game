@@ -22,6 +22,10 @@ public:
 	void Render(CRenderContext& rc);
 	Level m_level;		//レベル。
 	//modelData m_modelData;
+	const CLocData& GetLocData()
+	{
+		return locData;
+	}
 private:
 	enum EnState {
 		enState_FadeIn,	//!<フェードイン中。
@@ -36,4 +40,5 @@ private:
 	GameCamera*m_gameCamera = nullptr;
 	std::vector<NPC*>	m_npcList;	//NPCの可変長配列。
 	StageSeni* m_ss = nullptr;
+	CLocData locData;
 };

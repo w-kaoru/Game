@@ -1,6 +1,7 @@
 #pragma once
 //キャラクターコントローラーを使用する場合は、下記のヘッダーファイルのインクルードが必要。
 #include "tkEngine/character/tkCharacterController.h"
+#include "NpcMove.h"
 
 class Game;
 class Player;
@@ -18,6 +19,8 @@ public:
 	CVector3 m_moveSpeed;                                   //移動速度。
 	CQuaternion m_rotation = CQuaternion::Identity;         //回転。
 	CCharacterController m_charaCon; 
+	NpcMove m_npcMove;
+
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
 	float angle=0.0f;

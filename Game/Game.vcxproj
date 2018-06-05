@@ -628,6 +628,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapChip.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="NpcMove.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="StageSeni.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -648,6 +649,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="MapChip.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="NpcMove.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="StageSeni.h" />
     <ClInclude Include="Test.h" />

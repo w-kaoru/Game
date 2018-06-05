@@ -37,7 +37,7 @@ bool Game::Start()
 	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
 	m_level.Build(L"level/map2.tks");
 
-	CLocData locData;
+	
 	locData.Load(L"modelData/NPCloc.tks");
 	for (int i = 0; i < locData.GetNumObject(); i++) {
 		NPC* npc = NewGO<NPC>(0);

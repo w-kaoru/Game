@@ -80,7 +80,7 @@ void Player::Update()
 	Move();
 	//ù‰ñˆ—B
 	Turn();
-	if(followerNum>1&&ef_flag==0){
+	if(followerNum>5&&ef_flag==0){
 		m_gc = NewGO<GameClear>(0);
 		
 	}
