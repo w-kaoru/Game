@@ -664,6 +664,7 @@
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Assets\modelData\1ststageyuka.FBX" />
     <MeshContentTask Include="Assets\modelData\karisute2.FBX" />
     <MeshContentTask Include="Assets\modelData\karisute3.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
