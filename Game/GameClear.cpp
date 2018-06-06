@@ -28,7 +28,7 @@ void GameClear::Update()
 	m_pos = pl->m_position;
 	//エフェクトを作成。
 	prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
-	if (pl->Getef_flag() == 0) {
+	if (pl->Getef_flag() == 1) {
 		pl->Setef_flag();
 		
 		//エフェクトを再生。
