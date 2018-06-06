@@ -11,6 +11,15 @@ class Player;
 class GameCamera;
 class NPC;
 
+enum kanjou {
+	flat,             //平常
+	delighted,        //喜ぶ
+	angry,            //怒り
+	sad,              //哀しい
+	pleasant,         //楽しい
+	kanjouNum,        //感情の数
+};
+
 class Game : public IGameObject
 {
 public:
@@ -21,7 +30,8 @@ public:
 	void OnDestroy();
 	void Render(CRenderContext& rc);
 	Level m_level;		//レベル。
-	//modelData m_modelData;
+	std::vector<NPC*>	m_npcList;	//NPCの可変長配列。
+
 private:
 	enum EnState {
 		enState_FadeIn,	//!<フェードイン中。
@@ -34,6 +44,7 @@ private:
 	Player*m_player = nullptr;
 	Background* m_background = nullptr;
 	GameCamera*m_gameCamera = nullptr;
-	std::vector<NPC*>	m_npcList;	//NPCの可変長配列。
+	
 	StageSeni* m_ss = nullptr;
+	int counter = 0;
 };

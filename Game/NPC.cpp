@@ -22,7 +22,7 @@ void NPC::OnDestroy()
 
 bool NPC::Start()
 {
-	//int npcCflag = 1;
+	
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
 
@@ -41,8 +41,7 @@ bool NPC::Start()
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
 
 	//@todo ステージによって、生成する感情コントロールのインスタンスを切り替えるように.
-	
-	
+
 	return true;
 }
 //Stage1の感情更新関数。
@@ -52,26 +51,46 @@ void NPC::UpdateKanjouStage1()
 	switch (npckanjou)
 	{
 	case flat:
-		if (plpo.Length() < 4.0) {
+		if (plpo.Length() < 5.0f) {
+			npckanjou = delighted;
+			npcState = tuibi;
+			m_player->SetfollowerNump();
+		
+		}
+		break;
+	case delighted:
+		//喜んでいる
+		if (plpo.Length() < 5.0f && npcState != tuibi)
+		{
 			npckanjou = delighted;
 			npcState = tuibi;
 			m_player->SetfollowerNump();
 		}
 		break;
-	case delighted:
-		if (plpo.Length() > 50.0f) //仮
-		{
-			npcState = haikai;
-			npckanjou = flat;
-		}
 	case angry:
-		if (plpo.Length() < 4.0&&m_player->GetfollowerNum()==7
-			/*　プレイヤーが連れている人数が一定値以上になったら、感情を喜び状態にする。*/
-			) {
+		if (plpo.Length() <= 5.0f&&m_player->GetfollowerNum() >= 2 )
+			//プレイヤーが連れている人数が一定値以上になったら、感情を喜び状態にする。
+		{
 			npckanjou = delighted;
 			npcState = tuibi;
+			m_player->SetfollowerNump();
+		}
+		else if (plpo.Length() <= 5.0f) {
+			//怒っている人間とプレイヤーがぶつかった。
+			//ついてきているNPCすべての感情を変更する。
+			for (int i = 0; i < m_game->m_npcList.size(); i++) {
+				if(m_game->m_npcList[i]->npcState == tuibi){
+					m_game->m_npcList[i]->npckanjou = flat;
+					m_game->m_npcList[i]->npcState = haikai;
+					m_player->SetfollowerNumm();
+				}
+				
+			}
+
+			
 		}
 		break;
+		
 	}
 	
 }
@@ -86,11 +105,13 @@ void NPC::UpdateKanjouStage3()
 }
 void NPC::UpdateState()
 {
-	plpo = m_player->m_position - m_position;
+	
 	switch (npcState) {
 	case haikai:
 		//徘徊状態の処理。
 		//@todo 渡辺 ここのプログラムをNPCの徘徊の仕方によって、処理をわけて　実装するように
+		m_moveSpeed.x = 0;
+		m_moveSpeed.z = 0;
 		break;
 	case tuibi:
 		//追尾状態。
@@ -98,6 +119,17 @@ void NPC::UpdateState()
 		plpo.Normalize();
 		m_moveSpeed.x = plpo.x *50 ;
 		m_moveSpeed.z = plpo.z *50 ;
+		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+		m_rotation.SetRotation(CVector3::AxisY, angle);
+		break;
+	case osou:
+		if (plpo.Length() < 60.0) {
+			plpo.Normalize();
+			m_moveSpeed.x = plpo.x * 40 ;
+			m_moveSpeed.z = plpo.z * 40 ;
+			//angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+			//m_rotation.SetRotation(CVector3::AxisY, angle);
+		}
 		break;
 	}
 	m_position = m_charaCon.Execute(
@@ -108,10 +140,11 @@ void NPC::Update()
 {
 	//感情の更新。
 	//こんな感じでいいのでは。
-	/*if (stageNo == 0) {
+	/*if (GetSNo->stageNo == 0) {
 
 		UpdateKanjouStage1();
 	}*/
+
 	UpdateKanjouStage1();
 
 	//状態を更新。
