@@ -211,6 +211,9 @@
     <CustomBuild Include="Assets\modelData\NPCLoc.tks">
       <Filter>Assets\modelData</Filter>
     </CustomBuild>
+    <CustomBuild Include="Assets\modelData\1ststageyukayuka.FBX">
+      <Filter>Assets\modelData</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">

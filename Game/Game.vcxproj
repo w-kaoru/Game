@@ -665,6 +665,9 @@
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\1ststageyuka.FBX" />
+    <CustomBuild Include="Assets\modelData\1ststageyukayuka.FBX">
+      <FileType>Document</FileType>
+    </CustomBuild>
     <MeshContentTask Include="Assets\modelData\karisute2.FBX" />
     <MeshContentTask Include="Assets\modelData\karisute3.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />

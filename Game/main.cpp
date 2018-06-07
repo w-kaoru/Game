@@ -10,7 +10,7 @@
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
-	UNREFERENCED_PARAMETER(lpCmdLine);5
+	UNREFERENCED_PARAMETER(lpCmdLine);
 
 	srand((unsigned)time(NULL));
 	//tkEngine2の初期化パラメータを設定する。

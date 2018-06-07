@@ -13,7 +13,7 @@ bool Background::Start()
 	if (m_ss->GetSNo() == 0) {
 		//モデルをロード。
 		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-		m_skinModelRender->Init(L"modelData/1ststageyuka.cmo");
+		m_skinModelRender->Init(L"modelData/zimen2.cmo");
 	}
 	if (m_ss->GetSNo() == 1) {
 		//モデルをロード。
