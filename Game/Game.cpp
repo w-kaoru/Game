@@ -75,6 +75,7 @@ void Game::Update()
 			m_fade->StartFadeOut();
 		}
 	}
+	SoundEngine().SetListenerPosition(MainCamera().GetPosition());
 }
 void Game::Render(CRenderContext& rc)
 {
