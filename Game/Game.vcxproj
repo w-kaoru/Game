@@ -777,9 +777,9 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\Desktop\ゲーム制作　ワタナベ\1ststageBGMmT.wav">
+    <Media Include="..\..\..\Desktop\ゲーム制作　ワタナベ\1ststageBGMmT.wav">
       <FileType>Document</FileType>
-    </CustomBuild>
+    </Media>
     <Media Include="Assets\sound\Mic3_52.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
