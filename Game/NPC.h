@@ -25,8 +25,9 @@ public:
 	CCharacterController m_charaCon; 
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
+	prefab::CSoundSource* m_soundSource = nullptr;
 	NPC*pNpc;
-	
+	int soundflag = 0;
 
 
 	float angle=0.0f;

@@ -147,7 +147,9 @@ namespace tkEngine{
 			*/
 			void SetPosition(const CVector3& pos)
 			{
-				m_position = pos;
+				m_position.x = pos.x / 100.0f;
+				m_position.y = pos.y / 100.0f;
+				m_position.z = pos.z / 100.0f;
 				if (m_isSetPositionFirst) {
 					m_lastFramePosition = m_position;
 					m_isSetPositionFirst = false;

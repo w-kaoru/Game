@@ -4,7 +4,8 @@
 #include "MapChip.h"
 #include "Game.h"
 #include "Player.h"
-
+#include "tkEngine/Sound/tkSoundSource.h"
+#include "tkEngine/Sound/tkSoundEngine.h"
 
 NPC::NPC()
 {
@@ -26,7 +27,8 @@ bool NPC::Start()
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
 
-
+	
+	
 	m_position.y = 0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
@@ -55,7 +57,6 @@ void NPC::UpdateKanjouStage1()
 			npckanjou = delighted;
 			npcState = tuibi;
 			m_player->SetfollowerNump();
-		
 		}
 		break;
 	case delighted:
@@ -83,16 +84,11 @@ void NPC::UpdateKanjouStage1()
 					m_game->m_npcList[i]->npckanjou = flat;
 					m_game->m_npcList[i]->npcState = haikai;
 					m_player->SetfollowerNumm();
-				}
-				
+				}	
 			}
-
-			
 		}
 		break;
-		
 	}
-	
 }
 //Stage2の感情更新関数。
 void NPC::UpdateKanjouStage2()
@@ -101,7 +97,6 @@ void NPC::UpdateKanjouStage2()
 //Stage3の感情更新関数。
 void NPC::UpdateKanjouStage3()
 {
-
 }
 void NPC::UpdateState()
 {
@@ -125,10 +120,20 @@ void NPC::UpdateState()
 	case osou:
 		if (plpo.Length() < 60.0) {
 			plpo.Normalize();
-			m_moveSpeed.x = plpo.x * 40 ;
-			m_moveSpeed.z = plpo.z * 40 ;
+			m_moveSpeed.x = plpo.x * 40;
+			m_moveSpeed.z = plpo.z * 40;
 			//angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
 			//m_rotation.SetRotation(CVector3::AxisY, angle);
+			if (m_soundSource == nullptr) {
+				m_soundSource = NewGO<prefab::CSoundSource>(0);
+				m_soundSource->Init("Assets/sprite/Mic3_52.wav",true);
+				m_soundSource->SetPosition(m_position);
+				m_soundSource->SetVolume(1.0f);
+				m_soundSource->Play(true);
+			}
+			else {
+				m_soundSource->SetPosition(m_position);
+			}
 		}
 		break;
 	}
