@@ -94,6 +94,7 @@
     <MeshContentTask Include="Assets\modelData\twt1.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\1ststageyuka.FBX" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\shader\tonemap.fx">
@@ -215,6 +216,10 @@
       <Filter>Assets\modelData</Filter>
     </CustomBuild>
     <CustomBuild Include="Assets\sprite\Mic3_52.wav">
+      <Filter>Assets\sprite</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Assets\modelData\1ststageyukayuka.FBX" />
+    <CustomBuild Include="..\..\..\Desktop\ゲーム制作　ワタナベ\1ststageBGMmT.wav">
       <Filter>Assets\sprite</Filter>
     </CustomBuild>
   </ItemGroup>

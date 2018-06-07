@@ -42,6 +42,8 @@ private:
 	EnState m_state = enState_FadeIn;
 	Fade* m_fade = nullptr;
 	Player*m_player = nullptr;
+
+	prefab::CSoundSource* m_soundSource = nullptr;
 	Background* m_background = nullptr;
 	GameCamera*m_gameCamera = nullptr;
 	
