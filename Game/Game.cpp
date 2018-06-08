@@ -10,9 +10,6 @@
 #include "Level.h"
 #include "NPC.h"
 #include "StageSeni.h"
-#include "tkEngine/Sound/tkSoundSource.h"
-#include "tkEngine/Sound/tkSoundEngine.h"
-
 
 Game::Game()
 {
@@ -37,9 +34,6 @@ bool Game::Start()
 	m_background = NewGO<Background>(0);
 	m_gameCamera = NewGO<GameCamera>(0);
 	m_ss = FindGO<StageSeni>("ss");
-	m_soundSource = NewGO<prefab::CSoundSource>(0);
-	m_soundSource->Init("Assets/sprite/1ststageBGMmT.wav");
-	m_soundSource->Play(true);
 	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
 	m_level.Build(L"level/map2.tks");
 
@@ -60,7 +54,7 @@ bool Game::Start()
 	m_sunLig = NewGO<prefab::CDirectionLight>(0);
 	CVector3 lightDir = { 0.20f, -0.3f, 0.0f };
 	m_sunLig->SetDirection(lightDir);
-	m_sunLig->SetColor({ 20.0f, 20.0f, 20.0f, 1.0f });
+	m_sunLig->SetColor({ 10.0f, 10.0f, 10.0f, 1.0f });
 	LightManager().SetAmbientLight({ 1.0f, 1.0f, 1.0f });
 	GraphicsEngine().GetShadowMap().SetLightDirection(lightDir);
 	return true;
