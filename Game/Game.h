@@ -44,7 +44,8 @@ private:
 	Player*m_player = nullptr;
 	Background* m_background = nullptr;
 	GameCamera*m_gameCamera = nullptr;
-	
+
+	prefab::CDirectionLight* m_sunLig = nullptr;
 	StageSeni* m_ss = nullptr;
 	CLocData locData;
 	int counter = 0;

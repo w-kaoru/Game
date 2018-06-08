@@ -46,10 +46,17 @@ bool Game::Start()
 			npc->npckanjou = angry;
 			npc->npcState = npc->osou;
 		}
+		
 		npc->m_position = locData.GetObjectPosition(i);
 		m_npcList.push_back(npc);
 		counter++;
 	}
+	m_sunLig = NewGO<prefab::CDirectionLight>(0);
+	CVector3 lightDir = { 0.20f, -0.3f, 0.0f };
+	m_sunLig->SetDirection(lightDir);
+	m_sunLig->SetColor({ 20.0f, 20.0f, 20.0f, 1.0f });
+	LightManager().SetAmbientLight({ 1.0f, 1.0f, 1.0f });
+	GraphicsEngine().GetShadowMap().SetLightDirection(lightDir);
 	return true;
 }
 void Game::OnDestroy()
