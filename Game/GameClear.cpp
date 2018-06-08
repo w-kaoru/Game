@@ -26,8 +26,8 @@ void GameClear::Update()
 {
 	Gtime ++;
 	CQuaternion qRot;
-	qRot = pl->m_rotation;
-	m_pos = pl->m_position;
+	qRot = pl->GetRotation();
+	m_pos = pl->GetPosition();
 	if (pl->Getef_flag() == 1) {
 		pl->Setef_flag();
 		

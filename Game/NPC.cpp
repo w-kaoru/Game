@@ -52,7 +52,7 @@ void NPC::UpdateKanjouStage1()
 	CVector3  plpo;
 	CQuaternion  nprt;
 	
-	plpo = m_player->m_position - m_position;
+	plpo = m_player->GetPosition() - m_position;
 
 
 	switch (npckanjou)
