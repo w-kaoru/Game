@@ -129,8 +129,8 @@ void NPC::UpdateState()
 		//‰•œˆÚ“®
 		//m_moveSpeed.x = m_npcMove.RoundTripMove();
 		//ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
-		m_moveSpeed.x = m_npcMove.RandomMoveX();
 		m_moveSpeed.z = m_npcMove.RandomMoveZ();
+		m_moveSpeed.x = m_npcMove.RandomMoveX();
 		//m_moveSpeed.x = 0;
 		//m_moveSpeed.z = 0;
 		break;

@@ -50,7 +50,6 @@ float NpcMove::RandomMoveX()
 				//簡易タイマーリセット
 				timer = 0;
 				//1～9の乱数取得
-				srand(time(NULL));
 				randomX = rand() % 9 + 1;
 			}
 		}
@@ -65,7 +64,6 @@ float NpcMove::RandomMoveX()
 				//簡易タイマーリセット
 				timer = 0;
 				//1～9の乱数取得
-				srand(time(NULL));
 				randomX = rand() % 9 + 1;
 			}
 		}
@@ -81,7 +79,6 @@ float NpcMove::RandomMoveX()
 				//簡易タイマーリセット
 				timer = 0;
 				//1～9の乱数取得
-				srand(time(NULL));
 				randomX = rand() % 9 + 1;
 			}
 		}
@@ -106,7 +103,6 @@ float NpcMove::RandomMoveZ()
 				//簡易タイマーリセット
 				timer2 = 0;
 				//1～9の乱数取得
-				srand(time(NULL));
 				randomZ = rand() % 9 + 1;
 			}
 		}
@@ -121,7 +117,6 @@ float NpcMove::RandomMoveZ()
 				//簡易タイマーリセット
 				timer2 = 0;
 				//1～9の乱数取得
-				srand(time(NULL));
 				randomZ = rand() % 9 + 1;
 			}
 		}
@@ -137,7 +132,6 @@ float NpcMove::RandomMoveZ()
 				//簡易タイマーリセット
 				timer2 = 0;
 				//1～9の乱数取得
-				srand(time(NULL));
 				randomZ = rand() % 9 + 1;
 			}
 		}
@@ -145,3 +139,4 @@ float NpcMove::RandomMoveZ()
 	//移動の計算を返す。
 	return m_moveSpeed.z * 100.0 * fugou;
 }
+

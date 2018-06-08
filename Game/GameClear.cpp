@@ -18,6 +18,8 @@ bool GameClear::Start()
 {
 	pl = FindGO<Player>("Player");
 	m_ss = FindGO<StageSeni>("ss");
+	//エフェクトを作成。
+	effect = NewGO<prefab::CEffect>(0);
 	return true;
 }
 void GameClear::Update()
@@ -26,8 +28,6 @@ void GameClear::Update()
 	CQuaternion qRot;
 	qRot = pl->m_rotation;
 	m_pos = pl->m_position;
-	//エフェクトを作成。
-	prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
 	if (pl->Getef_flag() == 1) {
 		pl->Setef_flag();
 		
