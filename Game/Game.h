@@ -48,5 +48,6 @@ private:
 	GameCamera*m_gameCamera = nullptr;
 	
 	StageSeni* m_ss = nullptr;
+	CLocData locData;
 	int counter = 0;
 };

@@ -10,16 +10,19 @@ void Background::OnDestroy()
 bool Background::Start()
 {
 	StageSeni* m_ss = FindGO<StageSeni>("ss");
+	//１ステージ
 	if (m_ss->GetSNo() == 0) {
 		//モデルをロード。
 		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-		m_skinModelRender->Init(L"modelData/zimen2.cmo");
+		m_skinModelRender->Init(L"modelData/zimen3.cmo");
 	}
+	//2ステージ
 	if (m_ss->GetSNo() == 1) {
 		//モデルをロード。
 		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 		m_skinModelRender->Init(L"modelData/karisute2.cmo");
 	}
+	//3ステージ
 	if (m_ss->GetSNo() >= 2) {
 		//モデルをロード。
 		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);

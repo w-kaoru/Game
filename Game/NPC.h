@@ -1,6 +1,7 @@
 #pragma once
 //キャラクターコントローラーを使用する場合は、下記のヘッダーファイルのインクルードが必要。
 #include "tkEngine/character/tkCharacterController.h"
+#include "NpcMove.h"
 #include "Game.h"
 class Game;
 class Player;
@@ -23,6 +24,8 @@ public:
 	CVector3 plpo;
 	CQuaternion m_rotation = CQuaternion::Identity;         //回転。
 	CCharacterController m_charaCon; 
+	NpcMove m_npcMove;
+
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
 	prefab::CSoundSource* m_soundSource = nullptr;
