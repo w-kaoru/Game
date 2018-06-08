@@ -5,6 +5,8 @@
 #include "Game.h"
 #include "Player.h"
 #include "NpcMove.h"
+#include "tkEngine/Sound/tkSoundSource.h"
+#include "tkEngine/Sound/tkSoundEngine.h"
 
 NPC::NPC()
 {
@@ -26,9 +28,8 @@ bool NPC::Start()
 	int npcCflag = 1;
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
-	
-	
-	m_position.y=0;
+
+	m_position.y = 0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_charaCon.Init(
@@ -62,14 +63,9 @@ void NPC::UpdateKanjouStage1()
 			npcState = tuibi;
 			m_player->SetfollowerNump();
 		}
-		else if (plpo.Length() > 50.0f&&flag == 1) {
-
-			flag = 0;
-		}
 		else if (plpo.Length() < 50.0f) {
 			npckanjou = delighted;
 			m_player->SetfollowerNump();
-		
 		}
 		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
 		m_position = m_charaCon.Execute(
@@ -102,11 +98,8 @@ void NPC::UpdateKanjouStage1()
 					m_game->m_npcList[i]->npckanjou = flat;
 					m_game->m_npcList[i]->npcState = haikai;
 					m_player->SetfollowerNumm();
-				}
-				
+				}	
 			}
-
-			
 		}
 		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
 		m_position = m_charaCon.Execute(
@@ -116,9 +109,7 @@ void NPC::UpdateKanjouStage1()
 		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
 		m_rotation.SetRotation(CVector3::AxisY, angle);
 		break;
-		
 	}
-	
 }
 //Stage2の感情更新関数。
 void NPC::UpdateKanjouStage2()
@@ -127,7 +118,6 @@ void NPC::UpdateKanjouStage2()
 //Stage3の感情更新関数。
 void NPC::UpdateKanjouStage3()
 {
-
 }
 void NPC::UpdateState()
 {
@@ -156,10 +146,20 @@ void NPC::UpdateState()
 	case osou:
 		if (plpo.Length() < 60.0) {
 			plpo.Normalize();
-			m_moveSpeed.x = plpo.x * 40 ;
-			m_moveSpeed.z = plpo.z * 40 ;
-		//	angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
-		//	m_rotation.SetRotation(CVector3::AxisY, angle);
+			m_moveSpeed.x = plpo.x * 40;
+			m_moveSpeed.z = plpo.z * 40;
+			//angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+			//m_rotation.SetRotation(CVector3::AxisY, angle);
+			if (m_soundSource == nullptr) {
+				m_soundSource = NewGO<prefab::CSoundSource>(0);
+				m_soundSource->Init("Assets/sprite/Mic3_52.wav",true);
+				m_soundSource->SetPosition(m_position);
+				m_soundSource->SetVolume(1.0f);
+				m_soundSource->Play(true);
+			}
+			else {
+				m_soundSource->SetPosition(m_position);
+			}
 		}
 		break;
 	}

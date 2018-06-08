@@ -668,6 +668,7 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\karisute2.FBX" />
     <MeshContentTask Include="Assets\modelData\karisute3.FBX" />
+    <MeshContentTask Include="Assets\modelData\twt1.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\yatai.FBX" />
     <MeshContentTask Include="Assets\modelData\zimen2.FBX" />
@@ -768,6 +769,14 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\HumanGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\sprite\Mic3_52.wav">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\sound\Mic3_52.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

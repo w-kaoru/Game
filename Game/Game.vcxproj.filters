@@ -32,6 +32,9 @@
     <Filter Include="Assets\level">
       <UniqueIdentifier>{e1fe0a69-38ee-47b0-b7f9-6252eccd4904}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\sound">
+      <UniqueIdentifier>{71c3948a-ea51-42ea-bdcd-58d774cf8b41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -48,7 +51,6 @@
     <ClCompile Include="MapChip.cpp" />
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="StageSeni.cpp" />
-    <ClCompile Include="NpcMove.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -67,7 +69,6 @@
     <ClInclude Include="MapChip.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="StageSeni.h" />
-    <ClInclude Include="NpcMove.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -90,7 +91,7 @@
     <MeshContentTask Include="Assets\modelData\karisute2.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\zimen3.FBX">
+    <MeshContentTask Include="Assets\modelData\twt1.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
   </ItemGroup>
@@ -213,6 +214,9 @@
     <CustomBuild Include="Assets\modelData\NPCLoc.tks">
       <Filter>Assets\modelData</Filter>
     </CustomBuild>
+    <CustomBuild Include="Assets\sprite\Mic3_52.wav">
+      <Filter>Assets\sprite</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">
@@ -224,5 +228,8 @@
     <ImageContentTask Include="Assets\sprite\HumanGroup.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\sound\Mic3_52.wav" />
   </ItemGroup>
 </Project>
