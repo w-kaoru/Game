@@ -664,10 +664,6 @@
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\modelData\1ststageyuka.FBX" />
-    <CustomBuild Include="Assets\modelData\1ststageyukayuka.FBX">
-      <FileType>Document</FileType>
-    </CustomBuild>
     <MeshContentTask Include="Assets\modelData\karisute2.FBX" />
     <MeshContentTask Include="Assets\modelData\karisute3.FBX" />
     <MeshContentTask Include="Assets\modelData\twt1.FBX" />
@@ -777,10 +773,10 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\..\..\Desktop\ゲーム制作　ワタナベ\1ststageBGMmT.wav">
-      <FileType>Document</FileType>
-    </Media>
     <Media Include="Assets\sound\Mic3_52.wav" />
+    <CustomBuild Include="Assets\sprite\1ststageBGMmT.wav">
+      <FileType>Document</FileType>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

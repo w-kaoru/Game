@@ -126,10 +126,10 @@ void NPC::UpdateState()
 			//m_rotation.SetRotation(CVector3::AxisY, angle);
 			if (m_soundSource == nullptr) {
 				m_soundSource = NewGO<prefab::CSoundSource>(0);
-				m_soundSource->Init("Assets/sprite/Mic3_52.wav",true);
+				m_soundSource->Init("Assets/sprite/Mic3_52.wav");
 				m_soundSource->SetPosition(m_position);
 				m_soundSource->SetVolume(1.0f);
-				m_soundSource->Play(true);
+				m_soundSource->Play(false);
 			}
 			else {
 				m_soundSource->SetPosition(m_position);
