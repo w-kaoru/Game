@@ -8,9 +8,6 @@ class StageSeni:public IGameObject
 public:
 	StageSeni();
 	~StageSeni();
-	bool Start();
-	void Update();
-	void OnDestroy();
 	int GetSNo() 
 	{
 		return StageNo;
@@ -25,8 +22,6 @@ public:
 		}
 	}
 private:
-	Title * m_tl = nullptr;
-	Player* m_pl = nullptr;
 	int StageNo = 0;
 };
 	

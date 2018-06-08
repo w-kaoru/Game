@@ -41,8 +41,14 @@ bool Game::Start()
 	locData.Load(L"modelData/NPCloc.tks");
 	for (int i = 0; i < locData.GetNumObject(); i++) {
 		NPC* npc = NewGO<NPC>(0);
+		if (counter % 4 == 0)
+		{
+			npc->npckanjou = angry;
+			npc->npcState = npc->osou;
+		}
 		npc->m_position = locData.GetObjectPosition(i);
 		m_npcList.push_back(npc);
+		counter++;
 	}
 	return true;
 }
