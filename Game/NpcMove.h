@@ -31,12 +31,9 @@ public:
 private:
 	CVector3 m_position = CVector3::Zero;	//座標
 	CVector3 m_moveSpeed = CVector3::Zero;	//移動
-	//NPC* m_npc = nullptr;
-	int MoveNo = 0;
-	int hanten = 0;
-	int timer2 = 0;
-	int timer = 0;
-	int fugou = 1;
-	int randomX = 1;
-	int randomZ = 1;
+	int timer2 = 0;		//簡易タイマー
+	int timer = 0;		//簡易タイマー２
+	int fugou = 1;		//移動方向
+	int randomX = 1;	//乱数取得X軸
+	int randomZ = 1;	//乱数取得Z軸
 };

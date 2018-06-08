@@ -22,6 +22,7 @@ public:
 		}
 	}
 private:
+	//ステージ遷移の番号
 	int StageNo = 0;
 };
 	

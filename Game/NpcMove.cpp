@@ -20,16 +20,14 @@ float NpcMove::RoundTripMove()
 	m_moveSpeed = m_position;
 	m_moveSpeed.y = 0.0f;
 		m_moveSpeed.Normalize();
-		if (timer>0&&timer <= 20) {
-			if (hanten == 0) {
-				//移動の方向を求める。
-				m_position.x += m_moveSpeed.x * fugou;
-				if (timer == 20) {
-					//移動方向変換
-					fugou *= -1;
-					//簡易タイマーリセット
-					timer = 0;
-				}
+		if (timer > 0 && timer <= 20) {
+			//移動の方向を求める。
+			m_position.x += m_moveSpeed.x * fugou;
+			if (timer == 20) {
+				//移動方向変換
+				fugou *= -1;
+				//簡易タイマーリセット
+				timer = 0;
 			}
 		}
 		//移動の計算を返す。
