@@ -39,7 +39,7 @@ public:
 	enum state {
 		haikai,			//œpœj
 		tuibi,			//’Ç”öB
-		osou,
+		osou,           //P‚¤B
 	};
 	enum kanjou npckanjou =flat;
 	enum state npcState = haikai;

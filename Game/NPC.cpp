@@ -127,12 +127,11 @@ void NPC::UpdateState()
 		//œpœjó‘Ô‚Ìˆ—B
 		//@todo “n•Ó ‚±‚±‚ÌƒvƒƒOƒ‰ƒ€‚ðNPC‚Ìœpœj‚ÌŽd•û‚É‚æ‚Á‚ÄAˆ—‚ð‚í‚¯‚Ä@ŽÀ‘•‚·‚é‚æ‚¤‚É
 		//‰•œˆÚ“®
-		//m_moveSpeed.x = m_npcMove.RoundTripMove();
+	
 		//ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
 		m_moveSpeed.z = m_npcMove.RandomMoveZ();
 		m_moveSpeed.x = m_npcMove.RandomMoveX();
-		//m_moveSpeed.x = 0;
-		//m_moveSpeed.z = 0;
+	
 		break;
 	case tuibi:
 		//’Ç”öó‘ÔB
@@ -155,7 +154,7 @@ void NPC::UpdateState()
 				m_soundSource->Init("Assets/sprite/Mic3_52.wav");
 				m_soundSource->SetPosition(m_position);
 				m_soundSource->SetVolume(1.0f);
-				m_soundSource->Play(false);
+				m_soundSource->Play(true);
 			}
 			else {
 				m_soundSource->SetPosition(m_position);
