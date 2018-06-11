@@ -21,6 +21,10 @@ public:
 			StageNo = 0;
 		}
 	}
+	void SetGameOver() 
+	{
+		StageNo = 0;
+	}
 private:
 	//ステージ遷移の番号
 	int StageNo = 0;

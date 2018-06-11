@@ -51,6 +51,7 @@
     <ClCompile Include="MapChip.cpp" />
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="StageSeni.cpp" />
+    <ClCompile Include="NpcMove.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -69,6 +70,7 @@
     <ClInclude Include="MapChip.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="StageSeni.h" />
+    <ClInclude Include="NpcMove.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -94,6 +96,7 @@
     <MeshContentTask Include="Assets\modelData\twt1.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\zimen3.FBX" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\shader\tonemap.fx">
@@ -233,6 +236,8 @@
     </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Assets\sound\Mic3_52.wav" />
+    <Media Include="Assets\sound\Mic3_52.wav">
+      <Filter>Assets\sprite</Filter>
+    </Media>
   </ItemGroup>
 </Project>
