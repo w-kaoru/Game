@@ -16,5 +16,7 @@ public:
 	Player* pl = nullptr;
 	CVector3 m_pos = CVector3::Zero;
 	StageSeni* m_ss = nullptr;
+	//エフェクトを作成。
+	prefab::CEffect* effect = nullptr;
 	int Gtime = 0;
 };

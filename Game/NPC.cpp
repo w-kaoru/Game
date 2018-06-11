@@ -4,6 +4,7 @@
 #include "MapChip.h"
 #include "Game.h"
 #include "Player.h"
+#include "NpcMove.h"
 #include "tkEngine/Sound/tkSoundSource.h"
 #include "tkEngine/Sound/tkSoundEngine.h"
 
@@ -13,7 +14,7 @@ NPC::NPC()
 
 
 NPC::~NPC()
-{  
+{
 }
 
 void NPC::OnDestroy()
@@ -23,12 +24,11 @@ void NPC::OnDestroy()
 
 bool NPC::Start()
 {
-	
+	//m_npcMove.SetmoveSpeed(m_moveSpeed);
+	int npcCflag = 1;
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
 
-	
-	
 	m_position.y = 0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
@@ -38,26 +38,40 @@ bool NPC::Start()
 		m_position, 	//初期位置。
 		1
 	);
-
+	m_npcMove.SetPosition(m_position);
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
-
+	m_skinModelRender->SetShadowCasterFlag(true);
 	//@todo ステージによって、生成する感情コントロールのインスタンスを切り替えるように.
 
 	return true;
 }
-//Stage1の感情更新関数。
+
 void NPC::UpdateKanjouStage1()
 {
-	plpo = m_player->m_position - m_position;
+	CVector3  plpo;
+	CQuaternion  nprt;
+	
+	plpo = m_player->GetPosition() - m_position;
+
+
 	switch (npckanjou)
 	{
 	case flat:
-		if (plpo.Length() < 5.0f) {
+		if (plpo.Length() > 50.0f) {
 			npckanjou = delighted;
 			npcState = tuibi;
 			m_player->SetfollowerNump();
 		}
+		else if (plpo.Length() < 50.0f) {
+			npckanjou = delighted;
+			m_player->SetfollowerNump();
+		}
+		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
+		m_position = m_charaCon.Execute(
+			GameTime().GetFrameDeltaTime(),
+			m_moveSpeed
+		);
 		break;
 	case delighted:
 		//喜んでいる
@@ -87,6 +101,13 @@ void NPC::UpdateKanjouStage1()
 				}	
 			}
 		}
+		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
+		m_position = m_charaCon.Execute(
+			GameTime().GetFrameDeltaTime(),
+			m_moveSpeed
+		);
+		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+		m_rotation.SetRotation(CVector3::AxisY, angle);
 		break;
 	}
 }
@@ -105,8 +126,13 @@ void NPC::UpdateState()
 	case haikai:
 		//徘徊状態の処理。
 		//@todo 渡辺 ここのプログラムをNPCの徘徊の仕方によって、処理をわけて　実装するように
-		m_moveSpeed.x = 0;
-		m_moveSpeed.z = 0;
+		//往復移動
+		//m_moveSpeed.x = m_npcMove.RoundTripMove();
+		//ランダム移動
+		m_moveSpeed.z = m_npcMove.RandomMoveZ();
+		m_moveSpeed.x = m_npcMove.RandomMoveX();
+		//m_moveSpeed.x = 0;
+		//m_moveSpeed.z = 0;
 		break;
 	case tuibi:
 		//追尾状態。
@@ -126,10 +152,10 @@ void NPC::UpdateState()
 			//m_rotation.SetRotation(CVector3::AxisY, angle);
 			if (m_soundSource == nullptr) {
 				m_soundSource = NewGO<prefab::CSoundSource>(0);
-				m_soundSource->Init("Assets/sprite/Mic3_52.wav",true);
+				m_soundSource->Init("Assets/sprite/Mic3_52.wav");
 				m_soundSource->SetPosition(m_position);
 				m_soundSource->SetVolume(1.0f);
-				m_soundSource->Play(true);
+				m_soundSource->Play(false);
 			}
 			else {
 				m_soundSource->SetPosition(m_position);
@@ -139,7 +165,8 @@ void NPC::UpdateState()
 	}
 	m_position = m_charaCon.Execute(
 		GameTime().GetFrameDeltaTime(),
-		m_moveSpeed);
+		m_moveSpeed
+	);
 }
 void NPC::Update()
 {

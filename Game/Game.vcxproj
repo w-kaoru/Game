@@ -628,6 +628,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapChip.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="NpcMove.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="StageSeni.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -648,6 +649,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="MapChip.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="NpcMove.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="StageSeni.h" />
     <ClInclude Include="Test.h" />
@@ -673,6 +675,7 @@
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\yatai.FBX" />
     <MeshContentTask Include="Assets\modelData\zimen2.FBX" />
+    <MeshContentTask Include="Assets\modelData\zimen3.FBX" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\modelData\unityChan.tks">
@@ -777,6 +780,9 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\sound\Mic3_52.wav" />
+    <CustomBuild Include="Assets\sprite\1ststageBGMmT.wav">
+      <FileType>Document</FileType>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

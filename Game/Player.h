@@ -15,17 +15,25 @@ public:
 	void Move();
 	void Turn();
 	//ゲッター、セッター
+	int GetfollowerNum()
+	{
+		return followerNum;
+	}
 	int Getef_flag()
 	{
 		return ef_flag;
 	}
+	CVector3 GetPosition()
+	{
+		return m_position;
+	}
+	CQuaternion GetRotation()
+	{
+		return m_rotation;
+	}
 	void Setef_flag()
 	{
 		ef_flag++;
-	}
-	int GetfollowerNum()
-	{
-		return followerNum;
 	}
 	void SetfollowerNump() 
 	{
@@ -38,7 +46,7 @@ public:
 	////////////////////////////////////
 	// メンバ変数とか
 	////////////////////////////////////
-	
+private:
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;	//スキンモデルレンダラー。
 	CVector3 m_position = CVector3::Zero;	//座標。
 	CQuaternion m_rotation = CQuaternion::Identity;	//回転。
@@ -46,7 +54,7 @@ public:
 	CVector3 m_moveSpeed = CVector3::Zero;	//移動速度。
 			//付いて来ている人間の数。
 	GameClear* m_gc = nullptr;
-private:
+
 	int ef_flag = 0;						//エフェクトのフラグ。
 	int followerNum = 0;			
 };

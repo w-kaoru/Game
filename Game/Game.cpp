@@ -10,6 +10,8 @@
 #include "Level.h"
 #include "NPC.h"
 #include "StageSeni.h"
+#include "tkEngine/Sound/tkSoundSource.h"
+#include "tkEngine/Sound/tkSoundEngine.h"
 
 Game::Game()
 {
@@ -33,11 +35,14 @@ bool Game::Start()
 	m_player = NewGO<Player>(0,"Player");
 	m_background = NewGO<Background>(0);
 	m_gameCamera = NewGO<GameCamera>(0);
+	m_soundSource = NewGO<prefab::CSoundSource>(0);
+	m_soundSource->Init("Assets/sprite/1ststageBGMmT.wav");
+	m_soundSource->Play(true);
 	m_ss = FindGO<StageSeni>("ss");
 	//ÉåÉxÉãÇç\ízÇ∑ÇÈÅB
 	m_level.Build(L"level/map2.tks");
 
-	CLocData locData;
+	
 	locData.Load(L"modelData/NPCloc.tks");
 	for (int i = 0; i < locData.GetNumObject(); i++) {
 		NPC* npc = NewGO<NPC>(0);
@@ -46,10 +51,17 @@ bool Game::Start()
 			npc->npckanjou = angry;
 			npc->npcState = npc->osou;
 		}
+		
 		npc->m_position = locData.GetObjectPosition(i);
 		m_npcList.push_back(npc);
 		counter++;
 	}
+	m_sunLig = NewGO<prefab::CDirectionLight>(0);
+	CVector3 lightDir = { 0.20f, -0.3f, 0.0f };
+	m_sunLig->SetDirection(lightDir);
+	m_sunLig->SetColor({ 10.0f, 10.0f, 10.0f, 1.0f });
+	LightManager().SetAmbientLight({ 1.0f, 1.0f, 1.0f });
+	GraphicsEngine().GetShadowMap().SetLightDirection(lightDir);
 	return true;
 }
 void Game::OnDestroy()
