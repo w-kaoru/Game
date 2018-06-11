@@ -12,11 +12,11 @@
 #include "StageSeni.h"
 #include "tkEngine/Sound/tkSoundSource.h"
 #include "tkEngine/Sound/tkSoundEngine.h"
+#include "tkEngine/timer/tkStopwatch.h"
 
 Game::Game()
 {
 }
-
 Game::~Game()
 {
 }
@@ -75,14 +75,21 @@ void Game::OnDestroy()
 }
 void Game::Update()
 {
-	if (m_isWaitFadeout) {
+	sw.Start();
+	if (sw.GetElapsed() == 10) {
+		sw.Stop();
+		m_ss->SetGameOver();
+		GameOver = 1;
+	}
+
+if (m_isWaitFadeout) {
 		if (!m_fade->IsFade()) {
 				NewGO<Title>(0, "Title");
 				DeleteGO(this);
 		}
 	}
 	else {
-		if (m_player->Getef_flag() == 2) {
+		if (m_player->Getef_flag() == 2 || GameOver == 1) {
 			m_isWaitFadeout = true;
 			m_fade->StartFadeOut();
 		}
