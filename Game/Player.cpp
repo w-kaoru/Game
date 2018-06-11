@@ -22,7 +22,7 @@ bool Player::Start()
 {
 	
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/unityChan.cmo");
+	m_skinModelRender->Init(L"modelData/twt1.cmo");
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
 	m_position.y = 100;
 	//キャラクターコントローラーを初期化。

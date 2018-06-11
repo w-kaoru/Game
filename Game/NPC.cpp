@@ -148,6 +148,7 @@ void NPC::Update()
 	/*if (GetSNo->stageNo == 0) {
 
 		UpdateKanjouStage1();
+		}
 	}*/
 
 	UpdateKanjouStage1();
