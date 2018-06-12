@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "NpcMove.h"
+#include "StageSeni.h"
 #include "tkEngine/Sound/tkSoundSource.h"
 #include "tkEngine/Sound/tkSoundEngine.h"
 
@@ -177,13 +178,13 @@ void NPC::Update()
 {
 	//感情の更新。
 	//こんな感じでいいのでは。
-	/*if (GetSNo->stageNo == 0) {
+	if (m_stageseni->GetSNo() == 0) {
 
 		UpdateKanjouStage1();
 		}
-	}*/
+	
 
-	UpdateKanjouStage1();
+	//UpdateKanjouStage1();
 
 	//状態を更新。
 	UpdateState();
