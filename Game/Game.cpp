@@ -51,6 +51,11 @@ bool Game::Start()
 			npc->npckanjou = angry;
 			npc->npcState = npc->osou;
 		}
+		else
+		{
+			npc->npckanjou = flat;
+			npc->npcState = npc->haikai;
+		}
 		npc->npckanjou = flat;
 		npc->npcState = npc->haikai;
 		npc->m_position = locData.GetObjectPosition(i);
