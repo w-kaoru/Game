@@ -49,9 +49,13 @@ bool Game::Start()
 		if (counter % 4 == 0)
 		{
 			npc->npckanjou = angry;
-			npc->npcState = npc->osou;
+			npc->npcState = npc->haikai;
 		}
-		
+		else
+		{
+			npc->npckanjou = flat;
+			npc->npcState = npc->haikai;
+		}
 		npc->m_position = locData.GetObjectPosition(i);
 		m_npcList.push_back(npc);
 		counter++;

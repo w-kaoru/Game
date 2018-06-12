@@ -51,6 +51,7 @@
     <ClCompile Include="MapChip.cpp" />
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="StageSeni.cpp" />
+    <ClCompile Include="NpcMove.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -69,6 +70,7 @@
     <ClInclude Include="MapChip.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="StageSeni.h" />
+    <ClInclude Include="NpcMove.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -91,7 +93,11 @@
     <MeshContentTask Include="Assets\modelData\karisute2.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\zimen3.FBX" />
     <MeshContentTask Include="Assets\modelData\twt1.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\saisyo.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
   </ItemGroup>
@@ -217,13 +223,8 @@
     <CustomBuild Include="Assets\sprite\Mic3_52.wav">
       <Filter>Assets\sprite</Filter>
     </CustomBuild>
-<<<<<<< HEAD
-    <CustomBuild Include="Assets\modelData\saisyo.FBX">
-      <Filter>Assets\modelData</Filter>
-=======
     <CustomBuild Include="Assets\sprite\1ststageBGMmT.wav">
       <Filter>Assets\sprite</Filter>
->>>>>>> 71c5357506513ee6747e0c28a61811dd0434df4f
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

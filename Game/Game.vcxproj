@@ -668,10 +668,12 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\karisute2.FBX" />
     <MeshContentTask Include="Assets\modelData\karisute3.FBX" />
-    <CustomBuild Include="Assets\modelData\saisyo.FBX">
+    <MeshContentTask Include="Assets\modelData\saisyo.FBX">
       <FileType>Document</FileType>
-    </CustomBuild>
-    <MeshContentTask Include="Assets\modelData\twt1.FBX" />
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\twt1.FBX">
+      <FileType>Document</FileType>
+    </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\yatai.FBX" />
     <MeshContentTask Include="Assets\modelData\zimen2.FBX" />
