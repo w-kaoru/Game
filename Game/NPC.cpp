@@ -48,8 +48,8 @@ bool NPC::Start()
 }
 
 void NPC::UpdateKanjouStage1()
-{
-	CVector3  plpo;
+{/*
+	CVector3  plpo;*/
 	CQuaternion  nprt;
 	
 	plpo = m_player->GetPosition() - m_position;
