@@ -33,8 +33,10 @@ public:
 	int soundflag = 0;
 
 
-	float angle=0.0f;
+	float angle= 0.0f;
 	int flag = 0;
+	int sevo = 0;
+	int osouvo = 0;
 	
 	enum state {
 		haikai,			//œpœj

@@ -48,9 +48,7 @@ bool NPC::Start()
 }
 
 void NPC::UpdateKanjouStage1()
-{/*
-	CVector3  plpo;*/
-	CQuaternion  nprt;
+{
 	
 	plpo = m_player->GetPosition() - m_position;
 
@@ -58,13 +56,9 @@ void NPC::UpdateKanjouStage1()
 	switch (npckanjou)
 	{
 	case flat:
-		if (plpo.Length() > 50.0f) {
+		if (plpo.Length() < 5.0f) {
 			npckanjou = delighted;
 			npcState = tuibi;
-			m_player->SetfollowerNump();
-		}
-		else if (plpo.Length() < 50.0f) {
-			npckanjou = delighted;
 			m_player->SetfollowerNump();
 		}
 		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
@@ -83,6 +77,14 @@ void NPC::UpdateKanjouStage1()
 		}
 		break;
 	case angry:
+		if (plpo.Length() < 60.0f)
+		{
+			npcState = osou;
+		}
+		else
+		{
+			npcState = haikai;
+		}
 		if (plpo.Length() <= 5.0f&&m_player->GetfollowerNum() >= 2 )
 			//プレイヤーが連れている人数が一定値以上になったら、感情を喜び状態にする。
 		{
@@ -127,10 +129,48 @@ void NPC::UpdateState()
 		//徘徊状態の処理。
 		//@todo 渡辺 ここのプログラムをNPCの徘徊の仕方によって、処理をわけて　実装するように
 		//往復移動
-	
+	    
 		//ランダム移動
-		m_moveSpeed.z = m_npcMove.RandomMoveZ();
+		/*m_moveSpeed.z = m_npcMove.RandomMoveZ();
 		m_moveSpeed.x = m_npcMove.RandomMoveX();
+		
+		if (m_moveSpeed.z < 0.0f || m_moveSpeed.x < 0.0f)
+		{
+			sevo = rand() % 3 + 1;
+			switch (sevo) 
+			{
+			case 1:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai01.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			case 2:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai02.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			case 3:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai03.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			}
+		}*/
 	
 		break;
 	case tuibi:
@@ -143,24 +183,51 @@ void NPC::UpdateState()
 		m_rotation.SetRotation(CVector3::AxisY, angle);
 		break;
 	case osou:
-		if (plpo.Length() < 60.0) {
 			plpo.Normalize();
-			m_moveSpeed.x = plpo.x * 40;
-			m_moveSpeed.z = plpo.z * 40;
+			m_moveSpeed.x = plpo.x * 40.0f;
+			m_moveSpeed.z = plpo.z * 40.0f;
+			osouvo = rand() % 3 + 1;
 			//angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
 			//m_rotation.SetRotation(CVector3::AxisY, angle);
-			if (m_soundSource == nullptr) {
-				m_soundSource = NewGO<prefab::CSoundSource>(0);
-				m_soundSource->Init("Assets/sprite/Mic3_52.wav");
-				m_soundSource->SetPosition(m_position);
-				m_soundSource->SetVolume(1.0f);
-				m_soundSource->Play(true);
+			switch (osouvo)
+			{
+			case 1:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/Mic3_52.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(true);
+				}
+				else
+					m_soundSource->SetPosition(m_position);
+				osouvo = 0;
+				break;
+			case 2:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/osou01.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(true);
+				}
+				else
+					m_soundSource->SetPosition(m_position);
+				osouvo = 0;
+				break;
+			case 3:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/osou02.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(true);
+				}
+				else
+					m_soundSource->SetPosition(m_position);
+				osouvo = 0;
+				break;
 			}
-			else {
-				m_soundSource->SetPosition(m_position);
-			}
-		}
-		break;
 	}
 	m_position = m_charaCon.Execute(
 		GameTime().GetFrameDeltaTime(),
