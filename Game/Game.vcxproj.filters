@@ -97,9 +97,13 @@
     <MeshContentTask Include="Assets\modelData\twt1.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+<<<<<<< HEAD
     <MeshContentTask Include="Assets\modelData\saisyo.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+=======
+    <MeshContentTask Include="Assets\modelData\zimen3.FBX" />
+>>>>>>> 114f90319711a0f23000dec217f8fc7d3fa94d81
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\shader\tonemap.fx">
@@ -239,6 +243,8 @@
     </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Assets\sound\Mic3_52.wav" />
+    <Media Include="Assets\sound\Mic3_52.wav">
+      <Filter>Assets\sprite</Filter>
+    </Media>
   </ItemGroup>
 </Project>

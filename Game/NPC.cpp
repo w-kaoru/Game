@@ -50,8 +50,6 @@ bool NPC::Start()
 void NPC::UpdateKanjouStage1()
 {
 	
-
-	
 	plpo = m_player->GetPosition() - m_position;
 
 

@@ -48,5 +48,7 @@ private:
 	prefab::CDirectionLight* m_sunLig = nullptr;
 	StageSeni* m_ss = nullptr;
 	CLocData locData;
+	CStopwatch sw;
+	int GameOver = 0;
 	int counter = 0;
 };
