@@ -93,17 +93,15 @@
     <MeshContentTask Include="Assets\modelData\karisute2.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\zimen3.FBX" />
     <MeshContentTask Include="Assets\modelData\twt1.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
-<<<<<<< HEAD
     <MeshContentTask Include="Assets\modelData\saisyo.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
-=======
-    <MeshContentTask Include="Assets\modelData\zimen3.FBX" />
->>>>>>> 114f90319711a0f23000dec217f8fc7d3fa94d81
+    <MeshContentTask Include="Assets\modelData\zimen3.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\shader\tonemap.fx">
