@@ -35,9 +35,9 @@ bool Game::Start()
 	m_player = NewGO<Player>(0,"Player");
 	m_background = NewGO<Background>(0);
 	m_gameCamera = NewGO<GameCamera>(0);
-	/*m_soundSource = NewGO<prefab::CSoundSource>(0);
+	m_soundSource = NewGO<prefab::CSoundSource>(0);
 	m_soundSource->Init("Assets/sprite/1ststageBGMmT.wav");
-	m_soundSource->Play(true);*/
+	m_soundSource->Play(true);
 	m_ss = FindGO<StageSeni>("ss");
 	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
 	m_level.Build(L"level/map2.tks");

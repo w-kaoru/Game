@@ -137,8 +137,45 @@ void NPC::UpdateState()
 	    
 		//ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
 		/*m_moveSpeed.z = m_npcMove.RandomMoveZ();
+		m_moveSpeed.x = m_npcMove.RandomMoveX();
+		if (m_moveSpeed.z < 0.0f || m_moveSpeed.x < 0.0f) 
+		{
+			sevo = rand() % 3 + 1;
+			switch (sevo) 
+			{
+			case 1:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai01.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			case 2:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai02.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			case 3:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai03.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			}
+		}*/
 
-		m_moveSpeed.x = m_npcMove.RandomMoveX();*/
 		
 		break;
 	case tuibi:
@@ -163,36 +200,36 @@ void NPC::UpdateState()
 					m_soundSource = NewGO<prefab::CSoundSource>(0);
 					m_soundSource->Init("Assets/sprite/Mic3_52.wav");
 					m_soundSource->SetPosition(m_position);
-					m_soundSource->SetVolume(1.0f);
-					m_soundSource->Play(true);
+					m_soundSource->SetVolume(2.0f);
+					m_soundSource->Play(false);
 				}
 				else
 					m_soundSource->SetPosition(m_position);
-				osouvo = 0;
+				osouvo = rand() % 3 + 1;
 				break;
 			case 2:
 				if (m_soundSource == nullptr) {
 					m_soundSource = NewGO<prefab::CSoundSource>(0);
 					m_soundSource->Init("Assets/sprite/osou01.wav");
 					m_soundSource->SetPosition(m_position);
-					m_soundSource->SetVolume(1.0f);
-					m_soundSource->Play(true);
+					m_soundSource->SetVolume(2.0f);
+					m_soundSource->Play(false);
 				}
 				else
 					m_soundSource->SetPosition(m_position);
-				osouvo = 0;
+				osouvo = rand() % 3 + 1;
 				break;
 			case 3:
 				if (m_soundSource == nullptr) {
 					m_soundSource = NewGO<prefab::CSoundSource>(0);
 					m_soundSource->Init("Assets/sprite/osou02.wav");
 					m_soundSource->SetPosition(m_position);
-					m_soundSource->SetVolume(1.0f);
-					m_soundSource->Play(true);
+					m_soundSource->SetVolume(2.0f);
+					m_soundSource->Play(false);
 				}
 				else
 					m_soundSource->SetPosition(m_position);
-				osouvo = 0;
+				osouvo = rand() % 3 + 1;
 				break;
 			}
 	}

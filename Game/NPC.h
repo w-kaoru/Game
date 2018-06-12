@@ -36,7 +36,7 @@ public:
 	float angle= 0.0f;
 	int flag = 0;
 	int sevo = 0;
-	int osouvo = 0;
+	int osouvo = rand() % 3 + 1;
 	
 	enum state {
 		haikai,			//œpœj
