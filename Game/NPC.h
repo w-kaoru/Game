@@ -32,13 +32,15 @@ public:
 	int soundflag = 0;
 	StageSeni* m_stageseni = FindGO<StageSeni>("ss");
 
-	float angle=0.0f;
+	float angle= 0.0f;
 	int flag = 0;
+	int sevo = 0;
+	int osouvo = rand() % 3 + 1;
 	
 	enum state {
 		haikai,			//œpœj
 		tuibi,			//’Ç”öB
-		osou,
+		osou,           //P‚¤B
 	};
 	enum kanjou npckanjou =flat;
 	enum state npcState = haikai;

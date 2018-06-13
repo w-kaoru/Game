@@ -50,6 +50,7 @@ bool Game::Start()
 		{
 			npc->npckanjou = angry;
 			npc->npcState = npc->haikai;
+
 		}
 		else
 		{
