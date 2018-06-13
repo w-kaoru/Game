@@ -109,20 +109,32 @@ void Game::Update()
 }
 void Game::Render(CRenderContext& rc)
 {
-//	wchar_t text[256];
-//	int minute = (int)m_timer / 60;
-//	int sec = (int)m_timer % 60;
-//	swprintf_s(text, L"%02d:%02d", minute, sec);
-//	m_fontTest.Begin(rc);
-//
-//	//•¶š‚ğ•`‰æB
-//	m_fontTest.Draw(
-//		L"TIME ",
-//		{ -620.0f, 340.0f },
-//		{ 1.0f, 0.0f, 0.0f, 1.0f },
-//		0.0f,
-//		0.8f,
-//		{ 0.0f, 1.0f }
-//	);
-//	m_fontTest.End(rc);
+	
+}
+void Game::PostRender(CRenderContext& rc)
+{wchar_t text[256];
+	int minute = (int)m_timer / 60;
+	int sec = (int)m_timer % 60;
+	swprintf_s(text, L"%02d:%02d", minute, sec);
+	m_fontTest.Begin(rc);
+
+	//•¶š‚ğ•`‰æB
+	m_fontTest.Draw(
+		L"TIME ",
+		{ -620.0f, 340.0f },
+		{ 1.0f, 0.0f, 0.0f, 1.0f },
+		0.0f,
+		0.8f,
+		{ 0.0f, 1.0f }
+	);
+	m_fontTest.Draw(
+		text,
+		{ -465.0f, 340.0f },
+		{ 1.0f, 0.0f, 0.0f, 1.0f },
+		0.0f,
+		0.8f,
+		{ 0.0f, 1.0f }
+	);
+	m_fontTest.End(rc);
+
 }

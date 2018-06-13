@@ -21,6 +21,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	initParam.screenHeight = 720;
 	initParam.frameBufferWidth = 1280;
 	initParam.frameBufferHeight = 720;
+	initParam.screenWidth2D = 1280.0f;
+	initParam.screenHeight2D = 720.0f;
 	//âeÇÃê›íËÅB
 	initParam.graphicsConfing.shadowRenderConfig.isEnable = true;
 	initParam.graphicsConfing.shadowRenderConfig.shadowMapWidth = 2048;

@@ -29,6 +29,7 @@ public:
 	void Update();
 	void OnDestroy();
 	void Render(CRenderContext& rc);
+	void PostRender(CRenderContext& rc);
 	Level m_level;		//レベル。
 	std::vector<NPC*>	m_npcList;	//NPCの可変長配列。
 
@@ -51,7 +52,7 @@ private:
 	GameOver m_gameover;
 	CFont m_fontTest;
 	std::unique_ptr<DirectX::SpriteFont> m_timerFont;	//!<タイマー用のフォント。
-	float m_timer = 900.0f;
+	float m_timer = 300.0f;
 	int counter = 0;
 
 };
