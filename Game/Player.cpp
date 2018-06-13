@@ -32,6 +32,7 @@ bool Player::Start()
 		0			//0がプレイヤーのフラグ。
 	);
 	m_skinModelRender->SetShadowCasterFlag(true);
+	m_skinModelRender->SetShadowReceiverFlag(true);
 	return true;
 }
 void Player::Move()
@@ -80,7 +81,7 @@ void Player::Update()
 	Move();
 	//旋回処理。
 	Turn();
-	if(followerNum>10&&ef_flag==0){
+	if(followerNum>15&&ef_flag==0){
 		m_gc = NewGO<GameClear>(0);
 		
 	}

@@ -2,7 +2,7 @@
 
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "Level.h"
-
+#include "GameOver.h"
 
 class Fade;
 class StageSeni;
@@ -48,7 +48,10 @@ private:
 	prefab::CDirectionLight* m_sunLig = nullptr;
 	StageSeni* m_ss = nullptr;
 	CLocData locData;
-	CStopwatch sw;
-	int GameOver = 0;
+	GameOver m_gameover;
+	CFont m_fontTest;
+	std::unique_ptr<DirectX::SpriteFont> m_timerFont;	//!<タイマー用のフォント。
+	float m_timer = 900.0f;
 	int counter = 0;
+
 };
