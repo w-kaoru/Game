@@ -34,7 +34,7 @@ bool NPC::Start()
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_charaCon.Init(
 		4.0,			//半径。 
-		6.0f,			//高さ。
+		100.0f,			//高さ。
 		m_position, 	//初期位置。
 		1
 	);
@@ -58,13 +58,9 @@ void NPC::UpdateKanjouStage1()
 	switch (npckanjou)
 	{
 	case flat:
-		if (plpo.Length() > 50.0f) {
+		if (plpo.Length() < 5.0f) {
 			npckanjou = delighted;
 			npcState = tuibi;
-			m_player->SetfollowerNump();
-		}
-		else if (plpo.Length() < 50.0f) {
-			npckanjou = delighted;
 			m_player->SetfollowerNump();
 		}
 		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
@@ -81,8 +77,21 @@ void NPC::UpdateKanjouStage1()
 			npcState = tuibi;
 			m_player->SetfollowerNump();
 		}
+		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
+		m_position = m_charaCon.Execute(
+			GameTime().GetFrameDeltaTime(),
+			m_moveSpeed
+		);
 		break;
 	case angry:
+		if (plpo.Length() < 60.0f)
+		{
+			npcState = osou;
+		}
+		else
+		{
+			npcState = haikai;
+		}
 		if (plpo.Length() <= 5.0f&&m_player->GetfollowerNum() >= 2 )
 			//プレイヤーが連れている人数が一定値以上になったら、感情を喜び状態にする。
 		{
@@ -127,41 +136,104 @@ void NPC::UpdateState()
 		//徘徊状態の処理。
 		//@todo 渡辺 ここのプログラムをNPCの徘徊の仕方によって、処理をわけて　実装するように
 		//往復移動
-		//m_moveSpeed.x = m_npcMove.RoundTripMove();
+	    
 		//ランダム移動
-		m_moveSpeed.z = m_npcMove.RandomMoveZ();
+		/*m_moveSpeed.z = m_npcMove.RandomMoveZ();
 		m_moveSpeed.x = m_npcMove.RandomMoveX();
-		//m_moveSpeed.x = 0;
-		//m_moveSpeed.z = 0;
+		if (m_moveSpeed.z < 0.0f || m_moveSpeed.x < 0.0f) 
+		{
+			sevo = rand() % 3 + 1;
+			switch (sevo) 
+			{
+			case 1:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai01.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			case 2:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai02.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			case 3:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/jyunkai03.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(1.0f);
+					m_soundSource->Play(false);
+				}
+				sevo = 0;
+				break;
+			}
+		}*/
+
+		
 		break;
 	case tuibi:
 		//追尾状態。
 		//ここにプレイヤーに追尾するプログラムを書く。
 		plpo.Normalize();
-		m_moveSpeed.x = plpo.x *50 ;
-		m_moveSpeed.z = plpo.z *50 ;
+		m_moveSpeed.x = plpo.x *50.0f ;
+		m_moveSpeed.z = plpo.z *50.0f ;
 		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
 		m_rotation.SetRotation(CVector3::AxisY, angle);
 		break;
 	case osou:
-		if (plpo.Length() < 60.0) {
 			plpo.Normalize();
-			m_moveSpeed.x = plpo.x * 40;
-			m_moveSpeed.z = plpo.z * 40;
+			m_moveSpeed.x = plpo.x * 40.0f;
+			m_moveSpeed.z = plpo.z * 40.0f;
 			//angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
 			//m_rotation.SetRotation(CVector3::AxisY, angle);
-			if (m_soundSource == nullptr) {
-				m_soundSource = NewGO<prefab::CSoundSource>(0);
-				m_soundSource->Init("Assets/sprite/Mic3_52.wav");
-				m_soundSource->SetPosition(m_position);
-				m_soundSource->SetVolume(1.0f);
-				m_soundSource->Play(false);
+			switch (osouvo)
+			{
+			case 1:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/Mic3_52.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(2.0f);
+					m_soundSource->Play(false);
+				}
+				else
+					m_soundSource->SetPosition(m_position);
+				osouvo = rand() % 3 + 1;
+				break;
+			case 2:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/osou01.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(2.0f);
+					m_soundSource->Play(false);
+				}
+				else
+					m_soundSource->SetPosition(m_position);
+				osouvo = rand() % 3 + 1;
+				break;
+			case 3:
+				if (m_soundSource == nullptr) {
+					m_soundSource = NewGO<prefab::CSoundSource>(0);
+					m_soundSource->Init("Assets/sprite/osou02.wav");
+					m_soundSource->SetPosition(m_position);
+					m_soundSource->SetVolume(2.0f);
+					m_soundSource->Play(false);
+				}
+				else
+					m_soundSource->SetPosition(m_position);
+				osouvo = rand() % 3 + 1;
+				break;
 			}
-			else {
-				m_soundSource->SetPosition(m_position);
-			}
-		}
-		break;
 	}
 	m_position = m_charaCon.Execute(
 		GameTime().GetFrameDeltaTime(),
@@ -175,6 +247,7 @@ void NPC::Update()
 	/*if (GetSNo->stageNo == 0) {
 
 		UpdateKanjouStage1();
+		}
 	}*/
 
 	UpdateKanjouStage1();

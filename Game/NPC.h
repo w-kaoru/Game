@@ -21,7 +21,7 @@ public:
 	prefab::CSkinModelRender* m_skinModelRender;	        //スキンモデルレンダラー。
 	CVector3 m_position = CVector3::Zero;                   //座標。
 	CVector3 m_moveSpeed;                                   //移動速度。
-	CVector3 plpo;
+	CVector3 plpo;                                          //NPCとPlayerの距離。
 	CQuaternion m_rotation = CQuaternion::Identity;         //回転。
 	CCharacterController m_charaCon; 
 	NpcMove m_npcMove;
@@ -33,13 +33,15 @@ public:
 	int soundflag = 0;
 
 
-	float angle=0.0f;
+	float angle= 0.0f;
 	int flag = 0;
+	int sevo = 0;
+	int osouvo = rand() % 3 + 1;
 	
 	enum state {
 		haikai,			//徘徊
 		tuibi,			//追尾。
-		osou,
+		osou,           //襲う。
 	};
 	enum kanjou npckanjou =flat;
 	enum state npcState = haikai;

@@ -23,11 +23,11 @@ bool Player::Start()
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
-	m_position.y = 500;
+	m_position.y = 40;
 	//キャラクターコントローラーを初期化。
 	m_charaCon.Init(
 		4.0,			//半径。 
-		6.0f,			//高さ。
+		100.0f,			//高さ。
 		m_position, 	//初期位置。
 		0			//0がプレイヤーのフラグ。
 	);
