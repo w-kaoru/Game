@@ -32,6 +32,7 @@ bool Player::Start()
 		0			//0がプレイヤーのフラグ。
 	);
 	m_skinModelRender->SetShadowCasterFlag(true);
+	m_skinModelRender->SetShadowReceiverFlag(true);
 	return true;
 }
 void Player::Move()

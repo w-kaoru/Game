@@ -42,6 +42,8 @@ bool NPC::Start()
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
 	m_skinModelRender->SetShadowCasterFlag(true);
+	m_skinModelRender->SetShadowReceiverFlag(true);
+
 	//@todo ステージによって、生成する感情コントロールのインスタンスを切り替えるように.
 
 	return true;

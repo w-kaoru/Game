@@ -12,7 +12,7 @@
 #include "StageSeni.h"
 #include "tkEngine/Sound/tkSoundSource.h"
 #include "tkEngine/Sound/tkSoundEngine.h"
-#include "tkEngine/timer/tkStopwatch.h"
+#include "tkEngine/timer/tkGameTime.h"
 
 Game::Game()
 {
@@ -42,7 +42,6 @@ bool Game::Start()
 	//レベルを構築する。
 	m_level.Build(L"level/map2.tks");
 
-	
 	locData.Load(L"modelData/NPCloc.tks");
 	for (int i = 0; i < locData.GetNumObject(); i++) {
 		NPC* npc = NewGO<NPC>(0);
@@ -61,12 +60,19 @@ bool Game::Start()
 		m_npcList.push_back(npc);
 		counter++;
 	}
+	//ライティング、影を落とす。
 	m_sunLig = NewGO<prefab::CDirectionLight>(0);
 	CVector3 lightDir = { 0.20f, -0.3f, 0.0f };
 	m_sunLig->SetDirection(lightDir);
 	m_sunLig->SetColor({ 10.0f, 10.0f, 10.0f, 1.0f });
 	LightManager().SetAmbientLight({ 1.0f, 1.0f, 1.0f });
 	GraphicsEngine().GetShadowMap().SetLightDirection(lightDir);
+	//タイマー用のフォントを初期化。
+	m_timerFont = std::make_unique<DirectX::SpriteFont>(
+		GraphicsEngine().GetD3DDevice(),
+		L"font/hato_pop.spritefont"
+		);
+	m_fontTest.SetFont(m_timerFont.get());
 	return true;
 }
 void Game::OnDestroy()
@@ -80,21 +86,21 @@ void Game::OnDestroy()
 }
 void Game::Update()
 {
-	sw.Start();
-	if (sw.GetElapsed() == 10) {
-		sw.Stop();
-		m_ss->SetGameOver();
-		GameOver = 1;
+	m_timer -= GameTime().GetFrameDeltaTime();
+	if (m_timer < 0.0f) {
+		m_gameover.SetGameOver(true);
 	}
-
-if (m_isWaitFadeout) {
+	if (m_isWaitFadeout) {
 		if (!m_fade->IsFade()) {
-				NewGO<Title>(0, "Title");
-				DeleteGO(this);
+			if (m_gameover.GetGameOver() == true) {
+				m_ss->SetGameOver();
+			}
+			NewGO<Title>(0, "Title");
+			DeleteGO(this);
 		}
 	}
 	else {
-		if (m_player->Getef_flag() == 2 || GameOver == 1) {
+		if (m_player->Getef_flag() == 2 || m_gameover.GetGameOver() == true) {
 			m_isWaitFadeout = true;
 			m_fade->StartFadeOut();
 		}
@@ -103,4 +109,32 @@ if (m_isWaitFadeout) {
 }
 void Game::Render(CRenderContext& rc)
 {
+	
+}
+void Game::PostRender(CRenderContext& rc)
+{wchar_t text[256];
+	int minute = (int)m_timer / 60;
+	int sec = (int)m_timer % 60;
+	swprintf_s(text, L"%02d:%02d", minute, sec);
+	m_fontTest.Begin(rc);
+
+	//文字を描画。
+	m_fontTest.Draw(
+		L"TIME ",
+		{ -620.0f, 340.0f },
+		{ 1.0f, 0.0f, 0.0f, 1.0f },
+		0.0f,
+		0.8f,
+		{ 0.0f, 1.0f }
+	);
+	m_fontTest.Draw(
+		text,
+		{ -465.0f, 340.0f },
+		{ 1.0f, 0.0f, 0.0f, 1.0f },
+		0.0f,
+		0.8f,
+		{ 0.0f, 1.0f }
+	);
+	m_fontTest.End(rc);
+
 }
