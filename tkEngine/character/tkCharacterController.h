@@ -92,6 +92,11 @@ namespace tkEngine{
 		*/
 		void RemoveRigidBoby();
 		
+		//壁に当たった判定取得
+		bool GetisHitWall() 
+		{
+			return m_isHitWall;
+		}
 	private:
 		CVector3 			m_position = CVector3::Zero;	//座標。
 		bool 				m_isJump = false;				//ジャンプ中？
@@ -101,5 +106,6 @@ namespace tkEngine{
 		float				m_height = 0.0f;		
 		CRigidBody			m_rigidBody;					//剛体。
 		int					m_Characterflag = 0;			//キャラクターのフラグ。
+		bool				m_isHitWall = false;			//壁に当たった判定。
 	};
 }

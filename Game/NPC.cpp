@@ -130,7 +130,7 @@ void NPC::UpdateKanjouStage3()
 }
 void NPC::UpdateState()
 {
-	
+	movetime++;
 	switch (npcState) {
 	case haikai:
 		//œpœjó‘Ô‚Ìˆ—B
@@ -140,6 +140,11 @@ void NPC::UpdateState()
 		//ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
 		m_moveSpeed.z = m_npcMove.RandomMoveZ();
 		m_moveSpeed.x = m_npcMove.RandomMoveX();
+		if (m_charaCon.GetisHitWall() == true && movetime < 10) {
+			m_moveSpeed.z *= -1;
+			m_moveSpeed.x *= -1;
+		}
+
 		plpo.Normalize();
 		if (m_moveSpeed.z < 0.0f || m_moveSpeed.x < 0.0f) 
 		{
@@ -196,6 +201,10 @@ void NPC::UpdateState()
 			//ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
 			m_moveSpeed.z = m_npcMove.RandomMoveZ();
 			m_moveSpeed.x = m_npcMove.RandomMoveX();
+			if (m_charaCon.GetisHitWall() == true && movetime < 10) {
+				m_moveSpeed.z *= -1;
+				m_moveSpeed.x *= -1;
+			}
 		}
 		else{
 
@@ -250,6 +259,7 @@ void NPC::UpdateState()
 		GameTime().GetFrameDeltaTime(),
 		m_moveSpeed
 	);
+	
 }
 void NPC::Update()
 {
