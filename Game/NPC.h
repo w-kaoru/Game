@@ -31,7 +31,8 @@ public:
 	prefab::CSoundSource* m_soundSource2 = nullptr;
 	NPC*pNpc;
 	int soundflag = 0;
-	StageSeni* m_stageseni = FindGO<StageSeni>("ss");
+	bool HitWall = false;
+	int movetime = 0;
 
 	float angle= 0.0f;
 	int flag = 0;
