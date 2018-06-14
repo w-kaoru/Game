@@ -80,6 +80,7 @@ void Player::Update()
 	Move();
 	//旋回処理。
 	Turn();
+	//クリア演出判定。
 	if(followerNum>10&&ef_flag==0){
 		m_gc = NewGO<GameClear>(0);
 		
