@@ -52,7 +52,7 @@ private:
 	GameOver m_gameover;
 	CFont m_fontTest;
 	std::unique_ptr<DirectX::SpriteFont> m_timerFont;	//!<タイマー用のフォント。
-	float m_timer = 300.0f;
+	float m_timer = 300.0f;		//制限時間。
 	int counter = 0;
 
 };

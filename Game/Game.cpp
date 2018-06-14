@@ -48,7 +48,7 @@ bool Game::Start()
 		if (counter % 4 == 0)
 		{
 			npc->npckanjou = angry;
-			npc->npcState = npc->haikai;
+			npc->npcState = npc->osou;
 
 		}
 		else
@@ -86,10 +86,13 @@ void Game::OnDestroy()
 }
 void Game::Update()
 {
+	//タイマーの減算
+	//残り時間
 	m_timer -= GameTime().GetFrameDeltaTime();
 	if (m_timer < 0.0f) {
 		m_gameover.SetGameOver(true);
 	}
+	//フェードアウト
 	if (m_isWaitFadeout) {
 		if (!m_fade->IsFade()) {
 			if (m_gameover.GetGameOver() == true) {
@@ -112,7 +115,9 @@ void Game::Render(CRenderContext& rc)
 	
 }
 void Game::PostRender(CRenderContext& rc)
-{wchar_t text[256];
+{
+	//タイマーの表示。
+	wchar_t text[256];
 	int minute = (int)m_timer / 60;
 	int sec = (int)m_timer % 60;
 	swprintf_s(text, L"%02d:%02d", minute, sec);
