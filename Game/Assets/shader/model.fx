@@ -305,6 +305,58 @@ PSInput_RenderToDepth VSMainSkin_RenderDepth(VSInputNmTxWeights In)
 	return psInput;
 	
 }
+float4 PSSkyMain(PSInput In) : SV_Target0
+{
+	float3 lig = 0.0f;
+	//視点までのベクトルを求める。
+	float3 toEye = normalize(eyePos - In.Pos);
+	//アルベド。
+	float4 albedo = float4(albedoTexture.Sample(Sampler, In.TexCoord).xyz, 1.0f);
+	//従ベクトルを計算する。
+	float3 biNormal = normalize(cross(In.Tangent, In.Normal));
+	//法線を計算。
+	float3 normal = In.Normal;
+	float3 finalColor = 0.0f;
+	float specPow = 0.0f;
+	float roughness = 1.0f;
+	if (hasSpecularMap) {
+		float4 t = specularMap.Sample(Sampler, In.TexCoord);
+		specPow = t.x;
+		roughness = 1.0f - t.w;
+		roughness *= 0.8f;	//@todo マテリアルパラメータにすべきだな。
+	}
+	float toEyeLen = length(toEye);
+	float3 toEyeDir = float3(1.0f, 0.0f, 0.0f);
+	if (toEyeLen > 0.001f) {
+		toEyeDir = toEye / toEyeLen;
+	}
+	
+	//アンビエントライト。
+	finalColor = CalcAmbientLight(
+		albedo,
+		normal,
+		In.Tangent,
+		biNormal,
+		toEyeDir,
+		roughness,
+		specPow
+	);
+
+	// brightness
+	float brightness = 1.0f;
+	finalColor *= brightness;
+	/*
+	// exposure
+	float exposure = 1.0f;
+	finalColor *= pow( 2.0, exposure );
+	*/
+	float gamma = 2.2f;
+	finalColor = max(0.0f, pow(finalColor, 1.0 / gamma));
+	if (isnan(finalColor.x) || isnan(finalColor.y) || isnan(finalColor.z)) {
+		return float4(1.0f, 0.0f, 0.0f, 1.0f);
+	}
+	return float4(finalColor, 1.0f);
+}
 //--------------------------------------------------------------------------------------
 // ピクセルシェーダーのエントリ関数。
 //--------------------------------------------------------------------------------------

@@ -25,7 +25,6 @@ public:
 	CQuaternion m_rotation = CQuaternion::Identity;         //âÒì]ÅB
 	CCharacterController m_charaCon; 
 	NpcMove m_npcMove;
-
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
 	prefab::CSoundSource* m_soundSource = nullptr;
