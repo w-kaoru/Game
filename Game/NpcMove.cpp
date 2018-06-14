@@ -31,7 +31,7 @@ float NpcMove::RoundTripMove()
 			}
 		}
 		//移動の計算を返す。
-		return m_moveSpeed.x * 100.0f * fugou;
+		return m_moveSpeed.x * 60.0f * fugou;
 }
 
 //ランダム移動X軸
@@ -41,12 +41,12 @@ float NpcMove::RandomMoveX()
 	m_moveSpeed = m_position;
 	m_moveSpeed.Normalize();
 	if (randomX == 1 || randomX == 5 || randomX == 9) {
-		if (timer > 0 && timer <= 7) {
+		if (timer > 0 && timer <= 10) {
 			//移動の向き
 			fugou = 1;
 			//移動の方向を求める。
 			m_position.x += m_moveSpeed.x * fugou;
-			if (timer == 7) {
+			if (timer == 10) {
 				//簡易タイマーリセット
 				timer = 0;
 				//1～9の乱数取得
@@ -55,12 +55,12 @@ float NpcMove::RandomMoveX()
 		}
 	}
 	if (randomX == 2 || randomX == 4 || randomX == 7) {
-		if (timer > 0 && timer <= 7) {
+		if (timer > 0 && timer <= 10) {
 			//移動の向き
 			fugou = -1;
 			//移動の方向を求める。
 			m_position.x += m_moveSpeed.x * fugou;
-			if (timer == 7) {
+			if (timer == 10) {
 				//簡易タイマーリセット
 				timer = 0;
 				//1～9の乱数取得
@@ -70,12 +70,12 @@ float NpcMove::RandomMoveX()
 	}
 	if (randomX == 3 || randomX == 6 || randomX == 8) {
 
-		if (timer > 0 && timer <= 7) {
+		if (timer > 0 && timer <= 10) {
 			//移動の向き
 			fugou = 0;
 			//移動の方向を求める。
 			m_position.x += m_moveSpeed.x * fugou;
-			if (timer == 7) {
+			if (timer == 10) {
 				//簡易タイマーリセット
 				timer = 0;
 				//1～9の乱数取得
@@ -84,7 +84,7 @@ float NpcMove::RandomMoveX()
 		}
 	}
 	//移動の計算を返す。
-	return m_moveSpeed.x * 100.0 * fugou;
+	return m_moveSpeed.x * 60.0 * fugou;
 }
 
 //ランダム移動Z軸
@@ -94,12 +94,12 @@ float NpcMove::RandomMoveZ()
 	m_moveSpeed = m_position;
 	m_moveSpeed.Normalize();
 	if (randomZ == 1 || randomZ == 5 || randomZ == 9) {
-		if (timer2 > 0 && timer2 <= 7) {
+		if (timer2 > 0 && timer2 <= 10) {
 			//移動の向き
 			fugou = 1;
 			//移動の方向を求める。
 			m_position.z += m_moveSpeed.z * fugou;
-			if (timer2 == 7) {
+			if (timer2 == 10) {
 				//簡易タイマーリセット
 				timer2 = 0;
 				//1～9の乱数取得
@@ -108,12 +108,12 @@ float NpcMove::RandomMoveZ()
 		}
 	}
 	if (randomZ == 2 || randomZ == 6 || randomZ == 7) {
-		if (timer2 > 0 && timer2 <= 7) {
+		if (timer2 > 0 && timer2 <= 10) {
 			//移動の向き
 			fugou = -1;
 			//移動の方向を求める。
 			m_position.z += m_moveSpeed.z * fugou;
-			if (timer2 == 7) {
+			if (timer2 == 10) {
 				//簡易タイマーリセット
 				timer2 = 0;
 				//1～9の乱数取得
@@ -123,12 +123,12 @@ float NpcMove::RandomMoveZ()
 	}
 	if (randomZ == 3 || randomZ == 4 || randomZ == 8) {
 
-		if (timer2 > 0 && timer2 <= 7) {
+		if (timer2 > 0 && timer2 <= 10) {
 			//移動の向き
 			fugou = 0;
 			//移動の方向を求める。
 			m_position.z += m_moveSpeed.z * fugou;
-			if (timer2 == 7) {
+			if (timer2 == 10) {
 				//簡易タイマーリセット
 				timer2 = 0;
 				//1～9の乱数取得
@@ -137,6 +137,6 @@ float NpcMove::RandomMoveZ()
 		}
 	}
 	//移動の計算を返す。
-	return m_moveSpeed.z * 100.0 * fugou;
+	return m_moveSpeed.z * 60.0 * fugou;
 }
 

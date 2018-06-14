@@ -32,7 +32,8 @@ public:
 	prefab::CSoundSource* m_soundSource2 = nullptr;
 	NPC*pNpc;
 	int soundflag = 0;
-
+	bool HitWall = false;
+	int movetime = 0;
 
 	float angle= 0.0f;
 	int flag = 0;
