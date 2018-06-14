@@ -3,11 +3,10 @@
 #include "Game.h"
 #include "Player.h"
 #include "StageSeni.h"
+
 GameClear::GameClear()
 {
 }
-
-
 GameClear::~GameClear()
 {
 }
@@ -24,7 +23,8 @@ bool GameClear::Start()
 }
 void GameClear::Update()
 {
-	Gtime ++;
+	
+	Gtime++;
 	CQuaternion qRot;
 	qRot = pl->GetRotation();
 	m_pos = pl->GetPosition();

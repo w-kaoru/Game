@@ -55,6 +55,9 @@ void Player::Move()
 	m_moveSpeed += cameraForward * lStick_y * 70.0f;	//奥方向への移動速度を代入。
 	m_moveSpeed += cameraRight * lStick_x * 70.0f;		//右方向への移動速度を加算。
 	m_position = m_charaCon.Execute(GameTime().GetFrameDeltaTime(), m_moveSpeed);
+	//プレイヤーの前方向。
+	m_plforward = m_moveSpeed;
+
 }
 
 void Player::Turn()
@@ -81,13 +84,9 @@ void Player::Update()
 	Move();
 	//旋回処理。
 	Turn();
-	if(followerNum>10&&ef_flag==0){
+	if (followerNum > 10 && ef_flag == 0) {
 		m_gc = NewGO<GameClear>(0);
-		
 	}
-	/*if () {
-
-	}*/
 	//ワールド行列を更新。
 	CQuaternion qRot;
 	qRot.SetRotationDeg(CVector3::AxisX, 0.0f);	//3dsMaxで設定されているアニメーションでキャラが回転しているので、補正を入れる。
