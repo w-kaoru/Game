@@ -243,6 +243,7 @@
     <CustomBuild Include="Assets\sprite\jyunkai01.wav">
       <Filter>Assets\sprite</Filter>
     </CustomBuild>
+    <CustomBuild Include="Assets\sprite\Mic3_52.wav" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">
@@ -254,10 +255,5 @@
     <ImageContentTask Include="Assets\sprite\HumanGroup.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="Assets\sprite\Mic3_52.wav">
-      <Filter>Assets\sprite</Filter>
-    </Media>
   </ItemGroup>
 </Project>

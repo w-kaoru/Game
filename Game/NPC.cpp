@@ -135,10 +135,10 @@ void NPC::UpdateState()
 		//徘徊状態の処理。
 		//@todo 渡辺 ここのプログラムをNPCの徘徊の仕方によって、処理をわけて　実装するように
 		//往復移動
-		//m_moveSpeed.x = m_npcMove.RoundTripMove();
+		m_moveSpeed.x = m_npcMove.RoundTripMove();
 		//ランダム移動
-		/*m_moveSpeed.z = m_npcMove.RandomMoveZ();
-		m_moveSpeed.x = m_npcMove.RandomMoveX();*/
+		m_moveSpeed.z = m_npcMove.RandomMoveZ();
+		m_moveSpeed.x = m_npcMove.RandomMoveX();
 		
 		break;
 	case tuibi:
@@ -177,7 +177,6 @@ void NPC::UpdateState()
 void NPC::Update()
 {
 	//感情の更新。
-	//こんな感じでいいのでは。
 	if (m_stageseni->GetSNo() == 0) {
 
 		UpdateKanjouStage1();

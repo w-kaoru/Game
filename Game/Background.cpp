@@ -9,6 +9,9 @@ void Background::OnDestroy()
 }
 bool Background::Start()
 {
+	//ピクセルシェーダーをロード。
+	
+	m_psShader.Load("shader/model.fx", "PSSkyMain", CShader::EnType::PS);
 	StageSeni* m_ss = FindGO<StageSeni>("ss");
 	//１ステージ
 	if (m_ss->GetSNo() == 0) {
@@ -28,6 +31,11 @@ bool Background::Start()
 		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 		m_skinModelRender->Init(L"modelData/karisute3.cmo");
 	}
+	m_skinModelRender->FindMaterial([&](auto mat) {
+		if (mat->EqualMaterialName( L"sky" ) == true ) {
+			mat->SetRender3DModelPSShader(m_psShader);
+		}
+	});
 	//静的物理オブジェクトを作成。
 	m_phyStaticObject.CreateMeshObject(m_skinModelRender, CVector3::Zero, CQuaternion::Identity);
 	m_skinModelRender->SetShadowReceiverFlag(true);

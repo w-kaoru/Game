@@ -12,4 +12,5 @@ private:
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;	//!<スキンモデルレンダラー。
 	CPhysicsStaticObject m_phyStaticObject;					//!<静的物理オブジェクト。
 	CVector3 m_position = CVector3::Zero;	//座標。
+	CShader m_psShader;
 };

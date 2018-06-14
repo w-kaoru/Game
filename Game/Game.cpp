@@ -63,9 +63,10 @@ bool Game::Start()
 	}
 	m_sunLig = NewGO<prefab::CDirectionLight>(0);
 	CVector3 lightDir = { 0.20f, -0.3f, 0.0f };
+	lightDir.Normalize();
 	m_sunLig->SetDirection(lightDir);
-	m_sunLig->SetColor({ 10.0f, 10.0f, 10.0f, 1.0f });
-	LightManager().SetAmbientLight({ 1.0f, 1.0f, 1.0f });
+	m_sunLig->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+	LightManager().SetAmbientLight({ 0.4f, 0.4f, 0.4f });
 	GraphicsEngine().GetShadowMap().SetLightDirection(lightDir);
 	return true;
 }

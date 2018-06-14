@@ -32,7 +32,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	initParam.graphicsConfing.bloomConfig.isEnable = true;
 	//tonemap
 	initParam.graphicsConfing.tonemapConfig.isEnable = true;
-
+	initParam.graphicsConfing.tonemapConfig.luminance = 0.3f;
 	GraphicsEngine().GetShadowMap().SetFar(1000.0f);
 	GraphicsEngine().GetShadowMap().SetNear(50.0f);
 
