@@ -28,6 +28,7 @@ public:
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
 	prefab::CSoundSource* m_soundSource = nullptr;
+	prefab::CSoundSource* m_soundSource2 = nullptr;
 	NPC*pNpc;
 	int soundflag = 0;
 	StageSeni* m_stageseni = FindGO<StageSeni>("ss");

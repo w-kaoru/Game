@@ -31,6 +31,10 @@ public:
 	{
 		return m_rotation;
 	}
+	CVector3 GetPlforward()
+	{
+		return m_plforward;
+	}
 	void Setef_flag()
 	{
 		ef_flag++;
@@ -54,7 +58,7 @@ private:
 	CVector3 m_moveSpeed = CVector3::Zero;	//移動速度。
 			//付いて来ている人間の数。
 	GameClear* m_gc = nullptr;
-
+	CVector3 m_plforward = CVector3::Zero;
 	int ef_flag = 0;						//エフェクトのフラグ。
 	int followerNum = 0;			
 };

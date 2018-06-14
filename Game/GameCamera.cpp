@@ -12,7 +12,8 @@ SCameraData cameraDataTbl[] = {
 	{ 15.0f, 5 },			//人間の数が５人以下の時のカメラデータ。
 	{ 20.0f, 10 },			//人間の数が10人以下の時のカメラデータ。
 	{ 30.0f, 20 },			//人間の数が20人以下の時のカメラデータ。
-	{ 40.0f, 10000},		//人間の数が10000人以下の時のカメラデータ。
+	{ 40.0f, 100},
+	{ 100.0f, 10000},		//人間の数が10000人以下の時のカメラデータ。
 };
 
 GameCamera::GameCamera()
@@ -49,7 +50,7 @@ void GameCamera::Update()
 	//注視点を計算する。
 	CVector3 target = m_player->GetPosition();
 	//プレイヤの足元からちょっと上を注視点とする。
-	target.y += 15.0f;
+	target.y += 10.0f;
 
 	CVector3 toCameraPosOld = m_toCameraPos;
 	//パッドの入力を使ってカメラを回す。
@@ -78,15 +79,18 @@ void GameCamera::Update()
 	else if (toPosDir.y > 0.8f) {
 		//カメラが下向きすぎ。
 		m_toCameraPos = toCameraPosOld;
-	}
-
-	//プレイヤーのインスタンスを検索。
-	Player* player = FindGO<Player>("Player");
+	}/*
+	if (m_player->GetfollowerNum() > 2) {
+		float angle = 0.0f;
+		angle += 3.0f;
+		qRot.SetRotationDeg(CVector3::AxisY, angle);
+		qRot.Multiply(m_player->GetPlforward());
+	}*/
 	//ついて来ている人間の数で、使用するカメラデータを決める。
 	SCameraData* cameraData = nullptr;
 	int arraySize = ARRAYSIZE(cameraDataTbl);
 	for (int i = 0; i < arraySize; i++) {
-		if (player->GetfollowerNum() < cameraDataTbl[i].humanLimit) {
+		if (m_player->GetfollowerNum() < cameraDataTbl[i].humanLimit) {
 			//使用するカメラデータが見つかった。
 			cameraData = &cameraDataTbl[i];
 			break;
@@ -97,6 +101,12 @@ void GameCamera::Update()
 	m_toCameraPos *= cameraData->targetToPosition;
 	////新しい注視点から視点までのベクトルが求まったので、新しい視点を計算する。
 	CVector3 pos = target + m_toCameraPos;
+    //メインカメラに３ｄサウンドを聞かせて上げる
+	SoundEngine().SetListenerPosition(MainCamera().GetPosition());
+	CVector3 frontXZ = MainCamera().GetForward();
+	frontXZ.y = 0.0f;
+	frontXZ.Normalize();
+	SoundEngine().SetListenerFront(frontXZ);
 	//バネカメラに注視点と視点を設定する。
 	m_springCamera.SetTarget(target);
 	m_springCamera.SetPosition(pos);

@@ -2,7 +2,7 @@
 
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "Level.h"
-
+#include "GameOver.h"
 
 class Fade;
 class StageSeni;
@@ -29,6 +29,7 @@ public:
 	void Update();
 	void OnDestroy();
 	void Render(CRenderContext& rc);
+	void PostRender(CRenderContext& rc);
 	Level m_level;		//レベル。
 	std::vector<NPC*>	m_npcList;	//NPCの可変長配列。
 
@@ -48,7 +49,10 @@ private:
 	prefab::CDirectionLight* m_sunLig = nullptr;
 	StageSeni* m_ss = nullptr;
 	CLocData locData;
-	CStopwatch sw;
-	int GameOver = 0;
+	GameOver m_gameover;
+	CFont m_fontTest;
+	std::unique_ptr<DirectX::SpriteFont> m_timerFont;	//!<タイマー用のフォント。
+	float m_timer = 300.0f;		//制限時間。
 	int counter = 0;
+
 };

@@ -3,11 +3,10 @@
 #include "Game.h"
 #include "Player.h"
 #include "StageSeni.h"
+
 GameClear::GameClear()
 {
 }
-
-
 GameClear::~GameClear()
 {
 }
@@ -24,11 +23,12 @@ bool GameClear::Start()
 }
 void GameClear::Update()
 {
-	Gtime ++;
+	
+	Gtime++;
 	CQuaternion qRot;
 	qRot = pl->GetRotation();
 	m_pos = pl->GetPosition();
-	if (pl->Getef_flag() == 1) {
+	if (pl->Getef_flag() == 0) {
 		pl->Setef_flag();
 		
 		//エフェクトを再生。
@@ -39,7 +39,7 @@ void GameClear::Update()
 		effect->SetRotation(qRot);
 		
 	}
-	else if (pl->Getef_flag() == 1 && Gtime == 90) {
+	else if (pl->Getef_flag() == 1 && Gtime > 90) {
 		m_ss->SetSNo();
 		pl->Setef_flag();
 		DeleteGO(this);
