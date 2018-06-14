@@ -28,7 +28,10 @@ bool NPC::Start()
 	int npcCflag = 1;
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
-
+	//エフェクトを作成。
+	effect = NewGO<prefab::CEffect>(0);
+	//エフェクトを作成。
+	effect2 = NewGO<prefab::CEffect>(0);
 	m_position.y = 0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
@@ -47,6 +50,23 @@ bool NPC::Start()
 	//@todo ステージによって、生成する感情コントロールのインスタンスを切り替えるように.
 
 	return true;
+}
+
+void NPC::angryef()
+{
+	//エフェクトを再生。
+	effect->Play(L"effect/oko.efk");
+	emitPos = m_position;
+	effect->SetPosition(emitPos);
+	effect->SetRotation(m_rotation);
+}
+void NPC::delightedef()
+{
+	//エフェクトを再生。
+	effect2->Play(L"effect/tanosii.efk");
+	emitPos2 = m_position;
+	effect2->SetPosition(emitPos2);
+	effect2->SetRotation(m_rotation);
 }
 
 void NPC::UpdateKanjouStage1()
@@ -71,7 +91,8 @@ void NPC::UpdateKanjouStage1()
 		break;
 	case delighted:
 		//喜んでいる
-		if (plpo.Length() < 5.0f && npcState != tuibi)
+		delightedef();
+		if (plpo.Length() < 40.0f && npcState != tuibi)
 		{
 			npckanjou = delighted;
 			npcState = tuibi;
@@ -84,7 +105,8 @@ void NPC::UpdateKanjouStage1()
 		);
 		break;
 	case angry:
-		if (plpo.Length() < 60.0f)
+		angryef();
+		if (plpo.Length() < 40.0f)
 		{
 			npcState = osou;
 		}
@@ -192,8 +214,8 @@ void NPC::UpdateState()
 		plpo.Normalize();
 		m_moveSpeed.x = plpo.x *50.0f ;
 		m_moveSpeed.z = plpo.z *50.0f ;
-		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
-		m_rotation.SetRotation(CVector3::AxisY, angle);
+		/*angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+		m_rotation.SetRotation(CVector3::AxisY, angle);*/
 		break;
 	case osou:
 		if (plpo.Length() > 50.0f) {
@@ -209,11 +231,9 @@ void NPC::UpdateState()
 		else{
 
 			plpo.Normalize();
-			m_moveSpeed.x = plpo.x * 40.0f;
-			m_moveSpeed.z = plpo.z * 40.0f;
+			m_moveSpeed.x = plpo.x * 30.0f;
+			m_moveSpeed.z = plpo.z * 30.0f;
 
-			//angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
-			//m_rotation.SetRotation(CVector3::AxisY, angle);
 			switch (osouvo)
 			{
 			case 1:
@@ -255,6 +275,9 @@ void NPC::UpdateState()
 			}
 		}
 	}
+
+	angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+	m_rotation.SetRotation(CVector3::AxisY, angle);
 	m_position = m_charaCon.Execute(
 		GameTime().GetFrameDeltaTime(),
 		m_moveSpeed
