@@ -191,50 +191,60 @@ void NPC::UpdateState()
 		m_rotation.SetRotation(CVector3::AxisY, angle);
 		break;
 	case osou:
+		if (plpo.Length() > 50.0f) {
+
+			//ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
+			m_moveSpeed.z = m_npcMove.RandomMoveZ();
+			m_moveSpeed.x = m_npcMove.RandomMoveX();
+		}
+		else{
+
 			plpo.Normalize();
 			m_moveSpeed.x = plpo.x * 40.0f;
 			m_moveSpeed.z = plpo.z * 40.0f;
+
 			//angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
 			//m_rotation.SetRotation(CVector3::AxisY, angle);
 			switch (osouvo)
 			{
 			case 1:
-				if (m_soundSource == nullptr) {
-					m_soundSource = NewGO<prefab::CSoundSource>(0);
-					m_soundSource->Init("Assets/sprite/Mic3_52.wav");
-					m_soundSource->SetPosition(m_position);
-					m_soundSource->SetVolume(2.0f);
-					m_soundSource->Play(false);
+				if (m_soundSource2 == nullptr) {
+					m_soundSource2 = NewGO<prefab::CSoundSource>(0);
+					m_soundSource2->Init("Assets/sprite/Mic3_52.wav");
+					m_soundSource2->SetPosition(m_position);
+					m_soundSource2->SetVolume(2.0f);
+					m_soundSource2->Play(false);
 				}
 				else
 					m_soundSource->SetPosition(m_position);
 				osouvo = rand() % 3 + 1;
 				break;
 			case 2:
-				if (m_soundSource == nullptr) {
-					m_soundSource = NewGO<prefab::CSoundSource>(0);
-					m_soundSource->Init("Assets/sprite/osou01.wav");
-					m_soundSource->SetPosition(m_position);
-					m_soundSource->SetVolume(2.0f);
-					m_soundSource->Play(false);
+				if (m_soundSource2 == nullptr) {
+					m_soundSource2 = NewGO<prefab::CSoundSource>(0);
+					m_soundSource2->Init("Assets/sprite/osou01.wav");
+					m_soundSource2->SetPosition(m_position);
+					m_soundSource2->SetVolume(2.0f);
+					m_soundSource2->Play(false);
 				}
 				else
 					m_soundSource->SetPosition(m_position);
 				osouvo = rand() % 3 + 1;
 				break;
 			case 3:
-				if (m_soundSource == nullptr) {
-					m_soundSource = NewGO<prefab::CSoundSource>(0);
-					m_soundSource->Init("Assets/sprite/osou02.wav");
-					m_soundSource->SetPosition(m_position);
-					m_soundSource->SetVolume(2.0f);
-					m_soundSource->Play(false);
+				if (m_soundSource2 == nullptr) {
+					m_soundSource2 = NewGO<prefab::CSoundSource>(0);
+					m_soundSource2->Init("Assets/sprite/osou02.wav");
+					m_soundSource2->SetPosition(m_position);
+					m_soundSource2->SetVolume(2.0f);
+					m_soundSource2->Play(false);
 				}
 				else
-					m_soundSource->SetPosition(m_position);
+					m_soundSource2->SetPosition(m_position);
 				osouvo = rand() % 3 + 1;
 				break;
 			}
+		}
 	}
 	m_position = m_charaCon.Execute(
 		GameTime().GetFrameDeltaTime(),
