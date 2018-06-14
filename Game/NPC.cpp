@@ -138,15 +138,16 @@ void NPC::UpdateState()
 		//‰•œˆÚ“®
 	    
 		//ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
-		/*m_moveSpeed.z = m_npcMove.RandomMoveZ();
+		m_moveSpeed.z = m_npcMove.RandomMoveZ();
 		m_moveSpeed.x = m_npcMove.RandomMoveX();
+		plpo.Normalize();
 		if (m_moveSpeed.z < 0.0f || m_moveSpeed.x < 0.0f) 
 		{
 			sevo = rand() % 3 + 1;
 			switch (sevo) 
 			{
 			case 1:
-				if (m_soundSource == nullptr) {
+				if (m_soundSource == nullptr && plpo.Length() < 120.0f) {
 					m_soundSource = NewGO<prefab::CSoundSource>(0);
 					m_soundSource->Init("Assets/sprite/jyunkai01.wav");
 					m_soundSource->SetPosition(m_position);
@@ -156,7 +157,7 @@ void NPC::UpdateState()
 				sevo = 0;
 				break;
 			case 2:
-				if (m_soundSource == nullptr) {
+				if (m_soundSource == nullptr && plpo.Length() < 120.0f) {
 					m_soundSource = NewGO<prefab::CSoundSource>(0);
 					m_soundSource->Init("Assets/sprite/jyunkai02.wav");
 					m_soundSource->SetPosition(m_position);
@@ -166,7 +167,7 @@ void NPC::UpdateState()
 				sevo = 0;
 				break;
 			case 3:
-				if (m_soundSource == nullptr) {
+				if (m_soundSource == nullptr && plpo.Length() < 120.0f) {
 					m_soundSource = NewGO<prefab::CSoundSource>(0);
 					m_soundSource->Init("Assets/sprite/jyunkai03.wav");
 					m_soundSource->SetPosition(m_position);
@@ -176,7 +177,7 @@ void NPC::UpdateState()
 				sevo = 0;
 				break;
 			}
-		}*/
+		}
 
 		
 		break;

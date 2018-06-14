@@ -101,6 +101,12 @@ void GameCamera::Update()
 	m_toCameraPos *= cameraData->targetToPosition;
 	////新しい注視点から視点までのベクトルが求まったので、新しい視点を計算する。
 	CVector3 pos = target + m_toCameraPos;
+    //メインカメラに３ｄサウンドを聞かせて上げる
+	SoundEngine().SetListenerPosition(MainCamera().GetPosition());
+	CVector3 frontXZ = MainCamera().GetForward();
+	frontXZ.y = 0.0f;
+	frontXZ.Normalize();
+	SoundEngine().SetListenerFront(frontXZ);
 	//バネカメラに注視点と視点を設定する。
 	m_springCamera.SetTarget(target);
 	m_springCamera.SetPosition(pos);
