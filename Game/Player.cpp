@@ -52,8 +52,8 @@ void Player::Move()
 	m_moveSpeed.x = 0.0f;
 	m_moveSpeed.z = 0.0f;
 	m_moveSpeed.y -= 980.0f * GameTime().GetFrameDeltaTime();
-	m_moveSpeed += cameraForward * lStick_y * 70.0f;	//奥方向への移動速度を代入。
-	m_moveSpeed += cameraRight * lStick_x * 70.0f;		//右方向への移動速度を加算。
+	m_moveSpeed += cameraForward * lStick_y * 60.0f;	//奥方向への移動速度を代入。
+	m_moveSpeed += cameraRight * lStick_x * 60.0f;		//右方向への移動速度を加算。
 	m_position = m_charaCon.Execute(GameTime().GetFrameDeltaTime(), m_moveSpeed);
 	//プレイヤーの前方向。
 	m_plforward = m_moveSpeed;

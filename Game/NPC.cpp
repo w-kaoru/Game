@@ -4,7 +4,6 @@
 #include "MapChip.h"
 #include "Game.h"
 #include "Player.h"
-#include "StageSeni.h"
 #include "NpcMove.h"
 #include "tkEngine/Sound/tkSoundSource.h"
 #include "tkEngine/Sound/tkSoundEngine.h"
@@ -29,6 +28,10 @@ bool NPC::Start()
 	int npcCflag = 1;
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
+	//エフェクトを作成。
+	effect = NewGO<prefab::CEffect>(0);
+	//エフェクトを作成。
+	effect2 = NewGO<prefab::CEffect>(0);
 	m_position.y = 0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
@@ -49,6 +52,24 @@ bool NPC::Start()
 	return true;
 }
 
+void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
+{
+	if (npckanjou == angry) {
+		//エフェクトを再生。
+		effect->Play(L"effect/oko.efk");
+		emitPos = npcpos;
+		effect->SetPosition(emitPos);
+		effect->SetRotation(npcrot);
+	}
+	if (npckanjou == delighted) {
+		//エフェクトを再生。
+		effect2->Play(L"effect/tanosii.efk");
+		emitPos2 = npcpos;
+		effect2->SetPosition(emitPos2);
+		effect2->SetRotation(npcrot);
+	}
+}
+
 void NPC::UpdateKanjouStage1()
 {
 	
@@ -63,11 +84,6 @@ void NPC::UpdateKanjouStage1()
 			npcState = tuibi;
 			m_player->SetfollowerNump();
 		}
-		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
-		m_position = m_charaCon.Execute(
-			GameTime().GetFrameDeltaTime(),
-			m_moveSpeed
-		);
 		break;
 	case delighted:
 		//喜んでいる
@@ -77,14 +93,9 @@ void NPC::UpdateKanjouStage1()
 			npcState = tuibi;
 			m_player->SetfollowerNump();
 		}
-		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
-		m_position = m_charaCon.Execute(
-			GameTime().GetFrameDeltaTime(),
-			m_moveSpeed
-		);
 		break;
 	case angry:
-		if (plpo.Length() < 60.0f)
+		if (plpo.Length() < 40.0f)
 		{
 			npcState = osou;
 		}
@@ -110,13 +121,6 @@ void NPC::UpdateKanjouStage1()
 				}	
 			}
 		}
-		m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
-		m_position = m_charaCon.Execute(
-			GameTime().GetFrameDeltaTime(),
-			m_moveSpeed
-		);
-		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
-		m_rotation.SetRotation(CVector3::AxisY, angle);
 		break;
 	}
 }
@@ -190,10 +194,8 @@ void NPC::UpdateState()
 		//追尾状態。
 		//ここにプレイヤーに追尾するプログラムを書く。
 		plpo.Normalize();
-		m_moveSpeed.x = plpo.x *50.0f ;
-		m_moveSpeed.z = plpo.z *50.0f ;
-		angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
-		m_rotation.SetRotation(CVector3::AxisY, angle);
+		m_moveSpeed.x = plpo.x *60.0f ;
+		m_moveSpeed.z = plpo.z *60.0f ;
 		break;
 	case osou:
 		if (plpo.Length() > 50.0f) {
@@ -209,11 +211,9 @@ void NPC::UpdateState()
 		else{
 
 			plpo.Normalize();
-			m_moveSpeed.x = plpo.x * 40.0f;
-			m_moveSpeed.z = plpo.z * 40.0f;
+			m_moveSpeed.x = plpo.x * 30.0f;
+			m_moveSpeed.z = plpo.z * 30.0f;
 
-			//angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
-			//m_rotation.SetRotation(CVector3::AxisY, angle);
 			switch (osouvo)
 			{
 			case 1:
@@ -255,25 +255,31 @@ void NPC::UpdateState()
 			}
 		}
 	}
+	m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
+	angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+	m_rotation.SetRotation(CVector3::AxisY, angle);
 	m_position = m_charaCon.Execute(
 		GameTime().GetFrameDeltaTime(),
 		m_moveSpeed
 	);
-	
 }
 void NPC::Update()
 {
 	//感情の更新。
-	
-	if (m_stageseni->GetSNo() == 0) {
+	//こんな感じでいいのでは。
+	/*if (GetSNo->stageNo == 0) {
 
 		UpdateKanjouStage1();
 		}
+	}*/
 
-
+	UpdateKanjouStage1();
 
 	//状態を更新。
 	UpdateState();
+
+	//エフェクト再生。
+	Effect(m_position,m_rotation);
 
 	//UpdateKanjou();
 

@@ -248,6 +248,13 @@
     <CustomBuild Include="Assets\font\hato_pop.spritefont">
       <Filter>Assets\font</Filter>
     </CustomBuild>
+    <CustomBuild Include="Assets\sprite\Mic3_52.wav" />
+    <CustomBuild Include="Assets\effect\oko.efk">
+      <Filter>Assets\effect</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Assets\effect\tanosii.efk">
+      <Filter>Assets\effect</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">
@@ -259,10 +266,5 @@
     <ImageContentTask Include="Assets\sprite\HumanGroup.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="Assets\sprite\Mic3_52.wav">
-      <Filter>Assets\sprite</Filter>
-    </Media>
   </ItemGroup>
 </Project>

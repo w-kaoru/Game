@@ -53,8 +53,14 @@ bool Game::Start()
 		}
 		else
 		{
-			npc->npckanjou = flat;
-			npc->npcState = npc->haikai;
+			if (counter % 3 == 0) {
+				npc->npckanjou = delighted;
+				npc->npcState = npc->haikai;
+			}
+			else {
+				npc->npckanjou = flat;
+				npc->npcState = npc->haikai;
+			}
 		}
 		npc->m_position = locData.GetObjectPosition(i);
 		m_npcList.push_back(npc);

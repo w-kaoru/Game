@@ -18,8 +18,10 @@ public:
 	bool Start() override;
 	void Update() override;
 	void Render(CRenderContext& rc);
+	void Effect(CVector3 npcpos,CQuaternion npcrot);
 	prefab::CSkinModelRender* m_skinModelRender;	        //スキンモデルレンダラー。
 	CVector3 m_position = CVector3::Zero;                   //座標。
+	CVector3 m_rhpos = CVector3::Zero;                   //座標。
 	CVector3 m_moveSpeed;                                   //移動速度。
 	CVector3 plpo;                                          //NPCとPlayerの距離。
 	CQuaternion m_rotation = CQuaternion::Identity;         //回転。
@@ -52,6 +54,10 @@ private:
 	void UpdateKanjouStage1();
 	void UpdateKanjouStage2();
 	void UpdateKanjouStage3();
-
+	//エフェクトを作成。
+	prefab::CEffect* effect = nullptr;
+	prefab::CEffect* effect2 = nullptr;
+	CVector3 emitPos = CVector3::Zero;
+	CVector3 emitPos2 = CVector3::Zero;
 };
 
