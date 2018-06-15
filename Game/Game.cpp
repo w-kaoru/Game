@@ -55,7 +55,7 @@ bool Game::Start()
 		{
 			if (counter % 3 == 0) {
 				npc->npckanjou = delighted;
-				npc->npcState = npc->tuibi;
+				npc->npcState = npc->haikai;
 			}
 			else {
 				npc->npckanjou = flat;

@@ -18,8 +18,7 @@ public:
 	bool Start() override;
 	void Update() override;
 	void Render(CRenderContext& rc);
-	void angryef();
-	void delightedef();
+	void Effect(CVector3 npcpos,CQuaternion npcrot);
 	prefab::CSkinModelRender* m_skinModelRender;	        //スキンモデルレンダラー。
 	CVector3 m_position = CVector3::Zero;                   //座標。
 	CVector3 m_rhpos = CVector3::Zero;                   //座標。
