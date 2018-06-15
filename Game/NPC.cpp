@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "NpcMove.h"
+#include "StageSeni.h"
 #include "tkEngine/Sound/tkSoundSource.h"
 #include "tkEngine/Sound/tkSoundEngine.h"
 
@@ -52,7 +53,7 @@ bool NPC::Start()
 	return true;
 }
 
-void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
+void NPC::UpdateEffect(CVector3 npcpos, CQuaternion npcrot)
 {
 	if (npckanjou == angry) {
 		//エフェクトを再生。
@@ -63,10 +64,10 @@ void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
 	}
 	if (npckanjou == delighted) {
 		//エフェクトを再生。
-		effect2->Play(L"effect/tanosii.efk");
-		emitPos2 = npcpos;
-		effect2->SetPosition(emitPos2);
-		effect2->SetRotation(npcrot);
+		effect->Play(L"effect/tanosii.efk");
+		emitPos = npcpos;
+		effect->SetPosition(emitPos);
+		effect->SetRotation(npcrot);
 	}
 }
 
@@ -138,7 +139,6 @@ void NPC::UpdateState()
 	switch (npcState) {
 	case haikai:
 		//徘徊状態の処理。
-		//@todo 渡辺 ここのプログラムをNPCの徘徊の仕方によって、処理をわけて　実装するように
 		//往復移動
 	    
 		//ランダム移動
@@ -267,11 +267,11 @@ void NPC::Update()
 {
 	//感情の更新。
 	//こんな感じでいいのでは。
-	/*if (GetSNo->stageNo == 0) {
+	if(m_stageseni->GetSNo() == 0) {
 
 		UpdateKanjouStage1();
 		}
-	}*/
+	
 
 	UpdateKanjouStage1();
 
@@ -279,7 +279,7 @@ void NPC::Update()
 	UpdateState();
 
 	//エフェクト再生。
-	Effect(m_position,m_rotation);
+	UpdateEffect(m_position,m_rotation);
 
 	//UpdateKanjou();
 
