@@ -25,8 +25,10 @@ public:
 	CQuaternion m_rotation = CQuaternion::Identity;         //âÒì]ÅB
 	CCharacterController m_charaCon; 
 	NpcMove m_npcMove;
+	CVector3 hani;
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
+	StageSeni* m_stageseni = FindGO<StageSeni>("ss");
 	prefab::CSoundSource* m_soundSource = nullptr;
 	prefab::CSoundSource* m_soundSource2 = nullptr;
 	NPC*pNpc;

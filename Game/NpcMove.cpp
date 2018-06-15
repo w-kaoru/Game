@@ -1,7 +1,7 @@
-#include "stdafx.h"
+ #include "stdafx.h"
 #include "NpcMove.h"
 #include <time.h>
-//#include "NPC.h"
+
 
 NpcMove::NpcMove()
 {
@@ -83,6 +83,7 @@ float NpcMove::RandomMoveX()
 			}
 		}
 	}
+	
 	//ˆÚ“®‚ÌŒvZ‚ğ•Ô‚·B
 	return m_moveSpeed.x * 60.0 * fugou;
 }
