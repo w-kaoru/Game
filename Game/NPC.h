@@ -3,6 +3,7 @@
 #include "tkEngine/character/tkCharacterController.h"
 #include "NpcMove.h"
 #include "Game.h"
+#include "tkEngine/graphics/effect/tkEffect.h"
 class Game;
 class Player;
 

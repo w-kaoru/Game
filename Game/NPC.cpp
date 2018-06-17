@@ -53,19 +53,8 @@ bool NPC::Start()
 
 void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
 {
-	static int fura = 0;
 	switch (npckanjou)
 	{
-	case angry:
-		if (effect->IsPlay() == false) {
-			//エフェクトを再生。
-			effect = NewGO<prefab::CEffect>(0);
-			effect->Play(L"effect/oko.efk");
-		}
-		effect->SetPosition(npcpos);
-		effect->SetRotation(npcrot);
-		fura++;
-		break;
 	case delighted:
 		//エフェクトを再生。
 		if (effect->IsPlay() == false) {
@@ -74,7 +63,15 @@ void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
 		}
 		effect->SetPosition(npcpos);
 		effect->SetRotation(npcrot);
-		fura++;
+		break;
+	case angry:
+		if (effect->IsPlay() == false) {
+			//エフェクトを再生。
+			effect = NewGO<prefab::CEffect>(0);
+			effect->Play(L"effect/oko.efk");
+		}
+		effect->SetPosition(npcpos);
+		effect->SetRotation(npcrot);
 		break;
 	}
 }
@@ -127,6 +124,7 @@ void NPC::UpdateKanjouStage1()
 					m_game->m_npcList[i]->npckanjou = flat;
 					m_game->m_npcList[i]->npcState = haikai;
 					m_player->SetfollowerNumm();
+					m_player->Setplkan(true);
 				}	
 			}
 		}
