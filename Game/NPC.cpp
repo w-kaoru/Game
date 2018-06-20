@@ -64,10 +64,10 @@ void NPC::UpdateEffect(CVector3 npcpos, CQuaternion npcrot)
 	}
 	if (npckanjou == delighted) {
 		//エフェクトを再生。
-		effect->Play(L"effect/tanosii.efk");
-		emitPos = npcpos;
-		effect->SetPosition(emitPos);
-		effect->SetRotation(npcrot);
+		effect2->Play(L"effect/tanosii.efk");
+		emitPos2 = npcpos;
+		effect2->SetPosition(emitPos2);
+		effect2->SetRotation(npcrot);
 	}
 }
 

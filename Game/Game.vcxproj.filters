@@ -104,6 +104,9 @@
     <MeshContentTask Include="Assets\modelData\zimen3.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\yatai2.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\shader\tonemap.fx">
@@ -254,6 +257,9 @@
     </CustomBuild>
     <CustomBuild Include="Assets\effect\tanosii.efk">
       <Filter>Assets\effect</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Assets\level\yagura.tks">
+      <Filter>Assets\level</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
