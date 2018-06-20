@@ -5,7 +5,6 @@
 #include "Game.h"
 #include "Player.h"
 #include "NpcMove.h"
-#include "StageSeni.h"
 #include "tkEngine/Sound/tkSoundSource.h"
 #include "tkEngine/Sound/tkSoundEngine.h"
 
@@ -21,6 +20,7 @@ NPC::~NPC()
 void NPC::OnDestroy()
 {
 	DeleteGO(m_skinModelRender);
+	DeleteGO(effect);
 }
 
 bool NPC::Start()
@@ -31,8 +31,6 @@ bool NPC::Start()
 	m_player = FindGO<Player>("Player");
 	//エフェクトを作成。
 	effect = NewGO<prefab::CEffect>(0);
-	//エフェクトを作成。
-	effect2 = NewGO<prefab::CEffect>(0);
 	m_position.y = 0;
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
@@ -47,27 +45,34 @@ bool NPC::Start()
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
 	m_skinModelRender->SetShadowCasterFlag(true);
 	m_skinModelRender->SetShadowReceiverFlag(true);
-
+//	effect->Play(L"effect/oko.efk");
 	//@todo ステージによって、生成する感情コントロールのインスタンスを切り替えるように.
 
 	return true;
 }
 
-void NPC::UpdateEffect(CVector3 npcpos, CQuaternion npcrot)
+void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
 {
-	if (npckanjou == angry) {
+	switch (npckanjou)
+	{
+	case delighted:
 		//エフェクトを再生。
-		effect->Play(L"effect/oko.efk");
-		emitPos = npcpos;
-		effect->SetPosition(emitPos);
+		if (effect->IsPlay() == false) {
+			effect = NewGO<prefab::CEffect>(0);
+			effect->Play(L"effect/tanosii.efk");
+		}
+		effect->SetPosition(npcpos);
 		effect->SetRotation(npcrot);
-	}
-	if (npckanjou == delighted) {
-		//エフェクトを再生。
-		effect2->Play(L"effect/tanosii.efk");
-		emitPos2 = npcpos;
-		effect2->SetPosition(emitPos2);
-		effect2->SetRotation(npcrot);
+		break;
+	case angry:
+		if (effect->IsPlay() == false) {
+			//エフェクトを再生。
+			effect = NewGO<prefab::CEffect>(0);
+			effect->Play(L"effect/oko.efk");
+		}
+		effect->SetPosition(npcpos);
+		effect->SetRotation(npcrot);
+		break;
 	}
 }
 
@@ -119,6 +124,7 @@ void NPC::UpdateKanjouStage1()
 					m_game->m_npcList[i]->npckanjou = flat;
 					m_game->m_npcList[i]->npcState = haikai;
 					m_player->SetfollowerNumm();
+					m_player->Setplkan(true);
 				}	
 			}
 		}
@@ -139,8 +145,9 @@ void NPC::UpdateState()
 	switch (npcState) {
 	case haikai:
 		//徘徊状態の処理。
+		//@todo 渡辺 ここのプログラムをNPCの徘徊の仕方によって、処理をわけて　実装するように
 		//往復移動
-	    
+
 		//ランダム移動
 		m_moveSpeed.z = m_npcMove.RandomMoveZ();
 		m_moveSpeed.x = m_npcMove.RandomMoveX();
@@ -150,10 +157,10 @@ void NPC::UpdateState()
 		}
 
 		plpo.Normalize();
-		if (m_moveSpeed.z < 0.0f || m_moveSpeed.x < 0.0f) 
+		if (m_moveSpeed.z < 0.0f || m_moveSpeed.x < 0.0f)
 		{
 			sevo = rand() % 3 + 1;
-			switch (sevo) 
+			switch (sevo)
 			{
 			case 1:
 				if (m_soundSource == nullptr && plpo.Length() < 120.0f) {
@@ -188,14 +195,14 @@ void NPC::UpdateState()
 			}
 		}
 
-		
+
 		break;
 	case tuibi:
 		//追尾状態。
 		//ここにプレイヤーに追尾するプログラムを書く。
 		plpo.Normalize();
-		m_moveSpeed.x = plpo.x *60.0f ;
-		m_moveSpeed.z = plpo.z *60.0f ;
+		m_moveSpeed.x = plpo.x *60.0f;
+		m_moveSpeed.z = plpo.z *60.0f;
 		break;
 	case osou:
 		if (plpo.Length() > 50.0f) {
@@ -208,7 +215,7 @@ void NPC::UpdateState()
 				m_moveSpeed.x *= -1;
 			}
 		}
-		else{
+		else {
 
 			plpo.Normalize();
 			m_moveSpeed.x = plpo.x * 30.0f;
@@ -254,7 +261,9 @@ void NPC::UpdateState()
 				break;
 			}
 		}
+		break;
 	}
+
 	m_moveSpeed.y -= 980.0f*GameTime().GetFrameDeltaTime();
 	angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
 	m_rotation.SetRotation(CVector3::AxisY, angle);
@@ -267,11 +276,11 @@ void NPC::Update()
 {
 	//感情の更新。
 	//こんな感じでいいのでは。
-	if(m_stageseni->GetSNo() == 0) {
+	/*if (GetSNo->stageNo == 0) {
 
 		UpdateKanjouStage1();
 		}
-	
+	}*/
 
 	UpdateKanjouStage1();
 
@@ -279,7 +288,7 @@ void NPC::Update()
 	UpdateState();
 
 	//エフェクト再生。
-	UpdateEffect(m_position,m_rotation);
+	Effect(m_position, m_rotation);
 
 	//UpdateKanjou();
 

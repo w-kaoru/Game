@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "GameClear.h"
 #include "NPC.h"
-
+#include "StageSeni.h"
 
 Player::Player()
 {
@@ -31,10 +31,54 @@ bool Player::Start()
 		m_position, 	//初期位置。
 		0			//0がプレイヤーのフラグ。
 	);
+	//エフェクトを作成。
+	effect = NewGO<prefab::CEffect>(0);
+	m_npc = FindGO<NPC>("npc");
 	m_skinModelRender->SetShadowCasterFlag(true);
 	m_skinModelRender->SetShadowReceiverFlag(true);
+	plkanjou = delighted;
 	return true;
 }
+
+void Player::Effect(CVector3 npcpos, CQuaternion npcrot)
+{
+	switch (plkanjou)
+	{
+	case flat:
+		if (effect->IsPlay() == false) {
+			//エフェクトを再生。
+			effect = NewGO<prefab::CEffect>(0);
+			effect->Play(L"effect/oko.efk");
+		}
+		effect->SetPosition(npcpos);
+		effect->SetRotation(npcrot);
+		break;
+	case delighted:
+		//エフェクトを再生。
+		if (effect->IsPlay() == false) {
+			effect = NewGO<prefab::CEffect>(0);
+			effect->Play(L"effect/tanosii.efk");
+		}
+		effect->SetPosition(npcpos);
+		effect->SetRotation(npcrot);
+		break;
+	}
+}
+void Player::UpdatekanjouSt1()
+{
+	switch (plkanjou)
+	{
+	case flat:
+
+		break;
+	case delighted:
+		if (followerNum < 2 && plkan == true) {
+			plkanjou = flat;
+		}
+		break;
+	}
+}
+
 void Player::Move()
 {
 	//左スティックの入力量を受け取る。
@@ -84,6 +128,11 @@ void Player::Update()
 	Move();
 	//旋回処理。
 	Turn();
+
+	Effect(m_position, m_rotation);
+
+	UpdatekanjouSt1();
+
 	if (followerNum > 10 && ef_flag == 0) {
 		m_gc = NewGO<GameClear>(0);
 	}

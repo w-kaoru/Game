@@ -3,6 +3,7 @@
 #include "tkEngine/character/tkCharacterController.h"
 #include "NpcMove.h"
 #include "Game.h"
+#include "tkEngine/graphics/effect/tkEffect.h"
 class Game;
 class Player;
 
@@ -10,8 +11,7 @@ class Player;
 class NPC : public IGameObject
 {
 private:
-	void UpdateState();	
-
+	void UpdateState();
 public:
 	NPC(); 
 	~NPC();
@@ -19,7 +19,7 @@ public:
 	bool Start() override;
 	void Update() override;
 	void Render(CRenderContext& rc);
-	void UpdateEffect(CVector3 npcpos,CQuaternion npcrot);
+	void Effect(CVector3 npcpos, CQuaternion npcrot);
 	prefab::CSkinModelRender* m_skinModelRender;	        //スキンモデルレンダラー。
 	CVector3 m_position = CVector3::Zero;                   //座標。
 	CVector3 m_rhpos = CVector3::Zero;                   //座標。
@@ -28,10 +28,8 @@ public:
 	CQuaternion m_rotation = CQuaternion::Identity;         //回転。
 	CCharacterController m_charaCon; 
 	NpcMove m_npcMove;
-	CVector3 hani;
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
-	StageSeni* m_stageseni = FindGO<StageSeni>("ss");
 	prefab::CSoundSource* m_soundSource = nullptr;
 	prefab::CSoundSource* m_soundSource2 = nullptr;
 	NPC*pNpc;
@@ -57,8 +55,6 @@ private:
 	void UpdateKanjouStage3();
 	//エフェクトを作成。
 	prefab::CEffect* effect = nullptr;
-	prefab::CEffect* effect2 = nullptr;
-	CVector3 emitPos = CVector3::Zero;
-	CVector3 emitPos2 = CVector3::Zero;
+	CVector3 epos = CVector3::Zero;
 };
 
