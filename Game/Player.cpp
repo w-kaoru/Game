@@ -21,7 +21,7 @@ void Player::OnDestroy()
 bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/twt1.cmo");
+	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
 	m_position.y = 40;
 	//キャラクターコントローラーを初期化。
@@ -42,31 +42,31 @@ bool Player::Start()
 
 void Player::Effect(CVector3 npcpos, CQuaternion npcrot)
 {
-	switch (plkanjou)
-	{
-	case flat:
-		if (effect->IsPlay() == false) {
-			//エフェクトを再生。
-			effect = NewGO<prefab::CEffect>(0);
-			effect->Play(L"effect/oko.efk");
-		}
-		effect->SetPosition(npcpos);
-		effect->SetRotation(npcrot);
-		break;
-	case delighted:
-		//エフェクトを再生。
-		if (effect->IsPlay() == false) {
-			effect = NewGO<prefab::CEffect>(0);
-			effect->Play(L"effect/tanosii.efk");
-		}
-		effect->SetPosition(npcpos);
-		effect->SetRotation(npcrot);
-		break;
-	}
+	//switch (plkanjou)
+	//{
+	//case flat:
+	//	if (effect->IsPlay() == false) {
+	//		//エフェクトを再生。
+	//		effect = NewGO<prefab::CEffect>(0);
+	//		effect->Play(L"effect/oko.efk");
+	//	}
+	//	effect->SetPosition(npcpos);
+	//	effect->SetRotation(npcrot);
+	//	break;
+	//case delighted:
+	//	//エフェクトを再生。
+	//	if (effect->IsPlay() == false) {
+	//		effect = NewGO<prefab::CEffect>(0);
+	//		effect->Play(L"effect/tanosii.efk");
+	//	}
+	//	effect->SetPosition(npcpos);
+	//	effect->SetRotation(npcrot);
+	//	break;
+	//}
 }
 void Player::UpdatekanjouSt1()
 {
-	switch (plkanjou)
+	/*switch (plkanjou)
 	{
 	case flat:
 
@@ -76,7 +76,7 @@ void Player::UpdatekanjouSt1()
 			plkanjou = flat;
 		}
 		break;
-	}
+	}*/
 }
 
 void Player::Move()
