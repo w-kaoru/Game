@@ -2,6 +2,7 @@
 //キャラクターコントローラーを使用する場合は、下記のヘッダーファイルのインクルードが必要。
 #include "tkEngine/character/tkCharacterController.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
+#include "GameOver.h"
 class GameClear;
 class StageSeni;
 class NPC;
@@ -67,6 +68,13 @@ private:
 	CVector3 m_position = CVector3::Zero;	//座標。
 	CQuaternion m_rotation = CQuaternion::Identity;	//回転。
 	CCharacterController m_charaCon;		//キャラクターコントローラー。
+	enum EnAnimationClip {
+		enAnimationClip_idle,	//待機アニメーション。
+		enAnimationClip_run,	//走りアニメーション。
+		enAnimationClip_walk,	//歩きアニメーション。
+		enAnimationClip_Num,	//アニメーションクリップの数。
+	};
+	//CAnimationClip m_animClips[enAnimationClip_Num];	//アニメーションクリップ。
 	CVector3 m_moveSpeed = CVector3::Zero;	//移動速度。
 	//付いて来ている人間の数。
 	GameClear* m_gc = nullptr;
@@ -75,6 +83,7 @@ private:
 	//エフェクトを作成。
 	prefab::CEffect* effect = nullptr;
 	StageSeni* m_ss = nullptr;
+	GameOver m_gameover;
 	enum kanjou plkanjou;
 	bool plkan = false;
 	int ef_flag = 0;						//エフェクトのフラグ。

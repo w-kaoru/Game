@@ -37,6 +37,17 @@ bool Player::Start()
 	m_skinModelRender->SetShadowCasterFlag(true);
 	m_skinModelRender->SetShadowReceiverFlag(true);
 	plkanjou = delighted;
+
+	//アニメーションクリップのロード。
+	//m_animClips[enAnimationClip_idle].Load(L"animData/idle.tka");
+	//m_animClips[enAnimationClip_run].Load(L"animData/run.tka");
+	//m_animClips[enAnimationClip_walk].Load(L"animData/walk.tka");
+	////ループフラグを設定する。<-走りアニメーションはループフラグを設定していないので
+	////ワンショット再生で停止する。
+	//m_animClips[enAnimationClip_run].SetLoopFlag(true);
+	//m_animClips[enAnimationClip_idle].SetLoopFlag(true);
+	//m_animClips[enAnimationClip_walk].SetLoopFlag(true);
+
 	return true;
 }
 
@@ -69,10 +80,10 @@ void Player::UpdatekanjouSt1()
 	switch (plkanjou)
 	{
 	case flat:
-
+		m_gameover.SetGameOver(true);
 		break;
 	case delighted:
-		if (followerNum < 2 && plkan == true) {
+		if (plkan == true) {
 			plkanjou = flat;
 		}
 		break;
@@ -101,6 +112,12 @@ void Player::Move()
 	m_position = m_charaCon.Execute(GameTime().GetFrameDeltaTime(), m_moveSpeed);
 	//プレイヤーの前方向。
 	m_plforward = m_moveSpeed;
+	/*if (m_moveSpeed.x > 0.01f || m_moveSpeed.y > 0.01f) {
+		m_skinModelRender->PlayAnimation(enAnimationClip_run, 2.0f);
+	}
+	else {
+		m_skinModelRender->PlayAnimation(enAnimationClip_idle, 2.0f);
+	}*/
 
 }
 
@@ -133,7 +150,7 @@ void Player::Update()
 
 	UpdatekanjouSt1();
 
-	if (followerNum > 10 && ef_flag == 0) {
+	if (followerNum > 1 && ef_flag == 0) {
 		m_gc = NewGO<GameClear>(0);
 	}
 	//ワールド行列を更新。

@@ -760,11 +760,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Assets\effect\hanabi.efk">
-      <FileType>Document</FileType>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="Assets\level\map2.tks">
       <FileType>Document</FileType>
     </CustomBuild>
@@ -817,6 +812,19 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\effect\tanosii.efk">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\effect\okoru.efk">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\effect\Texture\oko.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\effect\hanabi.efk">
       <FileType>Document</FileType>
     </CustomBuild>
   </ItemGroup>

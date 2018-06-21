@@ -122,7 +122,6 @@ void Game::PostRender(CRenderContext& rc)
 	int sec = (int)m_timer % 60;
 	swprintf_s(text, L"%02d:%02d", minute, sec);
 	m_fontTest.Begin(rc);
-
 	//•¶š‚ğ•`‰æB
 	m_fontTest.Draw(
 		L"TIME ",
@@ -140,6 +139,7 @@ void Game::PostRender(CRenderContext& rc)
 		0.8f,
 		{ 0.0f, 1.0f }
 	);
+	
 	m_fontTest.End(rc);
 
 }

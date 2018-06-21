@@ -20,7 +20,6 @@ NPC::~NPC()
 void NPC::OnDestroy()
 {
 	DeleteGO(m_skinModelRender);
-	DeleteGO(effect);
 }
 
 bool NPC::Start()
@@ -53,6 +52,7 @@ bool NPC::Start()
 
 void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
 {
+		CVector3 pos = npcpos;
 	switch (npckanjou)
 	{
 	case delighted:
@@ -68,10 +68,13 @@ void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
 		if (effect->IsPlay() == false) {
 			//エフェクトを再生。
 			effect = NewGO<prefab::CEffect>(0);
-			effect->Play(L"effect/oko.efk");
+			effect->Play(L"effect/okoru.efk");
 		}
-		effect->SetPosition(npcpos);
+		pos.y += 11.0f;
+		effect->SetPosition(pos);
 		effect->SetRotation(npcrot);
+
+		effect->SetScale({ 100.0f,100.0f,100.0f });
 		break;
 	}
 }
@@ -123,10 +126,12 @@ void NPC::UpdateKanjouStage1()
 				if(m_game->m_npcList[i]->npcState == tuibi){
 					m_game->m_npcList[i]->npckanjou = flat;
 					m_game->m_npcList[i]->npcState = haikai;
-					m_player->SetfollowerNumm();
-					m_player->Setplkan(true);
+					if (m_player->GetfollowerNum() != 0) {
+						m_player->SetfollowerNumm();
+					}
 				}	
 			}
+			m_player->Setplkan(true);
 		}
 		break;
 	}
