@@ -283,7 +283,7 @@ void NPC::Update()
 		}
 	
 
-	UpdateKanjouStage1();
+	
 
 	//ó‘Ô‚ğXVB
 	UpdateState();
