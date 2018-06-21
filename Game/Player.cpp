@@ -84,7 +84,7 @@ void Player::Update()
 	Move();
 	//旋回処理。
 	Turn();
-	if (followerNum > 30 && ef_flag == 0) {
+	if (followerNum > 20 && ef_flag == 0) {
 		m_gc = NewGO<GameClear>(0);
 	}
 	//ワールド行列を更新。

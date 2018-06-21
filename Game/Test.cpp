@@ -25,6 +25,7 @@ bool Test::Start()
 	MainCamera().Update();
 
 	m_gameClear = NewGO<GameClear>(0,"GameClear");
+
 	m_fade = FindGO<Fade>("Fade");
 	m_fade->StartFadeIn();
 	m_state = enState_FadeIn;
