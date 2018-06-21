@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "GameClear.h"
 #include "NPC.h"
-
+#include "StageSeni.h"
 
 Player::Player()
 {
@@ -31,10 +31,54 @@ bool Player::Start()
 		m_position, 	//初期位置。
 		0			//0がプレイヤーのフラグ。
 	);
+	//エフェクトを作成。
+	effect = NewGO<prefab::CEffect>(0);
+	m_npc = FindGO<NPC>("npc");
 	m_skinModelRender->SetShadowCasterFlag(true);
 	m_skinModelRender->SetShadowReceiverFlag(true);
+	plkanjou = delighted;
 	return true;
 }
+
+void Player::Effect(CVector3 npcpos, CQuaternion npcrot)
+{
+	//switch (plkanjou)
+	//{
+	//case flat:
+	//	if (effect->IsPlay() == false) {
+	//		//エフェクトを再生。
+	//		effect = NewGO<prefab::CEffect>(0);
+	//		effect->Play(L"effect/oko.efk");
+	//	}
+	//	effect->SetPosition(npcpos);
+	//	effect->SetRotation(npcrot);
+	//	break;
+	//case delighted:
+	//	//エフェクトを再生。
+	//	if (effect->IsPlay() == false) {
+	//		effect = NewGO<prefab::CEffect>(0);
+	//		effect->Play(L"effect/tanosii.efk");
+	//	}
+	//	effect->SetPosition(npcpos);
+	//	effect->SetRotation(npcrot);
+	//	break;
+	//}
+}
+void Player::UpdatekanjouSt1()
+{
+	/*switch (plkanjou)
+	{
+	case flat:
+
+		break;
+	case delighted:
+		if (followerNum < 2 && plkan == true) {
+			plkanjou = flat;
+		}
+		break;
+	}*/
+}
+
 void Player::Move()
 {
 	//左スティックの入力量を受け取る。
@@ -52,8 +96,8 @@ void Player::Move()
 	m_moveSpeed.x = 0.0f;
 	m_moveSpeed.z = 0.0f;
 	m_moveSpeed.y -= 980.0f * GameTime().GetFrameDeltaTime();
-	m_moveSpeed += cameraForward * lStick_y * 70.0f;	//奥方向への移動速度を代入。
-	m_moveSpeed += cameraRight * lStick_x * 70.0f;		//右方向への移動速度を加算。
+	m_moveSpeed += cameraForward * lStick_y * 60.0f;	//奥方向への移動速度を代入。
+	m_moveSpeed += cameraRight * lStick_x * 60.0f;		//右方向への移動速度を加算。
 	m_position = m_charaCon.Execute(GameTime().GetFrameDeltaTime(), m_moveSpeed);
 	//プレイヤーの前方向。
 	m_plforward = m_moveSpeed;
@@ -84,7 +128,12 @@ void Player::Update()
 	Move();
 	//旋回処理。
 	Turn();
-	if (followerNum > 20 && ef_flag == 0) {
+
+	Effect(m_position, m_rotation);
+
+	UpdatekanjouSt1();
+
+	if (followerNum > 10 && ef_flag == 0) {
 		m_gc = NewGO<GameClear>(0);
 	}
 	//ワールド行列を更新。

@@ -1,7 +1,11 @@
 #pragma once
 //キャラクターコントローラーを使用する場合は、下記のヘッダーファイルのインクルードが必要。
 #include "tkEngine/character/tkCharacterController.h"
+#include "tkEngine/graphics/effect/tkEffect.h"
 class GameClear;
+class StageSeni;
+class NPC;
+
 class Player :public IGameObject
 {
 public:
@@ -10,6 +14,10 @@ public:
 	void OnDestroy() override;
 	bool Start() override;
 	void Update() override;
+	//感情に合わせたエフェクト再生。
+	void Effect(CVector3 npcpos, CQuaternion npcrot);
+	//ステージに合わせた感情の移り変わり
+	void UpdatekanjouSt1();
 
 	//移動処理。
 	void Move();
@@ -56,9 +64,10 @@ public:
 	{
 		followerNum--;
 	}
-	void SetPosition(CVector3 pos)
+
+	void Setplkan(bool k)
 	{
-		m_position = pos;
+		plkan = k;
 	}
 	////////////////////////////////////
 	// メンバ変数とか
@@ -69,9 +78,15 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity;	//回転。
 	CCharacterController m_charaCon;		//キャラクターコントローラー。
 	CVector3 m_moveSpeed = CVector3::Zero;	//移動速度。
-			//付いて来ている人間の数。
+	//付いて来ている人間の数。
 	GameClear* m_gc = nullptr;
 	CVector3 m_plforward = CVector3::Zero;
+	NPC* m_npc = nullptr;
+	//エフェクトを作成。
+	prefab::CEffect* effect = nullptr;
+	StageSeni* m_ss = nullptr;
+	enum kanjou plkanjou;
+	bool plkan = false;
 	int ef_flag = 0;						//エフェクトのフラグ。
 	int followerNum = 0;			
 };
