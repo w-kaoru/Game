@@ -53,31 +53,31 @@ bool Player::Start()
 
 void Player::Effect(CVector3 npcpos, CQuaternion npcrot)
 {
-	switch (plkanjou)
-	{
-	case flat:
-		if (effect->IsPlay() == false) {
-			//エフェクトを再生。
-			effect = NewGO<prefab::CEffect>(0);
-			effect->Play(L"effect/oko.efk");
-		}
-		effect->SetPosition(npcpos);
-		effect->SetRotation(npcrot);
-		break;
-	case delighted:
-		//エフェクトを再生。
-		if (effect->IsPlay() == false) {
-			effect = NewGO<prefab::CEffect>(0);
-			effect->Play(L"effect/tanosii.efk");
-		}
-		effect->SetPosition(npcpos);
-		effect->SetRotation(npcrot);
-		break;
-	}
+	//switch (plkanjou)
+	//{
+	//case flat:
+	//	if (effect->IsPlay() == false) {
+	//		//エフェクトを再生。
+	//		effect = NewGO<prefab::CEffect>(0);
+	//		effect->Play(L"effect/oko.efk");
+	//	}
+	//	effect->SetPosition(npcpos);
+	//	effect->SetRotation(npcrot);
+	//	break;
+	//case delighted:
+	//	//エフェクトを再生。
+	//	if (effect->IsPlay() == false) {
+	//		effect = NewGO<prefab::CEffect>(0);
+	//		effect->Play(L"effect/tanosii.efk");
+	//	}
+	//	effect->SetPosition(npcpos);
+	//	effect->SetRotation(npcrot);
+	//	break;
+	//}
 }
 void Player::UpdatekanjouSt1()
 {
-	switch (plkanjou)
+	/*switch (plkanjou)
 	{
 	case flat:
 		m_gameover.SetGameOver(true);
@@ -87,7 +87,7 @@ void Player::UpdatekanjouSt1()
 			plkanjou = flat;
 		}
 		break;
-	}
+	}*/
 }
 
 void Player::Move()
