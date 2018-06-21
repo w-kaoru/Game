@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "StageSeni.h"
+#include "Title.h"
 
 GameClear::GameClear()
 {
@@ -17,6 +18,7 @@ bool GameClear::Start()
 {
 	pl = FindGO<Player>("Player");
 	m_ss = FindGO<StageSeni>("ss");
+	game = FindGO<Game>("Game");
 	//エフェクトを作成。
 	effect = NewGO<prefab::CEffect>(0);
 	return true;
@@ -34,7 +36,7 @@ void GameClear::Update()
 		//エフェクトを再生。
 		effect->Play(L"effect/hanabi.efk");
 		CVector3 emitPos = m_pos;
-		emitPos.y += 10.0f;
+		emitPos.y += 30.0f;
 		effect->SetPosition(emitPos);
 		effect->SetRotation(qRot);
 		
@@ -45,4 +47,18 @@ void GameClear::Update()
 		DeleteGO(this);
 	}
 
+	//フェードアウト
+	if (m_isWaitFadeout) {
+		if (!m_fade->IsFade()) {
+			NewGO<Title>(0, "Title");
+			DeleteGO(game);
+		}
+	}
+	else {
+		if (pl->Getef_flag() == 2) {
+			m_isWaitFadeout = true;
+
+			m_fade->StartFadeOut();
+		}
+	}
 }

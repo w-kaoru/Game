@@ -31,6 +31,7 @@ public:
 	{
 		return ef_flag;
 	}
+	
 	CVector3 GetPosition()
 	{
 		return m_position;
@@ -51,10 +52,19 @@ public:
 	{
 		followerNum++;
 	}
+	void Setrotation(CQuaternion rotation)
+	{
+		m_rotation = rotation;
+	}
+	void SetfollowerNum(int a)
+	{
+		followerNum = a;
+	}
 	void SetfollowerNumm()
 	{
 		followerNum--;
 	}
+
 	void Setplkan(bool k)
 	{
 		plkan = k;
