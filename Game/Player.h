@@ -2,7 +2,6 @@
 //キャラクターコントローラーを使用する場合は、下記のヘッダーファイルのインクルードが必要。
 #include "tkEngine/character/tkCharacterController.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
-#include "GameOver.h"
 class GameClear;
 class StageSeni;
 class NPC;
@@ -16,7 +15,7 @@ public:
 	bool Start() override;
 	void Update() override;
 	//感情に合わせたエフェクト再生。
-	void Effect(CVector3 npcpos, CQuaternion npcrot);
+	//void Effect(CVector3 npcpos, CQuaternion npcrot);
 	//ステージに合わせた感情の移り変わり
 	void UpdatekanjouSt1();
 
@@ -43,6 +42,9 @@ public:
 	CVector3 GetPlforward()
 	{
 		return m_plforward;
+	}
+	bool GetGo() {
+		return go;
 	}
 	void Setef_flag()
 	{
@@ -83,9 +85,10 @@ private:
 	//エフェクトを作成。
 	prefab::CEffect* effect = nullptr;
 	StageSeni* m_ss = nullptr;
-	GameOver m_gameover;
 	enum kanjou plkanjou;
 	bool plkan = false;
 	int ef_flag = 0;						//エフェクトのフラグ。
 	int followerNum = 0;			
+	int clearNum = 10;
+	bool go = false;
 };

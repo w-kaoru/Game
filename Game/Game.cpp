@@ -92,6 +92,9 @@ void Game::Update()
 	if (m_timer < 0.0f) {
 		m_gameover.SetGameOver(true);
 	}
+	if (m_player->GetGo() == true) {
+		m_gameover.SetGameOver(true);
+	}
 	//フェードアウト
 	if (m_isWaitFadeout) {
 		if (!m_fade->IsFade()) {

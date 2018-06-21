@@ -24,6 +24,7 @@ bool Player::Start()
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
 	m_position.y = 40;
+	m_position.x = 200.0f;
 	//キャラクターコントローラーを初期化。
 	m_charaCon.Init(
 		4.0,			//半径。 
@@ -51,43 +52,43 @@ bool Player::Start()
 	return true;
 }
 
-void Player::Effect(CVector3 npcpos, CQuaternion npcrot)
-{
-	//switch (plkanjou)
-	//{
-	//case flat:
-	//	if (effect->IsPlay() == false) {
-	//		//エフェクトを再生。
-	//		effect = NewGO<prefab::CEffect>(0);
-	//		effect->Play(L"effect/oko.efk");
-	//	}
-	//	effect->SetPosition(npcpos);
-	//	effect->SetRotation(npcrot);
-	//	break;
-	//case delighted:
-	//	//エフェクトを再生。
-	//	if (effect->IsPlay() == false) {
-	//		effect = NewGO<prefab::CEffect>(0);
-	//		effect->Play(L"effect/tanosii.efk");
-	//	}
-	//	effect->SetPosition(npcpos);
-	//	effect->SetRotation(npcrot);
-	//	break;
-	//}
-}
+//void Player::Effect(CVector3 npcpos, CQuaternion npcrot)
+//{
+//	switch (plkanjou)
+//	{
+//	case delighted:
+//		//エフェクトを再生。
+//		if (effect->IsPlay() == false) {
+//			effect = NewGO<prefab::CEffect>(0);
+//			effect->Play(L"effect/tanosii.efk");
+//		}
+//		effect->SetPosition(npcpos);
+//		effect->SetRotation(npcrot);
+//		break;
+//	case angry:
+//		if (effect->IsPlay() == false) {
+//			//エフェクトを再生。
+//			effect = NewGO<prefab::CEffect>(0);
+//			effect->Play(L"effect/okoru.efk");
+//		}
+//		effect->SetPosition(npcpos);
+//		effect->SetRotation(npcrot);
+//		break;
+//	}
+//}
 void Player::UpdatekanjouSt1()
 {
-	/*switch (plkanjou)
+	switch (plkanjou)
 	{
 	case flat:
-		m_gameover.SetGameOver(true);
+		go = true;
 		break;
 	case delighted:
 		if (plkan == true) {
 			plkanjou = flat;
 		}
 		break;
-	}*/
+	}
 }
 
 void Player::Move()
@@ -146,11 +147,11 @@ void Player::Update()
 	//旋回処理。
 	Turn();
 
-	Effect(m_position, m_rotation);
+	//Effect(m_position, m_rotation);
 
 	UpdatekanjouSt1();
 
-	if (followerNum > 1 && ef_flag == 0) {
+	if (followerNum > clearNum && ef_flag == 0) {
 		m_gc = NewGO<GameClear>(0);
 	}
 	//ワールド行列を更新。

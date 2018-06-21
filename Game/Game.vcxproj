@@ -678,7 +678,6 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\yatai.FBX" />
-    <MeshContentTask Include="Assets\modelData\yatai2.FBX" />
     <MeshContentTask Include="Assets\modelData\zimen2.FBX" />
     <MeshContentTask Include="Assets\modelData\zimen3.FBX" />
   </ItemGroup>
@@ -822,7 +821,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Assets\level\yagura.tks">
+    <CustomBuild Include="Assets\level\saisyo.tks">
       <FileType>Document</FileType>
     </CustomBuild>
   </ItemGroup>
