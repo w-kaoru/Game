@@ -3,6 +3,7 @@
 #include "GameClear.h"
 #include "NPC.h"
 #include "StageSeni.h"
+#include "GameOver.h"
 
 Player::Player()
 {
@@ -24,6 +25,7 @@ bool Player::Start()
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_skinModelRender->SetScale({ 0.1f, 0.1f, 0.1f });
 	m_position.y = 40;
+	m_position.x = 200.0f;
 	//キャラクターコントローラーを初期化。
 	m_charaCon.Init(
 		4.0,			//半径。 
@@ -37,71 +39,95 @@ bool Player::Start()
 	m_skinModelRender->SetShadowCasterFlag(true);
 	m_skinModelRender->SetShadowReceiverFlag(true);
 	plkanjou = delighted;
+
+	//アニメーションクリップのロード。
+	//m_animClips[enAnimationClip_idle].Load(L"animData/idle.tka");
+	//m_animClips[enAnimationClip_run].Load(L"animData/run.tka");
+	//m_animClips[enAnimationClip_walk].Load(L"animData/walk.tka");
+	////ループフラグを設定する。<-走りアニメーションはループフラグを設定していないので
+	////ワンショット再生で停止する。
+	//m_animClips[enAnimationClip_run].SetLoopFlag(true);
+	//m_animClips[enAnimationClip_idle].SetLoopFlag(true);
+	//m_animClips[enAnimationClip_walk].SetLoopFlag(true);
+
 	return true;
 }
 
-void Player::Effect(CVector3 npcpos, CQuaternion npcrot)
-{
-	//switch (plkanjou)
-	//{
-	//case flat:
-	//	if (effect->IsPlay() == false) {
-	//		//エフェクトを再生。
-	//		effect = NewGO<prefab::CEffect>(0);
-	//		effect->Play(L"effect/oko.efk");
-	//	}
-	//	effect->SetPosition(npcpos);
-	//	effect->SetRotation(npcrot);
-	//	break;
-	//case delighted:
-	//	//エフェクトを再生。
-	//	if (effect->IsPlay() == false) {
-	//		effect = NewGO<prefab::CEffect>(0);
-	//		effect->Play(L"effect/tanosii.efk");
-	//	}
-	//	effect->SetPosition(npcpos);
-	//	effect->SetRotation(npcrot);
-	//	break;
-	//}
-}
+//void Player::Effect(CVector3 npcpos, CQuaternion npcrot)
+//{
+//	switch (plkanjou)
+//	{
+//	case delighted:
+//		//エフェクトを再生。
+//		if (effect->IsPlay() == false) {
+//			effect = NewGO<prefab::CEffect>(0);
+//			effect->Play(L"effect/tanosii.efk");
+//		}
+//		effect->SetPosition(npcpos);
+//		effect->SetRotation(npcrot);
+//		break;
+//	case angry:
+//		if (effect->IsPlay() == false) {
+//			//エフェクトを再生。
+//			effect = NewGO<prefab::CEffect>(0);
+//			effect->Play(L"effect/okoru.efk");
+//		}
+//		effect->SetPosition(npcpos);
+//		effect->SetRotation(npcrot);
+//		break;
+//	}
+//}
 void Player::UpdatekanjouSt1()
 {
-	/*switch (plkanjou)
+	switch (plkanjou)
 	{
 	case flat:
-
+		gof = true;
+		m_gameover = NewGO<GameOver>(0, "GameOver");
+		m_gameover->SetGameOver(true);
 		break;
 	case delighted:
-		if (followerNum < 2 && plkan == true) {
+		if (plkan == true) {
 			plkanjou = flat;
 		}
 		break;
-	}*/
+	}
 }
 
 void Player::Move()
 {
-	//左スティックの入力量を受け取る。
-	float lStick_x = Pad(0).GetLStickXF();
-	float lStick_y = Pad(0).GetLStickYF();
-	//カメラの前方方向と右方向を取得。
-	CVector3 cameraForward = MainCamera().GetForward();
-	CVector3 cameraRight = MainCamera().GetRight();
-	//XZ平面での前方方向、右方向に変換する。
-	cameraForward.y = 0.0f;
-	cameraForward.Normalize();
-	cameraRight.y = 0.0f;
-	cameraRight.Normalize();
-	//XZ成分の移動速度をクリア。
-	m_moveSpeed.x = 0.0f;
-	m_moveSpeed.z = 0.0f;
-	m_moveSpeed.y -= 980.0f * GameTime().GetFrameDeltaTime();
-	m_moveSpeed += cameraForward * lStick_y * 60.0f;	//奥方向への移動速度を代入。
-	m_moveSpeed += cameraRight * lStick_x * 60.0f;		//右方向への移動速度を加算。
-	m_position = m_charaCon.Execute(GameTime().GetFrameDeltaTime(), m_moveSpeed);
-	//プレイヤーの前方向。
-	m_plforward = m_moveSpeed;
-
+	if (gof == false || gcf == false) {
+		//左スティックの入力量を受け取る。
+		float lStick_x = Pad(0).GetLStickXF();
+		float lStick_y = Pad(0).GetLStickYF();
+		//カメラの前方方向と右方向を取得。
+		CVector3 cameraForward = MainCamera().GetForward();
+		CVector3 cameraRight = MainCamera().GetRight();
+		//XZ平面での前方方向、右方向に変換する。
+		cameraForward.y = 0.0f;
+		cameraForward.Normalize();
+		cameraRight.y = 0.0f;
+		cameraRight.Normalize();
+		//XZ成分の移動速度をクリア。
+		m_moveSpeed.x = 0.0f;
+		m_moveSpeed.z = 0.0f;
+		m_moveSpeed.y -= 980.0f * GameTime().GetFrameDeltaTime();
+		m_moveSpeed += cameraForward * lStick_y * 60.0f;	//奥方向への移動速度を代入。
+		m_moveSpeed += cameraRight * lStick_x * 60.0f;		//右方向への移動速度を加算。
+		m_position = m_charaCon.Execute(GameTime().GetFrameDeltaTime(), m_moveSpeed);
+		//プレイヤーの前方向。
+		m_plforward = m_moveSpeed;
+		/*if (m_moveSpeed.x > 0.01f || m_moveSpeed.y > 0.01f) {
+			m_skinModelRender->PlayAnimation(enAnimationClip_run, 2.0f);
+		}
+		else {
+			m_skinModelRender->PlayAnimation(enAnimationClip_idle, 2.0f);
+		}*/
+	}
+	else if (gof == true || gcf == true) {
+		m_moveSpeed.x = 0.0f;
+		m_moveSpeed.z = 0.0f;
+	}
 }
 
 void Player::Turn()
@@ -124,16 +150,17 @@ void Player::Turn()
 
 void Player::Update()
 {
+	UpdatekanjouSt1();
 	//移動処理。
 	Move();
 	//旋回処理。
 	Turn();
 
-	Effect(m_position, m_rotation);
+	//Effect(m_position, m_rotation);
 
-	UpdatekanjouSt1();
 
-	if (followerNum > 10 && ef_flag == 0) {
+	if (followerNum > clearNum && ef_flag == 0) {
+		gcf = true;
 		m_gc = NewGO<GameClear>(0);
 	}
 	//ワールド行列を更新。

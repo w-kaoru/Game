@@ -29,8 +29,6 @@ bool GameOver::Start()
 void GameOver::Update()
 {
 	taim++;
-	
-				
 	if (taim <= 60) {
 		if (GOflag == true) {
 			m_ss->SetGameOver();
@@ -38,7 +36,9 @@ void GameOver::Update()
 			CQuaternion kakud;
 			kakud.SetRotationDeg(CVector3::AxisY, 100.0f);
 			kaku.Multiply(kakud);
+
 			pl->Setrotation(kaku);		}
+
 	}
 	else {
 		 a = 1;
