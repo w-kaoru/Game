@@ -79,13 +79,16 @@ void GameCamera::Update()
 	else if (toPosDir.y > 0.8f) {
 		//カメラが下向きすぎ。
 		m_toCameraPos = toCameraPosOld;
-	}/*
-	if (m_player->GetfollowerNum() > 2) {
-		float angle = 0.0f;
+	}
+	pos = m_toCameraPos;
+	if (m_player->GetfollowerNum() > 20) {
+		static float angle = 0.0f;
 		angle += 3.0f;
 		qRot.SetRotationDeg(CVector3::AxisY, angle);
-		qRot.Multiply(m_player->GetPlforward());
-	}*/
+		qRot.Multiply(pos);
+		m_player->SetfollowerNum(100);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																					
+	}
+	pos += target;
 	//ついて来ている人間の数で、使用するカメラデータを決める。
 	SCameraData* cameraData = nullptr;
 	int arraySize = ARRAYSIZE(cameraDataTbl);
@@ -100,7 +103,7 @@ void GameCamera::Update()
 	m_toCameraPos.Normalize();
 	m_toCameraPos *= cameraData->targetToPosition;
 	////新しい注視点から視点までのベクトルが求まったので、新しい視点を計算する。
-	CVector3 pos = target + m_toCameraPos;
+	
     //メインカメラに３ｄサウンドを聞かせて上げる
 	SoundEngine().SetListenerPosition(MainCamera().GetPosition());
 	CVector3 frontXZ = MainCamera().GetForward();

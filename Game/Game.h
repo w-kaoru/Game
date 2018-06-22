@@ -49,7 +49,7 @@ private:
 	prefab::CDirectionLight* m_sunLig = nullptr;
 	StageSeni* m_ss = nullptr;
 	CLocData locData;
-	GameOver m_gameover;
+	GameOver* m_gameover;
 	CFont m_fontTest;
 	std::unique_ptr<DirectX::SpriteFont> m_timerFont;	//!<タイマー用のフォント。
 	float m_timer = 300.0f;		//制限時間。

@@ -5,6 +5,7 @@
 #include "Fade.h"
 #include "Background.h"
 #include "Title.h"
+#include"GameOver.h"
 #include "Player.h"
 #include "GameCamera.h"
 #include "Level.h"
@@ -88,28 +89,15 @@ void Game::Update()
 {
 	//タイマーの減算
 	//残り時間
-	m_timer -= GameTime().GetFrameDeltaTime();
+	if (m_timer > 0.0f)
+	{
+		m_timer -= GameTime().GetFrameDeltaTime();
+	}
 	if (m_timer < 0.0f) {
-		m_gameover.SetGameOver(true);
-	}
-	if (m_player->GetGo() == true) {
-		m_gameover.SetGameOver(true);
-	}
-	//フェードアウト
-	if (m_isWaitFadeout) {
-		if (!m_fade->IsFade()) {
-			if (m_gameover.GetGameOver() == true) {
-				m_ss->SetGameOver();
-			}
-			NewGO<Title>(0, "Title");
-			DeleteGO(this);
-		}
-	}
-	else {
-		if (m_player->Getef_flag() == 2 || m_gameover.GetGameOver() == true) {
-			m_isWaitFadeout = true;
-			m_fade->StartFadeOut();
-		}
+		m_gameover=NewGO<GameOver>(0, "GameOver");
+
+		m_gameover->SetGameOver(true);
+		m_timer = 0.0f;
 	}
 	SoundEngine().SetListenerPosition(MainCamera().GetPosition());
 }

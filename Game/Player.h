@@ -2,9 +2,11 @@
 //キャラクターコントローラーを使用する場合は、下記のヘッダーファイルのインクルードが必要。
 #include "tkEngine/character/tkCharacterController.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
+
 class GameClear;
 class StageSeni;
 class NPC;
+class GameOver;
 
 class Player :public IGameObject
 {
@@ -31,6 +33,7 @@ public:
 	{
 		return ef_flag;
 	}
+	
 	CVector3 GetPosition()
 	{
 		return m_position;
@@ -43,9 +46,6 @@ public:
 	{
 		return m_plforward;
 	}
-	bool GetGo() {
-		return go;
-	}
 	void Setef_flag()
 	{
 		ef_flag++;
@@ -54,10 +54,19 @@ public:
 	{
 		followerNum++;
 	}
+	void Setrotation(CQuaternion rotation)
+	{
+		m_rotation = rotation;
+	}
+	void SetfollowerNum(int a)
+	{
+		followerNum = a;
+	}
 	void SetfollowerNumm()
 	{
 		followerNum--;
 	}
+
 	void Setplkan(bool k)
 	{
 		plkan = k;
@@ -85,10 +94,12 @@ private:
 	//エフェクトを作成。
 	prefab::CEffect* effect = nullptr;
 	StageSeni* m_ss = nullptr;
+	GameOver* m_gameover = nullptr;
 	enum kanjou plkanjou;
 	bool plkan = false;
 	int ef_flag = 0;						//エフェクトのフラグ。
 	int followerNum = 0;			
 	int clearNum = 10;
-	bool go = false;
+	bool gof = false;
+	bool gcf = false;
 };
