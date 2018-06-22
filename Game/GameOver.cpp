@@ -39,7 +39,6 @@ void GameOver::Update()
 			kakud.SetRotationDeg(CVector3::AxisY, 100.0f);
 			kaku.Multiply(kakud);
 			pl->Setrotation(kaku);
-			pl->SetPosition(position);
 		}
 	}
 	else {
@@ -58,6 +57,6 @@ void GameOver::Update()
 				m_fade->StartFadeOut();
 			}
 		}
-		//ここにフェードなりタイトルなりどうぞ～～～
+		//ここにフェードやタイトルなどをどうぞ
 	}
 }
