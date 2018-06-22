@@ -99,23 +99,6 @@ void Game::Update()
 		m_gameover->SetGameOver(true);
 		m_timer = 0.0f;
 	}
-	////フェードアウト
-	//if (m_isWaitFadeout) {
-	//	if (!m_fade->IsFade()) {
-	//		if (m_gameover.GetGameOver() == true) {
-	//			m_ss->SetGameOver();
-	//		}
-	//		NewGO<Title>(0, "Title");
-	//		DeleteGO(this);
-	//	}
-	//}
-	//else {
-	//	if (m_player->Getef_flag() == 2 || m_gameover.GetGameOver() == true) {
-	//		m_isWaitFadeout = true;
-
-	//		m_fade->StartFadeOut();
-	//	}
-	//}
 	SoundEngine().SetListenerPosition(MainCamera().GetPosition());
 }
 void Game::Render(CRenderContext& rc)
@@ -130,7 +113,6 @@ void Game::PostRender(CRenderContext& rc)
 	int sec = (int)m_timer % 60;
 	swprintf_s(text, L"%02d:%02d", minute, sec);
 	m_fontTest.Begin(rc);
-
 	//文字を描画。
 	m_fontTest.Draw(
 		L"TIME ",
@@ -148,6 +130,7 @@ void Game::PostRender(CRenderContext& rc)
 		0.8f,
 		{ 0.0f, 1.0f }
 	);
+	
 	m_fontTest.End(rc);
 
 }

@@ -29,8 +29,6 @@ bool GameOver::Start()
 void GameOver::Update()
 {
 	taim++;
-	
-				
 	if (taim <= 60) {
 		if (GOflag == true) {
 			m_ss->SetGameOver();

@@ -52,12 +52,12 @@ void GameClear::Update()
 		if (!m_fade->IsFade()) {
 			NewGO<Title>(0, "Title");
 			DeleteGO(game);
+			DeleteGO(this);
 		}
 	}
 	else {
 		if (pl->Getef_flag() == 2) {
 			m_isWaitFadeout = true;
-
 			m_fade->StartFadeOut();
 		}
 	}
