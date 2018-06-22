@@ -41,7 +41,7 @@ bool Game::Start()
 	m_soundSource->Play(true);
 	m_ss = FindGO<StageSeni>("ss");
 	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
-	m_level.Build(L"level/map2.tks");
+	m_level.Build(L"level/yagura.tks");
 
 	locData.Load(L"modelData/NPCloc.tks");
 	for (int i = 0; i < locData.GetNumObject(); i++) {
