@@ -679,6 +679,7 @@
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\yagura.FBX" />
     <MeshContentTask Include="Assets\modelData\yatai.FBX" />
+    <MeshContentTask Include="Assets\modelData\yatai2.FBX" />
     <MeshContentTask Include="Assets\modelData\zimen2.FBX" />
     <MeshContentTask Include="Assets\modelData\zimen3.FBX" />
   </ItemGroup>
@@ -830,6 +831,14 @@
     <CustomBuild Include="Assets\level\yagura.tks">
       <FileType>Document</FileType>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\effect\okoru.efk">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\level\yatai2.tks" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
