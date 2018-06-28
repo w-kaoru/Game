@@ -100,6 +100,7 @@ private:
 	int ef_flag = 0;						//エフェクトのフラグ。
 	int followerNum = 0;			
 	int clearNum = 10;
+	bool a = true;
 	bool gof = false;
 	bool gcf = false;
 };

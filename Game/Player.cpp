@@ -83,8 +83,11 @@ void Player::UpdatekanjouSt1()
 	{
 	case flat:
 		gof = true;
-		m_gameover = NewGO<GameOver>(0, "GameOver");
-		m_gameover->SetGameOver(true);
+		if (a==true) {
+			a = false;
+			m_gameover = NewGO<GameOver>(0, "GameOver");
+			m_gameover->SetGameOver(true);
+		}
 		break;
 	case delighted:
 		if (plkan == true) {
