@@ -85,7 +85,7 @@ float NpcMove::RandomMoveX()
 	}
 	
 	//移動の計算を返す。
-	return m_moveSpeed.x * 60.0 * fugou;
+	return m_moveSpeed.x * 50.0 * fugou;
 }
 
 //ランダム移動Z軸
@@ -138,6 +138,6 @@ float NpcMove::RandomMoveZ()
 		}
 	}
 	//移動の計算を返す。
-	return m_moveSpeed.z * 60.0 * fugou;
+	return m_moveSpeed.z * 50.0 * fugou;
 }
 

@@ -262,6 +262,7 @@
     <CustomBuild Include="Assets\level\yagura.tks">
       <Filter>Assets\level</Filter>
     </CustomBuild>
+    <CustomBuild Include="Assets\effect\Texture\oko.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">

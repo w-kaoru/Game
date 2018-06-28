@@ -36,7 +36,7 @@ void GameOver::Update()
 			CQuaternion kakud;
 			kakud.SetRotationDeg(CVector3::AxisY, 100.0f);
 			kaku.Multiply(kakud);
-			pl->Setrotation(kaku);
+			position = pl->GetPosition();
 		}
 	}
 	else {
