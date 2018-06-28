@@ -89,7 +89,7 @@ void NPC::UpdateKanjouStage1()
 	switch (npckanjou)
 	{
 	case flat:
-		if (plpo.Length() < 5.0f) {
+		if (plpo.Length() < 7.0f) {
 			npckanjou = delighted;
 			npcState = tuibi;
 			m_player->SetfollowerNump();
@@ -97,7 +97,7 @@ void NPC::UpdateKanjouStage1()
 		break;
 	case delighted:
 		//喜んでいる
-		if (plpo.Length() < 5.0f && npcState != tuibi)
+		if (plpo.Length() < 7.0f && npcState != tuibi)
 		{
 			npckanjou = delighted;
 			npcState = tuibi;
@@ -105,6 +105,9 @@ void NPC::UpdateKanjouStage1()
 		}
 		break;
 	case angry:
+		if (gameoveDecision == true) {
+			taim--;
+		}
 		if (plpo.Length() < 40.0f)
 		{
 			npcState = osou;
@@ -113,14 +116,14 @@ void NPC::UpdateKanjouStage1()
 		{
 			npcState = haikai;
 		}
-		if (plpo.Length() <= 5.0f&&m_player->GetfollowerNum() >= 2 )
+		if (plpo.Length() <= 7.0f&&m_player->GetfollowerNum() >= 5)
 			//プレイヤーが連れている人数が一定値以上になったら、感情を喜び状態にする。
 		{
 			npckanjou = delighted;
 			npcState = tuibi;
 			m_player->SetfollowerNump();
 		}
-		else if (plpo.Length() <= 5.0f) {
+		else if (plpo.Length() <= 10.0f&&m_player->GetfollowerNum() < 5) {
 			//怒っている人間とプレイヤーがぶつかった。
 			//ついてきているNPCすべての感情を変更する。
 			for (int i = 0; i < m_game->m_npcList.size(); i++) {
@@ -129,11 +132,21 @@ void NPC::UpdateKanjouStage1()
 					m_game->m_npcList[i]->npcState = haikai;
 					if (m_player->GetfollowerNum() != 0) {
 						m_player->SetfollowerNumm();
+						gameoveDecision = true;
 					}
-				}	
+				}
 			}
-			m_player->Setplkan(true);
+			if (taim <= 0) {
+				gameoveDecision = false;
+			}
+			if (m_player->GetfollowerNum() == 0 && gameoveDecision == false) {
+				m_player->Setplkan(true);
+			}
 		}
+		else {
+			taim = 50;
+		}
+
 		break;
 	}
 }
