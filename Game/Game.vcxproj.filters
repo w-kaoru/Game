@@ -262,6 +262,8 @@
     <CustomBuild Include="Assets\level\yagura.tks">
       <Filter>Assets\level</Filter>
     </CustomBuild>
+    <CustomBuild Include="Assets\effect\okoru.efk" />
+    <CustomBuild Include="Assets\effect\Texture\oko.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">
@@ -273,10 +275,5 @@
     <ImageContentTask Include="Assets\sprite\HumanGroup.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\effect\okoru.efk">
-      <Filter>Assets\effect</Filter>
-    </None>
   </ItemGroup>
 </Project>

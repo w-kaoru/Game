@@ -2,6 +2,7 @@
 #include "GameClear.h"
 #include "Game.h"
 #include "Player.h"
+#include "Fade.h"
 #include "StageSeni.h"
 #include "Title.h"
 
@@ -19,6 +20,7 @@ bool GameClear::Start()
 	pl = FindGO<Player>("Player");
 	m_ss = FindGO<StageSeni>("ss");
 	game = FindGO<Game>("Game");
+	m_fade = FindGO<Fade>("Fede");
 	//エフェクトを作成。
 	effect = NewGO<prefab::CEffect>(0);
 	return true;

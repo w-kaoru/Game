@@ -54,6 +54,8 @@ private:
 	void UpdateKanjouStage1();
 	void UpdateKanjouStage2();
 	void UpdateKanjouStage3();
+	int gameoveDecision = false;
+	int taim = 50;
 	//エフェクトを作成。
 	prefab::CEffect* effect = nullptr;
 	CVector3 epos = CVector3::Zero;

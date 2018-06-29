@@ -1,7 +1,7 @@
 #pragma once
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "GameOver.h"
-#include "Fade.h"
+
 class Game;
 class Player;
 class Fade;
