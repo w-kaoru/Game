@@ -144,7 +144,7 @@ void NPC::UpdateKanjouStage1()
 			}
 		}
 		else {
-			taim = 50;
+			taim = 30;
 		}
 
 		break;

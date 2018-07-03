@@ -2,7 +2,6 @@
 #include "GameClear.h"
 #include "Game.h"
 #include "Player.h"
-#include "Fade.h"
 #include "StageSeni.h"
 #include "Title.h"
 
@@ -17,10 +16,10 @@ void GameClear::OnDestroy()
 }
 bool GameClear::Start()
 {
+	m_fade = FindGO<Fade>("Fade");
 	pl = FindGO<Player>("Player");
 	m_ss = FindGO<StageSeni>("ss");
 	game = FindGO<Game>("Game");
-	m_fade = FindGO<Fade>("Fede");
 	//エフェクトを作成。
 	effect = NewGO<prefab::CEffect>(0);
 	return true;
@@ -44,7 +43,8 @@ void GameClear::Update()
 		
 	}
 	else if (pl->Getef_flag() == 1 && Gtime > 90) {
-		m_ss->SetSNo();
+		//m_ss->SetSNo();
+		m_ss->SetGameOver();
 		pl->Setef_flag();
 		DeleteGO(this);
 	}

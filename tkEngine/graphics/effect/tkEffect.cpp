@@ -24,7 +24,7 @@ namespace tkEngine {
 			}
 		}
 		
-		void CEffect::Play(const wchar_t* filePath)
+		void CEffect::Play(const wchar_t* filePath, std::function<void()> onPlayEnd)
 		{
 			int nameKey = CUtil::MakeHash(filePath);
 			CEffectEngine& ee = GraphicsEngine().GetEffectEngine();
@@ -50,6 +50,9 @@ namespace tkEngine {
 			GraphicsEngine().GetEffectEngine().GetEffekseerManager().SetBaseMatrix(m_handle, mBase);
 			if (IsPlay() == false) {
 				//çƒê∂äÆóπÇµÇΩÇÁèIÇÌÇÈÅB
+				if (m_onPlayEndCb != nullptr) {
+					m_onPlayEndCb();
+				}
 				DeleteGO(this);
 			}
 		}

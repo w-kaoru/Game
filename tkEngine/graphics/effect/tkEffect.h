@@ -20,8 +20,9 @@ namespace tkEngine{
 			/*!
 			 *@brief	エフェクトを再生。
 			 *@param[in]	filePath		再生するエフェクトのファイルパス。
+			 *@param[in]	onPlayEnd		エフェクトの再生が終わった時に呼ばれるコールバック関数。
 			 */
-			void Play(const wchar_t* filePath);
+			void Play(const wchar_t* filePath, std::function<void()> onPlayEnd = nullptr);
 			/*!
 			 *@brief	座標を設定。
 			 */
@@ -60,6 +61,7 @@ namespace tkEngine{
 			CVector3 m_position = CVector3::Zero;			//!<座標。
 			CQuaternion m_rotation = CQuaternion::Identity;	//!<回転。
 			CVector3 m_scale = CVector3::One;				//!<拡大率。
+			std::function<void()> m_onPlayEndCb = nullptr;	//!<エフェクトの再生が終わった時に呼ばれるコールバック。
 		};
 	}
 }

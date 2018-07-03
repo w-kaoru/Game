@@ -99,7 +99,7 @@ private:
 	bool plkan = false;
 	int ef_flag = 0;						//エフェクトのフラグ。
 	int followerNum = 0;			
-	int clearNum = 10;
+	int clearNum = 2;
 	bool a = true;
 	bool gof = false;
 	bool gcf = false;

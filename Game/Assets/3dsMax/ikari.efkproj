@@ -138,11 +138,6 @@
         <DrawingValues>
           <Sprite>
             <Billboard>1</Billboard>
-            <ColorAll_Fixed>
-              <R>189</R>
-              <G>0</G>
-              <B>0</B>
-            </ColorAll_Fixed>
           </Sprite>
         </DrawingValues>
         <Name>Node</Name>
