@@ -295,7 +295,7 @@ void NPC::Update()
 {
 	//感情の更新。
 	//こんな感じでいいのでは。
-	if (m_stagesni->GetSNo() == 0) {
+	if (m_stageseni->GetSNo() == 0) {
 
 		UpdateKanjouStage1();
 		}

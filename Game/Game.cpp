@@ -5,7 +5,7 @@
 #include "Fade.h"
 #include "Background.h"
 #include "Title.h"
-#include"GameOver.h"
+#include "GameOver.h"
 #include "Player.h"
 #include "GameCamera.h"
 #include "Level.h"
@@ -42,6 +42,7 @@ bool Game::Start()
 	m_ss = FindGO<StageSeni>("ss");
 	//ƒŒƒxƒ‹‚ğ\’z‚·‚éB
 	m_level.Build(L"level/yagura.tks");
+	//m_level.Build(L"level/yatai2.tks");
 
 	locData.Load(L"modelData/NPCloc.tks");
 	for (int i = 0; i < locData.GetNumObject(); i++) {

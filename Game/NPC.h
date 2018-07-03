@@ -30,7 +30,7 @@ public:
 	NpcMove m_npcMove;
 	Game *m_game = nullptr;
 	Player *m_player = nullptr;
-	StageSeni* m_stagesni = FindGO<StageSeni>("ss");
+	StageSeni* m_stageseni = FindGO<StageSeni>("ss");
 	prefab::CSoundSource* m_soundSource = nullptr;
 	prefab::CSoundSource* m_soundSource2 = nullptr;
 	NPC*pNpc;
