@@ -27,6 +27,6 @@ private:
 	Fade* m_fade = nullptr;
 	GameOver m_gameover;
 	//エフェクトを作成。
-	prefab::CEffect* effect = nullptr;
+	prefab::CEffect* m_effect = nullptr;
 	int Gtime = 0;
 };

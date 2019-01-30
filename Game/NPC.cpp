@@ -64,6 +64,7 @@ void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
 		}
 		effect->SetPosition(npcpos);
 		effect->SetRotation(npcrot);
+		
 		break;
 	case angry:
 		if (effect->IsPlay() == false) {
@@ -78,6 +79,9 @@ void NPC::Effect(CVector3 npcpos, CQuaternion npcrot)
 		effect->SetScale({ 100.0f,100.0f,100.0f });
 		break;
 	}
+}
+void NPC::EffectDerete() {
+	DeleteGO(effect);
 }
 
 void NPC::UpdateKanjouStage1()
@@ -119,6 +123,7 @@ void NPC::UpdateKanjouStage1()
 		if (plpo.Length() <= 7.0f&&m_player->GetfollowerNum() >= 5)
 			//プレイヤーが連れている人数が一定値以上になったら、感情を喜び状態にする。
 		{
+			EffectDerete();
 			npckanjou = delighted;
 			npcState = tuibi;
 			m_player->SetfollowerNump();

@@ -100,6 +100,8 @@ void Game::Update()
 		m_gameover->SetGameOver(true);
 		m_timer = 0.0f;
 	}
+	npcnum = m_player->GetfollowerNum();
+	swprintf_s(npc, L"%02d", npcnum);
 	SoundEngine().SetListenerPosition(MainCamera().GetPosition());
 }
 void Game::Render(CRenderContext& rc)
@@ -131,7 +133,22 @@ void Game::PostRender(CRenderContext& rc)
 		0.8f,
 		{ 0.0f, 1.0f }
 	);
-	
+	m_fontTest.Draw(
+		L"Human",
+		{ -170.0f, 340.0f },
+		{ 1.0f, 0.0f, 0.0f, 1.0f },
+		0.0f,
+		0.8f,
+		{ 0.0f, 1.0f }
+	);
+	m_fontTest.Draw(
+		npc,
+		{ 10.0f, 340.0f },
+		{ 1.0f, 0.0f, 0.0f, 1.0f },
+		0.0f,
+		0.8f,
+		{ 0.0f, 1.0f }
+	);
 	m_fontTest.End(rc);
 
 }

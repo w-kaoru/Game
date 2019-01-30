@@ -107,6 +107,7 @@
     <MeshContentTask Include="Assets\modelData\yagura.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\yatai2.FBX" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\shader\tonemap.fx">
@@ -264,6 +265,8 @@
     </CustomBuild>
     <CustomBuild Include="Assets\effect\okoru.efk" />
     <CustomBuild Include="Assets\effect\Texture\oko.png" />
+    <CustomBuild Include="Assets\level\maturi.tkl" />
+    <CustomBuild Include="Assets\level\yatai2.tks" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\fade.png">

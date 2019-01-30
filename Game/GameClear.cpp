@@ -21,7 +21,7 @@ bool GameClear::Start()
 	m_ss = FindGO<StageSeni>("ss");
 	game = FindGO<Game>("Game");
 	//エフェクトを作成。
-	effect = NewGO<prefab::CEffect>(0);
+	m_effect = NewGO<prefab::CEffect>(0);
 	return true;
 }
 void GameClear::Update()
@@ -35,11 +35,11 @@ void GameClear::Update()
 		pl->Setef_flag();
 		
 		//エフェクトを再生。
-		effect->Play(L"effect/hanabi.efk");
+		m_effect->Play(L"effect/hanabi.efk");
 		CVector3 emitPos = m_pos;
 		emitPos.y += 30.0f;
-		effect->SetPosition(emitPos);
-		effect->SetRotation(qRot);
+		m_effect->SetPosition(emitPos);
+		m_effect->SetRotation(qRot);
 		
 	}
 	else if (pl->Getef_flag() == 1 && Gtime > 90) {

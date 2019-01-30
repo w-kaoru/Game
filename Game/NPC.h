@@ -20,6 +20,7 @@ public:
 	void Update() override;
 	void Render(CRenderContext& rc);
 	void Effect(CVector3 npcpos, CQuaternion npcrot);
+	void EffectDerete();
 	prefab::CSkinModelRender* m_skinModelRender;	        //スキンモデルレンダラー。
 	CVector3 m_position = CVector3::Zero;                   //座標。
 	CVector3 m_rhpos = CVector3::Zero;                   //座標。
